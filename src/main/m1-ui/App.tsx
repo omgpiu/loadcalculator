@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from '../../logo.svg';
 import './App.css';
+import {PageOne} from '../../test/t2-pages/p1-stepOne/pageOne';
 
 function App() {
-  return (
-    <div >
-     Main Page
-    </div>
-  );
+    return (
+        <div>
+            <PageOne/>
+        </div>
+    );
 }
 
 export default App;
