@@ -9,10 +9,12 @@
     height: 300px;
 }
 .main {
+    border: 1px solid black;
     display: flex;
 
 }
 .buttonBox {
+    border: 1px solid black;
     display: flex;
     flex-direction: row;
     padding: 10px;
