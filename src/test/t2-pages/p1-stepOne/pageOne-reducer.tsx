@@ -1,9 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {placeToLoadType} from './pageOne';
 
-const initialState: InitialPageOneStateType = {
-    loadPlace: 'Грузовик'
-};
+const initialState: InitialPageOneStateType = {loadPlace: 'Грузовик'};
 
 
 const slice = createSlice({
