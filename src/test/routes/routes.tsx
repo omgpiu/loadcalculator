@@ -7,6 +7,7 @@ import {PageOne} from '../t2-pages/p1-stepOne/pageOne';
 
 export const LOGIN = '/login';
 
+export const PAGE_TWO = '/select';
 export const PAGE_ONE = '/';
 export const PALLETS = '/pallets';
 
