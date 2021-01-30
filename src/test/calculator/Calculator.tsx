@@ -7,7 +7,7 @@ import {Routes} from '../routes/routes';
 export const Calculator = () => {
 
     return (
-        <div>
+        <>
             {/* компонент Header*/}
             {/* компонент step navigation*/}
             {/* другие компоненты , которые возможно нужно будет показывать всегда независимо от страницы калькулятора*/}
@@ -18,6 +18,6 @@ export const Calculator = () => {
 
 
             {/*компонент footer*/}
-        </div>
+        </>
     )
 }

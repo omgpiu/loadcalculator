@@ -3,19 +3,20 @@
     height: 80%;
 
 }
-
 .pageOneMain_Block {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
 }
 .pageOneMain_Block div {
     margin-top: 5px;
-
 }
 .pageOneMain_Block button {
-   width: 180px;
+    width: 180px;
+}
 
+.radioBox {
+    display: flex;
+    width: 600px;
+    align-items: center;
 }
