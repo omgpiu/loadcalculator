@@ -4,9 +4,9 @@ import {PageOne} from '../../test/t2-pages/p1-stepOne/pageOne';
 
 function App() {
     return (
-        <div>
+
             <PageOne/>
-        </div>
+
     );
 }
 
