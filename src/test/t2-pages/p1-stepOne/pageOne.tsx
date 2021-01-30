@@ -6,7 +6,7 @@ import container from '../../../assets/images/container.jpg';
 import truck from '../../../assets/images/truck.jpg';
 
 
-export const PageOne: React.FC = () => {
+export const PageOne: React.FC = (props) => {
     return (
         <div className={st.wrapper}>
             <p>Выбор варианта загрузки</p>
