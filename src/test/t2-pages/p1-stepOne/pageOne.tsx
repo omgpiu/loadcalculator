@@ -1,35 +1,35 @@
-import {Button, Col, Radio, Row, Upload} from 'antd';
+import {Button, Col, Row, Upload} from 'antd';
 import React, {useState} from 'react';
 import st from './pageOne.module.css';
-
+import {UploadOutlined} from '@ant-design/icons';
 import container from '../../../assets/images/container.png';
 import truck from '../../../assets/images/truck.jpg';
 
 
 export const PageOne: React.FC = () => {
-    const [check, setCheck] = useState('')
+    const TRUCK = 'Грузовик';
+    const CONTAINER = 'Контейнер';
+    const [check, setCheck] = useState(TRUCK);
 
-    function onChange(e: any) {
-        console.log(`radio checked:${e.target.value}`);
-        setCheck(e)
-
-    }
 
     return (
-
-
         <div className={st.pageOneMain}>
+            
+            <p>Выбор загружаемого пространства</p>
+
 
             <Row justify="center">
                 <Col className={st.pageOneMain_Block}>
                     <img src={truck} alt=""/>
                     <div>
-                        <Radio.Button value="a" checked={check === 'a'} onChange={onChange}
-                                      defaultChecked>Грузовик</Radio.Button>
+                        <Button value="a" onClick={() => {
+                            setCheck(TRUCK);
+                        }} type={check === TRUCK ? 'primary' : 'default'}
+                        >Грузовик</Button>
                     </div>
                     <div>
                         <Upload>
-                            <Button block>Загрузка Документа</Button>
+                            <Button block icon={<UploadOutlined/>}>Загрузка Документа</Button>
                         </Upload>
                     </div>
                 </Col>
@@ -38,8 +38,10 @@ export const PageOne: React.FC = () => {
                 <Col className={st.pageOneMain_Block}>
                     <img src={container} alt=""/>
                     <div>
-                        <Radio.Button value="b" checked={check === 'b'}   onChange={onChange}
-                                      defaultChecked>Контейнер</Radio.Button>
+                        <Button value="a" onClick={() => {
+                            setCheck(CONTAINER);
+                        }} type={check === CONTAINER ? 'primary' : 'default'}
+                        >Контейнер</Button>
                     </div>
                     <div>
                         <div>

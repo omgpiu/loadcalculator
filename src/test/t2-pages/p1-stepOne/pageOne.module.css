@@ -3,14 +3,17 @@
     height: 80%;
 
 }
+
 .pageOneMain_Block {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .pageOneMain_Block div {
     margin-top: 5px;
 }
+
 .pageOneMain_Block button {
     width: 180px;
 }
@@ -19,4 +22,14 @@
     display: flex;
     width: 600px;
     align-items: center;
+}
+
+.pageOneMain {
+    background-color: lightgrey;
+    text-align: center;
+
+}
+
+.btn {
+    background-color: blue;
 }
