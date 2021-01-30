@@ -13,29 +13,29 @@ export const PageOne: React.FC = () => {
 
     return (
         <div className={st.pageOneMain}>
-
-
             <Row justify="center">
-                <Col>
+                <Col className={st.pageOneMain_Block}>
                     <img src={truck} alt=""/>
-                    <Col xs={6}>
-                        <Radio.Button value="a">Truck</Radio.Button>
-                    </Col>
-                    <Col xs={6}>
+                    <div>
+                        <Radio.Button value="a">Грузовик</Radio.Button>
+                    </div>
+                    <div>
                         <Upload>
-                            <Button>Click to Upload</Button>
+                            <Button block>Загрузка Документа</Button>
                         </Upload>
-                    </Col>
+                    </div>
                 </Col>
 
-                <Col>
+                <Col className={st.pageOneMain_Block}>
                     <img src={container} alt=""/>
-                    <Col span={12}>
-                        <Radio.Button value="b">Container</Radio.Button>
-                    </Col>
-                    <Col span={12}>
-                        <Button type="primary">Primary Button</Button>
-                    </Col>
+                    <div>
+                        <Radio.Button value="b" >Контейнер</Radio.Button>
+                    </div>
+                    <div>
+                        <div>
+                            <Button type="default" block>Далее</Button>
+                        </div>
+                    </div>
 
                 </Col>
             </Row>
