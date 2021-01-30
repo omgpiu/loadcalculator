@@ -11,9 +11,9 @@ const {Step} = Steps;
 const App = () => {
 
     return (
-        <>
-            <Calculator/>
-        </>
+
+
+
         <Layout style={{minHeight: '100vh',backgroundColor:'white'}}>
             <Sider >
                     <Steps direction="vertical" current={1}>
@@ -26,10 +26,7 @@ const App = () => {
                 <Header className="site-layout-background" style={{padding: 0}}/>
                 <Content style={{margin: '80px 80px'}}>
                     <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
-
-                        <PageOne/>
-
-
+                        <Calculator/>
                     </div>
                 </Content>
                 <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
