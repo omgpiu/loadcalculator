@@ -20,7 +20,7 @@ export const PageOne: React.FC = () => {
                 </div>
             </div>
             <div className={st.buttonBox}>
-                <ButtonPage name='Импорт'/>
+                <ButtonPage name='Импорт документа'/>
                 <ButtonPage name='Следующий шаг'/>
 
             </div>
