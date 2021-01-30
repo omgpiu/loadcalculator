@@ -1,9 +1,11 @@
 import {Button, Col, Radio, Row, Upload} from 'antd';
 import React from 'react';
-import {UploadOutlined} from '@ant-design/icons';
-import truck from '../../../assets/images/truck.jpg'
-import container from '../../../assets/images/container.png'
-import st from './pageOne.module.css'
+import st from './pageOne.module.css';
+import {ButtonPage} from '../../t5-common/c-1-btn/ButtonPage';
+import {InputPage} from '../../t5-common/с-2-inp/InputPage';
+import container from '../../../assets/images/container.jpg';
+import truck from '../../../assets/images/truck.jpg';
+
 
 export const PageOne: React.FC = () => {
     function onChange(e: any) {
