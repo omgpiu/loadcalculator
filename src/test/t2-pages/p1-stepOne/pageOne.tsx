@@ -10,8 +10,6 @@ export const PageOne: React.FC = () => {
     return (
         <div className={st.wrapper}>
             <div className={st.main}>
-
-
                 <div>
                     <img src={container} alt="container-logo"/>
                     <InputPage type='checkbox'/>
@@ -20,11 +18,9 @@ export const PageOne: React.FC = () => {
                     <img src={truck} alt="truck-logo"/>
                     <InputPage type='checkbox' name='Импорт'/>
                 </div>
-
             </div>
-
             <div className={st.buttonBox}>
-                <ButtonPage name='Импорт'/>
+                <ButtonPage name='Импорт документа'/>
                 <ButtonPage name='Следующий шаг'/>
 
             </div>
