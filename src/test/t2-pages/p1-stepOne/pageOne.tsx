@@ -9,23 +9,22 @@ import truck from '../../../assets/images/truck.jpg';
 export const PageOne: React.FC = () => {
     return (
         <div className={st.wrapper}>
+            <p>Выбор варианта загрузки</p>
             <div className={st.main}>
                 <div>
                     <img src={container} alt="container-logo"/>
-                    <InputPage type='checkbox'/>
+                    <p>Контейнеры</p>
+                    <InputPage type='radio' name='check'/>
                 </div>
                 <div>
                     <img src={truck} alt="truck-logo"/>
-                    <InputPage type='checkbox' name='Импорт'/>
+                    <InputPage type='radio' name='check'/>
                 </div>
             </div>
             <div className={st.buttonBox}>
                 <ButtonPage name='Импорт документа'/>
                 <ButtonPage name='Следующий шаг'/>
-
             </div>
-
-
         </div>
     );
 };
