@@ -1,28 +1,5 @@
-.wrapper {
-    height: 100vh;
-    display: flex;
-    border: 1px solid black;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    justify-content: center;
-}
-.wrapper img {
-    width: 300px;
-    height: 300px;
-}
-.main {
-    border: 1px solid black;
-    display: flex;
+.pageOneMain img {
+    width: 80%;
+    height: 80%;
 
 }
-.buttonBox {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-}
-.buttonBox button {
-    margin: 10px;
-}
-
