@@ -17,7 +17,8 @@ const initialState: InitialStatePageTwoType = {
             height: 1000,
             length: 1000,
             diameter: undefined,
-            volume: undefined
+            volume: undefined,
+            weight: 100
         },
         {
             id: 12,
@@ -27,7 +28,8 @@ const initialState: InitialStatePageTwoType = {
             height: 1000,
             length: 1000,
             diameter: undefined,
-            volume: undefined
+            volume: undefined,
+            weight: 100,
         },
         {
             id: 13,
@@ -37,7 +39,8 @@ const initialState: InitialStatePageTwoType = {
             height: 1000,
             length: 1000,
             diameter: undefined,
-            volume: undefined
+            volume: undefined,
+            weight: 100
         },
         {
             id: 14,
@@ -47,7 +50,8 @@ const initialState: InitialStatePageTwoType = {
             height: undefined,
             length: 1000,
             diameter: 50,
-            volume: undefined
+            volume: 50,
+            weight: 100,
         },
         {
             id: 15,
@@ -58,6 +62,7 @@ const initialState: InitialStatePageTwoType = {
             length: undefined,
             diameter: 500,
             volume: undefined,
+            weight: 100,
         },
         {
             id: 16,
@@ -67,7 +72,8 @@ const initialState: InitialStatePageTwoType = {
             height: 1000,
             length: 1000,
             diameter: undefined,
-            volume: undefined
+            volume: undefined,
+            weight: 100
         }, {
             id: 17,
             img: barrel,
@@ -77,6 +83,7 @@ const initialState: InitialStatePageTwoType = {
             length: undefined,
             diameter: 200,
             volume: 500,
+            weight: 100
         },
 
     ]
@@ -101,6 +108,7 @@ export type packagingItemType = {
     length: number | undefined,
     diameter: number | undefined,
     volume: number | undefined
+    weight: number
 }
 export const pageTwoReducer = slice.reducer;
 

@@ -17,15 +17,15 @@ export const PageTwo: React.FC = () => {
             <Row justify='center'>
                 {
                     packingItems.map(item => {
-                        return <Col className={st.pageTwoMain_Block} key={item.id}>
+                        return <Col  key={item.id}>
                             <img src={item.img} alt={item.title} width={'100px'} height={'100px'}/>
                             <div>
-                                <p><Input value={item.length}/></p>
-                                <p><Input value={item.diameter}/></p>
-                                <p><Input value={item.volume}/></p>
-                                <p><Input value={item.width}/></p>
-                                <p><Input value={item.length}/></p>
-
+                                <p>{item.length && <Input value={item.length}/>}</p>
+                                <p>{item.width && <Input value={item.width}/>}</p>
+                                <p>{item.height && <Input value={item.height}/>}</p>
+                                <p>{item.diameter && <Input value={item.diameter}/>}</p>
+                                <p>{item.volume && <Input value={item.volume}/>}</p>
+                                <p>{item.weight && <Input value={item.weight}/>}</p>
                             </div>
                             <div>
                                 <Button>{item.title}</Button>
