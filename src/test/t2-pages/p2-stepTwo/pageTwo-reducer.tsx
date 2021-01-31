@@ -117,10 +117,10 @@ const slice = createSlice({
     })
 ;
 export type InitialStatePageTwoType = {
-    packagingCargo: packagingItemType[]
-    packagingItems: packagingItemType[]
+    packagingCargo: PackagingItemType[]
+    packagingItems: PackagingItemType[]
 }
-export type packagingItemType = {
+export type PackagingItemType = {
     id: number,
     img: string,
     title: string,

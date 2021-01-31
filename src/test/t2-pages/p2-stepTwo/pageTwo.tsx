@@ -6,6 +6,7 @@ import {getPackagingCargo, getPackagingItems} from './pageTwo-selector';
 import {setPackagingCargo, setPackagingParams} from './pageTwo-reducer';
 import {Link} from 'react-router-dom';
 import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
+import {PageTwoInputsComponent} from './pageTwoInputsComponent';
 
 
 export const PageTwo: React.FC = () => {
@@ -31,37 +32,37 @@ export const PageTwo: React.FC = () => {
                         <img src={item.img} alt={item.title} width={'100px'} height={'100px'}/>
                         <div>
 
-
-                            <p>{item.length && <InputNumber type="number" min={1} onChange={(e) => {
-                                onChangeHandler(item.id, 'length', e as number)
-                            }}/>}
-                            </p>
-                            <p>{item.width && <InputNumber min={1} type="number" value={item.width} onChange={(e) => {
-                                onChangeHandler(item.id, 'length', e as number)
-                            }}/>}
-                            </p>
-                            <p>{item.height && <InputNumber min={1} type="number" value={item.height} onChange={(e) => {
-                                onChangeHandler(item.id, 'length', e as number)
-                            }}/>}
-                            </p>
-                            <p>
-                                {item.diameter &&
-                                <InputNumber min={1} type="number" value={item.diameter} onChange={(e) => {
-                                    onChangeHandler(item.id, 'length', e as number)
-                                }}/>}
-                            </p>
-                            <p>
-                                {item.volume &&
-                                <InputNumber min={1} type="number" value={item.volume} onChange={(e) => {
-                                    onChangeHandler(item.id, 'length', e as number)
-                                }}/>}
-                            </p>
-                            <p>
-                                {item.weight &&
-                                <InputNumber min={1} type="number" value={item.weight} onChange={(e) => {
-                                    onChangeHandler(item.id, 'length', e as number)
-                                }}/>}
-                            </p>
+                            <PageTwoInputsComponent item={item} onChangeHandler={onChangeHandler}/>
+                            {/*<p>{item.length && <InputNumber type="number" min={1} onChange={(e) => {*/}
+                            {/*    onChangeHandler(item.id, 'length', e as number)*/}
+                            {/*}}/>}*/}
+                            {/*</p>*/}
+                            {/*<p>{item.width && <InputNumber min={1} type="number" value={item.width} onChange={(e) => {*/}
+                            {/*    onChangeHandler(item.id, 'length', e as number)*/}
+                            {/*}}/>}*/}
+                            {/*</p>*/}
+                            {/*<p>{item.height && <InputNumber min={1} type="number" value={item.height} onChange={(e) => {*/}
+                            {/*    onChangeHandler(item.id, 'length', e as number)*/}
+                            {/*}}/>}*/}
+                            {/*</p>*/}
+                            {/*<p>*/}
+                            {/*    {item.diameter &&*/}
+                            {/*    <InputNumber min={1} type="number" value={item.diameter} onChange={(e) => {*/}
+                            {/*        onChangeHandler(item.id, 'length', e as number)*/}
+                            {/*    }}/>}*/}
+                            {/*</p>*/}
+                            {/*<p>*/}
+                            {/*    {item.volume &&*/}
+                            {/*    <InputNumber min={1} type="number" value={item.volume} onChange={(e) => {*/}
+                            {/*        onChangeHandler(item.id, 'length', e as number)*/}
+                            {/*    }}/>}*/}
+                            {/*</p>*/}
+                            {/*<p>*/}
+                            {/*    {item.weight &&*/}
+                            {/*    <InputNumber min={1} type="number" value={item.weight} onChange={(e) => {*/}
+                            {/*        onChangeHandler(item.id, 'length', e as number)*/}
+                            {/*    }}/>}*/}
+                            {/*</p>*/}
                         </div>
                         <div>
                             <Button onClick={() => {

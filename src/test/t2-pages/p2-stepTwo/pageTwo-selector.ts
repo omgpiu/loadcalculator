@@ -1,9 +1,9 @@
 import {AppRootStateType} from '../../../main/m2-bll/store';
-import {packagingItemType} from './pageTwo-reducer';
+import {PackagingItemType} from './pageTwo-reducer';
 
-export const getPackagingItems = (state: AppRootStateType): packagingItemType[] => {
+export const getPackagingItems = (state: AppRootStateType): PackagingItemType[] => {
     return state.pageTwo.packagingItems;
 };
-export const getPackagingCargo = (state: AppRootStateType): packagingItemType[] => {
+export const getPackagingCargo = (state: AppRootStateType): PackagingItemType[] => {
     return state.pageTwo.packagingCargo;
 };
