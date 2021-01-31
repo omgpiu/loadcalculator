@@ -23,7 +23,6 @@ export const PageOne: React.FC = () => {
 
     console.log(loadPlacem);
     const onClickTruckHandler = () => {
-
         dispatch(setLoadPlace({loadPlace: TRUCK}));
 
     };
