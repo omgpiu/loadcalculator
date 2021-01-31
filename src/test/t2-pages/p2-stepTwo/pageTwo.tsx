@@ -1,26 +1,26 @@
 import React from 'react';
-import {Button, Col, InputNumber, Row} from 'antd';
+import {Button, Col, Row} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import st from './pageTwo.module.css';
 import {getPackagingCargo, getPackagingItems} from './pageTwo-selector';
-import {setPackagingCargo, setPackagingParams} from './pageTwo-reducer';
+import {ParamType, setPackagingCargo, setPackagingParams} from './pageTwo-reducer';
 import {Link} from 'react-router-dom';
 import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
 import {PageTwoInputsComponent} from './pageTwoInputsComponent';
 
 
 export const PageTwo: React.FC = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const packagingItems = useSelector(getPackagingItems);
-    const packagingCargo = useSelector(getPackagingCargo)
+    const packagingCargo = useSelector(getPackagingCargo);
 
     const onClickHandler = (id: number) => {
-        dispatch(setPackagingCargo({id}))
-    }
+        dispatch(setPackagingCargo({id}));
+    };
 
-    const onChangeHandler = (id: number, param: string, paramQuantity: number) => {
-        dispatch(setPackagingParams({id, param, paramQuantity}))
-    }
+    const onChangeHandler = (id: number, param: ParamType, paramQuantity: number) => {
+        dispatch(setPackagingParams({id, param, paramQuantity}));
+    };
 
     return <div className={st.pageTwoMain}>
         <p>Укажите тип упаковки груза</p>
@@ -33,40 +33,11 @@ export const PageTwo: React.FC = () => {
                         <div>
 
                             <PageTwoInputsComponent item={item} onChangeHandler={onChangeHandler}/>
-                            {/*<p>{item.length && <InputNumber type="number" min={1} onChange={(e) => {*/}
-                            {/*    onChangeHandler(item.id, 'length', e as number)*/}
-                            {/*}}/>}*/}
-                            {/*</p>*/}
-                            {/*<p>{item.width && <InputNumber min={1} type="number" value={item.width} onChange={(e) => {*/}
-                            {/*    onChangeHandler(item.id, 'length', e as number)*/}
-                            {/*}}/>}*/}
-                            {/*</p>*/}
-                            {/*<p>{item.height && <InputNumber min={1} type="number" value={item.height} onChange={(e) => {*/}
-                            {/*    onChangeHandler(item.id, 'length', e as number)*/}
-                            {/*}}/>}*/}
-                            {/*</p>*/}
-                            {/*<p>*/}
-                            {/*    {item.diameter &&*/}
-                            {/*    <InputNumber min={1} type="number" value={item.diameter} onChange={(e) => {*/}
-                            {/*        onChangeHandler(item.id, 'length', e as number)*/}
-                            {/*    }}/>}*/}
-                            {/*</p>*/}
-                            {/*<p>*/}
-                            {/*    {item.volume &&*/}
-                            {/*    <InputNumber min={1} type="number" value={item.volume} onChange={(e) => {*/}
-                            {/*        onChangeHandler(item.id, 'length', e as number)*/}
-                            {/*    }}/>}*/}
-                            {/*</p>*/}
-                            {/*<p>*/}
-                            {/*    {item.weight &&*/}
-                            {/*    <InputNumber min={1} type="number" value={item.weight} onChange={(e) => {*/}
-                            {/*        onChangeHandler(item.id, 'length', e as number)*/}
-                            {/*    }}/>}*/}
-                            {/*</p>*/}
+
                         </div>
                         <div>
                             <Button onClick={() => {
-                                onClickHandler(item.id)
+                                onClickHandler(item.id);
                             }}>{item.title}</Button>
                         </div>
                     </Col>;
@@ -76,10 +47,11 @@ export const PageTwo: React.FC = () => {
         {packagingCargo[0] &&
         <Row justify='center'>
             {
-                packagingCargo.map(item => {
-                    return <Col key={item.id}>
+                packagingCargo.map((item, index) => {
+                    return <Col key={index}>
+                        {console.log(index)}
                         {item.weight}
-                    </Col>
+                    </Col>;
                 })
             }
         </Row>}

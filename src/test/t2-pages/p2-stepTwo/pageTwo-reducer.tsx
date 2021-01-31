@@ -17,8 +17,8 @@ const initialState: InitialStatePageTwoType = {
             width: 1000,
             height: 1000,
             length: 1000,
-            diameter: undefined,
-            volume: undefined,
+            diameter: 0,
+            volume: 0,
             weight: 100
         },
         {
@@ -28,8 +28,8 @@ const initialState: InitialStatePageTwoType = {
             width: 1000,
             height: 1000,
             length: 1000,
-            diameter: undefined,
-            volume: undefined,
+            diameter: 0,
+            volume: 0,
             weight: 100,
         },
         {
@@ -39,16 +39,16 @@ const initialState: InitialStatePageTwoType = {
             width: 1000,
             height: 1000,
             length: 1000,
-            diameter: undefined,
-            volume: undefined,
+            diameter: 0,
+            volume: 0,
             weight: 100
         },
         {
             id: 14,
             img: pipe,
             title: 'ТРУБЫ',
-            width: undefined,
-            height: undefined,
+            width: 0,
+            height: 0,
             length: 1000,
             diameter: 50,
             volume: 50,
@@ -60,9 +60,9 @@ const initialState: InitialStatePageTwoType = {
             title: 'ШИНЫ',
             width: 500,
             height: 500,
-            length: undefined,
+            length: 0,
             diameter: 500,
-            volume: undefined,
+            volume: 0,
             weight: 100,
         },
         {
@@ -72,16 +72,16 @@ const initialState: InitialStatePageTwoType = {
             width: 1000,
             height: 1000,
             length: 1000,
-            diameter: undefined,
-            volume: undefined,
+            diameter: 0,
+            volume: 0,
             weight: 100
         }, {
             id: 17,
             img: barrel,
             title: 'БОЧКИ',
-            width: undefined,
+            width: 0,
             height: 1000,
-            length: undefined,
+            length: 0,
             diameter: 200,
             volume: 500,
             weight: 100
@@ -95,27 +95,25 @@ const slice = createSlice({
         name: 'pageTwo',
         initialState,
         reducers: {
-            setPackagingParams(state, action: PayloadAction<{ id: number, param: string, paramQuantity: number }>) {
-                console.log(action.payload.id, action.payload.param, action.payload.paramQuantity)
-                // state.packagingItems.map(item => {
-                //     if (item.id === action.payload.id) {
-                //         for (let key in item) {
-                //             if (key === action.payload.param) {
-                //
-                //             }
-                //         }
-                //     }
-                // });
+            setPackagingParams(state, action: PayloadAction<{ id: number, param: 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight', paramQuantity: number }>) {
+                console.log(action.payload.id, action.payload.param, action.payload.paramQuantity);
+                state.packagingItems.map(item => {
+                     if (item.id === action.payload.id) {
+                         item[action.payload.param] = action.payload.paramQuantity;
+
+                    }
+                });
             },
             setPackagingCargo(state, action: PayloadAction<{ id: number }>) {
-
-                state.packagingCargo.push(state.packagingItems.filter(item => item.id === action.payload.id)[0])
+                const cargo = state.packagingItems.find(item => item.id === action.payload.id);
+                // cargo && state.packagingCargo.push({...cargo, id: v1()});
             }
 
 
         }
     })
 ;
+export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight'
 export type InitialStatePageTwoType = {
     packagingCargo: PackagingItemType[]
     packagingItems: PackagingItemType[]
@@ -132,6 +130,6 @@ export type PackagingItemType = {
     weight: number
 }
 
-export const {setPackagingParams, setPackagingCargo} = slice.actions
+export const {setPackagingParams, setPackagingCargo} = slice.actions;
 export const pageTwoReducer = slice.reducer;
 
