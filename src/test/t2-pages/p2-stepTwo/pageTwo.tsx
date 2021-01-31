@@ -17,7 +17,7 @@ export const PageTwo: React.FC = () => {
             <Row justify='center'>
                 {
                     packingItems.map(item => {
-                        return <Col  key={item.id}>
+                        return <Col className={st.pageTwoMain_col} key={item.id}>
                             <img src={item.img} alt={item.title} width={'100px'} height={'100px'}/>
                             <div>
                                 <p>{item.length && <Input value={item.length}/>}</p>

@@ -1,3 +1,10 @@
 .pageTwoMain button {
     width: 100px;
+    margin-top: 5px;
+}
+.pageTwoMain_col {
+    margin: 10px;
+}
+.pageTwoMain_col p {
+    margin: 0;
 }
