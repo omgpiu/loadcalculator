@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import box from './../../../assets/images/i2-pagetwo/box.jpg';
 import bigBag from './../../../assets/images/i2-pagetwo/big_bag.jpg';
 import pallet from './../../../assets/images/i2-pagetwo/pallet.jpg';
@@ -93,7 +93,17 @@ const initialState: InitialStatePageTwoType = {
 const slice = createSlice({
         name: 'pageTwo',
         initialState,
-        reducers: {}
+        reducers: {
+            setPackagingParams(state, action: PayloadAction<{ id: number, param: string, paramQuantity: number }>) {
+                 state.packagingItems.map(item => {
+                     return (
+                         item
+                     )
+                 });
+            }
+
+
+        }
     })
 ;
 type InitialStatePageTwoType = {

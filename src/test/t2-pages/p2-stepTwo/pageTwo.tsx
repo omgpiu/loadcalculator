@@ -10,6 +10,12 @@ export const PageTwo: React.FC = () => {
     const packingItems = useSelector(getPackagingItems);
 
 
+
+
+
+
+
+
     return (
         <div className={st.pageTwoMain}>
             <p>Укажите тип упаковки груза</p>
@@ -20,12 +26,12 @@ export const PageTwo: React.FC = () => {
                         return <Col className={st.pageTwoMain_col} key={item.id}>
                             <img src={item.img} alt={item.title} width={'100px'} height={'100px'}/>
                             <div>
-                                <p>{item.length && <Input value={item.length}/>}</p>
-                                <p>{item.width && <Input value={item.width}/>}</p>
-                                <p>{item.height && <Input value={item.height}/>}</p>
-                                <p>{item.diameter && <Input value={item.diameter}/>}</p>
-                                <p>{item.volume && <Input value={item.volume}/>}</p>
-                                <p>{item.weight && <Input value={item.weight}/>}</p>
+                                <p>{item.length && <Input value={item.length} type='number'/>}</p>
+                                <p>{item.width && <Input value={item.width} type='number'/>}</p>
+                                <p>{item.height && <Input value={item.height} type='number'/>}</p>
+                                <p>{item.diameter && <Input value={item.diameter} type='number'/>}</p>
+                                <p>{item.volume && <Input value={item.volume} type='number'/>}</p>
+                                <p>{item.weight && <Input value={item.weight} type='number'/>}</p>
                             </div>
                             <div>
                                 <Button>{item.title}</Button>
