@@ -1,4 +1,4 @@
-import {Button, Col, Row} from 'antd';
+import {Button, Col, Input, Row} from 'antd';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import st from './pageTwo.module.css';
@@ -8,6 +8,8 @@ import {Link} from 'react-router-dom';
 
 export const PageTwo: React.FC = () => {
     const packingItems = useSelector(getPackagingItems);
+
+
     return (
         <div className={st.pageTwoMain}>
             <p>Укажите тип упаковки груза</p>
@@ -16,18 +18,18 @@ export const PageTwo: React.FC = () => {
                 {
                     packingItems.map(item => {
                         return <Col className={st.pageTwoMain_Block} key={item.id}>
-                            <img src={item.img} alt="" width={'100px'} height={'100px'}/>
+                            <img src={item.img} alt={item.title} width={'100px'} height={'100px'}/>
                             <div>
-                                <p> {item.length}</p>
-                                <p> {item.diameter}</p>
-                                <p> {item.height}</p>
-                                <p> {item.volume}</p>
-                                <p>{item.width}</p>
+                                <p><Input value={item.length}/></p>
+                                <p><Input value={item.diameter}/></p>
+                                <p><Input value={item.volume}/></p>
+                                <p><Input value={item.width}/></p>
+                                <p><Input value={item.length}/></p>
+
                             </div>
                             <div>
                                 <Button>{item.title}</Button>
                             </div>
-
                         </Col>;
                     })
                 }</Row>

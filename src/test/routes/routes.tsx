@@ -20,13 +20,10 @@ export const Routes = () => {
     return <>
         <Switch>
             <Route path={LOGIN} render={Login}/>
-
             <Route exact path={PAGE_ONE} render={() => <PageOne/>}/>
             <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
             <Route path={PALLETS} render={() => <Page5Pallets/>}/>
-
-
             <Route path={'*'}
                    render={() => <Page404/>}
             />
