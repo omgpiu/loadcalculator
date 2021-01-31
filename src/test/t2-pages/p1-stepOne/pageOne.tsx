@@ -21,16 +21,14 @@ export const PageOne: React.FC = () => {
     const loadPlacem = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
 
-    console.log(loadPlacem);
+
     const onClickTruckHandler = () => {
 
         dispatch(setLoadPlace({loadPlace: TRUCK}));
-
     };
     const onClickContainerHandler = () => {
 
         dispatch(setLoadPlace({loadPlace: CONTAINER}));
-
     };
 
     return (
@@ -65,8 +63,6 @@ export const PageOne: React.FC = () => {
                             <Link to={PAGE_TWO}>
                                 <Button type="default" block
                                         icon={<CaretRightOutlined/>}
-
-
                                 >
                                     Далее</Button></Link>
                         </div>
