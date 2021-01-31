@@ -4,6 +4,14 @@ import {placeToLoadType} from './pageOne';
 const initialState: InitialPageOneStateType = {loadPlace: 'Грузовик'};
 
 
+
+//thunks
+
+
+
+
+
+
 const slice = createSlice({
         name: 'pageOne',
         initialState,
