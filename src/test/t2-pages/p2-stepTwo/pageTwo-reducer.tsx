@@ -8,6 +8,7 @@ import woodenBox from './../../../assets/images/i2-pagetwo/woodenBox.jpg';
 import barrel from './../../../assets/images/i2-pagetwo/steel-barrel.jpg';
 
 const initialState: InitialStatePageTwoType = {
+    packagingCargo: [],
     packagingItems: [
         {
             id: 11,
@@ -95,18 +96,28 @@ const slice = createSlice({
         initialState,
         reducers: {
             setPackagingParams(state, action: PayloadAction<{ id: number, param: string, paramQuantity: number }>) {
-                 state.packagingItems.map(item => {
-                     return (
-                         item
-                     )
-                 });
+                console.log(action.payload.id, action.payload.param, action.payload.paramQuantity)
+                // state.packagingItems.map(item => {
+                //     if (item.id === action.payload.id) {
+                //         for (let key in item) {
+                //             if (key === action.payload.param) {
+                //
+                //             }
+                //         }
+                //     }
+                // });
+            },
+            setPackagingCargo(state, action: PayloadAction<{ id: number }>) {
+
+                state.packagingCargo.push(state.packagingItems.filter(item => item.id === action.payload.id)[0])
             }
 
 
         }
     })
 ;
-type InitialStatePageTwoType = {
+export type InitialStatePageTwoType = {
+    packagingCargo: packagingItemType[]
     packagingItems: packagingItemType[]
 }
 export type packagingItemType = {
@@ -120,5 +131,7 @@ export type packagingItemType = {
     volume: number | undefined
     weight: number
 }
+
+export const {setPackagingParams, setPackagingCargo} = slice.actions
 export const pageTwoReducer = slice.reducer;
 

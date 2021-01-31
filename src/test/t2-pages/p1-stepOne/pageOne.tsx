@@ -18,6 +18,7 @@ export const PageOne: React.FC = () => {
 
 
     const dispatch = useDispatch();
+    //TODO rename this const
     const loadPlacem = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
 
