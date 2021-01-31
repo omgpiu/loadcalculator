@@ -64,8 +64,6 @@ export const PageOne: React.FC = () => {
                             <Link to={PAGE_TWO}>
                                 <Button type="default" block
                                         icon={<CaretRightOutlined/>}
-
-
                                 >
                                     Далее</Button></Link>
                         </div>
