@@ -14,11 +14,11 @@ export const PageTwo: React.FC = () => {
     const packagingItems = useSelector(getPackagingItems);
     const packagingCargo = useSelector(getPackagingCargo);
 
-    const onClickHandler = (id: number) => {
+    const onClickHandler = (id: string) => {
         dispatch(setPackagingCargo({id}));
     };
 
-    const onChangeHandler = (id: number, param: ParamType, paramQuantity: number) => {
+    const onChangeHandler = (id: string, param: ParamType, paramQuantity: number) => {
         dispatch(setPackagingParams({id, param, paramQuantity}));
     };
 
@@ -44,12 +44,12 @@ export const PageTwo: React.FC = () => {
                 })
             }</Row>
 
-        {packagingCargo[0] &&
+        {packagingCargo &&
         <Row justify='center'>
             {
                 packagingCargo.map((item, index) => {
-                    return <Col key={index}>
-                        {console.log(index)}
+                    return <Col key={item.id}>
+                        {console.log(item.id)}
                         {item.weight}
                     </Col>;
                 })
