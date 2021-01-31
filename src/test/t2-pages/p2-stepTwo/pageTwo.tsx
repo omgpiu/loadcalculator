@@ -1,11 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Button, Col, Input, Row} from 'antd';
 import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
-
 import {useDispatch, useSelector} from 'react-redux';
 import st from './pageTwo.module.css';
-import {getPackagingCargo, getPackagingItems} from './pageTwo-selector';
-
+import {getPackagingItems} from './pageTwo-selector';
 import {setPackagingCargo, setPackagingParams} from './pageTwo-reducer';
 import {Link} from 'react-router-dom';
 
@@ -13,19 +11,14 @@ import {Link} from 'react-router-dom';
 export const PageTwo: React.FC = () => {
     const dispatch = useDispatch()
     const packingItems = useSelector(getPackagingItems);
-    const packingCargo = useSelector(getPackagingCargo)
-    console.log(packingCargo)
+
     const onClickHandler = (id: number) => {
         dispatch(setPackagingCargo({id}))
     }
 
-
     const onChangeHandler = (id: number, param: string, paramQuantity: number) => {
         dispatch(setPackagingParams({id, param, paramQuantity}))
     }
-    useEffect(() => {
-
-    }, [packingItems])
 
     return (
         <div className={st.pageTwoMain}>
