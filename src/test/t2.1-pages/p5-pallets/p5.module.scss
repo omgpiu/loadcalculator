@@ -1,0 +1,74 @@
+.pallets {
+   min-height: 500px;
+   margin: 0 auto;
+   max-width: 600px;
+
+   &_head {
+      font-size: 24px;
+      margin: 0 auto;
+   }
+
+   &_wrap {
+
+   }
+
+   p {
+      font-size: 20px;
+      margin: 10px 0 0 0;
+   }
+
+   &_descr {
+
+   }
+
+   &_inner {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+   }
+
+   &_img {
+      min-width: 200px;
+      min-height: 200px;
+      background-image: url("https://5.imimg.com/data5/OM/SO/MY-46550214/wooden-pallets-500x500.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+   }
+   &_wrapBtn{
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 15px;
+   }
+
+   &_btn {
+      color: #000000;
+      width: 25%;
+      min-width: 100px;
+      background-color: #ffffff;
+      border: 1px solid #000000;
+      outline: 0;
+      cursor: pointer;
+      &:hover{
+         border: 1px solid #1890ff;
+         color: #1890ff;
+         border-radius: 2px;
+         transition: all .3s;
+      }
+   }
+}
+
+.palletTable {
+
+   input {
+      border: 1px solid #000000;
+      border-radius: 2px;
+      padding: 0 0 0 5px;
+      max-width: 70px;
+      margin: 0 10px 0 5px;
+
+   }
+
+}
