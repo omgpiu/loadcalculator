@@ -29,39 +29,45 @@ type PropsType = {
 
 export const CargoTable: React.FC = () => {
     const columns: ColumnsType[] = [{
+        dataIndex: 'title',
+        title: 'Название ',
+        key: 'title'
+
+    }, {
         dataIndex: 'amount',
-        title: 'Amount',
+        title: 'Кол-во',
         key: 'amount'
+
+    }, {
+        dataIndex: 'height',
+        title: 'Высота (мм)',
+        key: 'height'
 
     },
         {
             dataIndex: 'color',
-            title: 'Color',
+            title: 'Цвет',
             key: 'color'
 
         }, {
-            dataIndex: 'height',
-            title: 'Height',
-            key: 'height'
-
-        }, {
             dataIndex: 'length',
-            title: 'Length',
+            title: 'Длина (мм)',
             key: 'length'
 
         }, {
             dataIndex: 'weight',
-            title: 'Weight',
+            title: 'Масса (кг)',
             key: 'weight'
 
         }, {
             dataIndex: 'width',
-            title: 'width',
+            title: 'Ширина мм',
             key: 'width'
 
         },];
     const data: DataType[] =
         [{
+            width: 15,
             amount: 10,
             color: 'blue',
             height: 12,
@@ -69,13 +75,13 @@ export const CargoTable: React.FC = () => {
             length: 13,
             title: 'Pallet',
             weight: 14,
-            width: 15
+
         },]
 
 
     ;
     return (<>
-            <Table columns={columns} dataSource={data}/>
+            <Table columns={columns} dataSource={data} pagination={false}/>
         </>
 
     );
