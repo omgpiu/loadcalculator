@@ -1,0 +1,15 @@
+
+.palletForm_btn {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+.palletForm_btn button{
+    width: 125px;
+}
+.palletForm {
+    padding-top: 25px;
+}

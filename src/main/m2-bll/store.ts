@@ -4,13 +4,15 @@ import {loginReducer} from '../../test/t1-login/loginReducer';
 import thunkMiddleware from 'redux-thunk';
 import {pageOneReducer} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
 import {pageTwoReducer} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
+import {pageFiveReducer} from '../../test/t2.1-pages/p5-pallets/p5-reducer';
 
 
 export const rootReducer = combineReducers({
     app: appReducer,
     login: loginReducer,
     pageOne: pageOneReducer,
-    pageTwo: pageTwoReducer
+    pageTwo: pageTwoReducer,
+    pageFive: pageFiveReducer,
 });
 export const store = configureStore({
     reducer: rootReducer,

@@ -1,20 +1,88 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {page5} from '../../../main/m3-dal/api-service';
+import {appActions} from '../../../main/m2-bll/appReducer';
+import {PalletParamFormType} from './palletForm/palletForm';
+import {v1} from 'uuid';
+import {AppRootStateType} from '../../../main/m2-bll/store';
+
 
 const initialState = {
-    palletParameters:[
-        {id: 1, name: 'Длина:', value: '500', units: 'мм'},
-        {id: 2, name: 'Ширина:', value: '1200', units: 'мм'},
-        {id: 3, name: 'Высота:', value: '150', units: 'мм'},
-        {id: 4, name: 'Грузоподъемность:', value: '750', units: 'кг'},
-        {id: 5, name: 'Максимальная высота загрузки:', value: '2000', units: 'мм'},
-        {id: 6, name: 'Высота разделительного листа:', value: '50', units: 'мм'},
-    ]
-};
+    palletType: 'FIN' as palletVariantType,
+    pallets: [] as PalletType[],
+    palletParam: {} as PalletType
+}
+
+//thunk's
+//   createAsyncThunk<что санка возвращает, аргументы которые принимает санка, описание ошибок - rejectValue: {errors: Array<string> } >
+export const getPalletsTC = createAsyncThunk('pageFive/getPallets',
+    // ... ( param,thunkAPI и внутри => dispatch,rejectWithValue, getState() )
+    async (param, {dispatch, rejectWithValue}) => {
+        try {
+            dispatch(appActions.setAppStatusAC({status: 'loading'}))
+            const res = await page5.getPallets()
+            dispatch(palletActions.setPalletsAC({pallets: res as PalletType[]}))
+            dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
+            return res
+        } catch (err) {
+            dispatch(appActions.setAppStatusAC({status: 'failed'}))
+            return rejectWithValue(err)
+        }
+    })
+export const setPalletParameters = createAsyncThunk('pageFive/setPalletParam',
+    async (param: PalletParamFormType, thunkAPI) => {
+        try {
+            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}))
+            const state = thunkAPI.getState() as AppRootStateType
+            const palletParameters: PalletType = {
+                id: v1(),
+                typePallet: state.pageFive.palletType,
+                ...param,
+            }
+            const res = await page5.setPalletParam(palletParameters)
+            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
+            return res
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err.messages[0])
+        }
+    })
 
 
 const slice = createSlice({
-    name: 'page5',
+    name: 'pageFive',
     initialState,
-    reducers: {}
+    reducers: {
+        setPalletsAC(state, action: PayloadAction<{ pallets: PalletType[] }>) {
+            //устанавливаем в стэйт пришедший  массив с вариантами паллетов
+            state.pallets = action.payload.pallets
+        },
+        // меняем в стейте выбранный тип паллетов
+        filterPalletVariantAC(state, action: PayloadAction<{ palletType: palletVariantType }>) {
+            state.palletType = action.payload.palletType
+        }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getPalletsTC.fulfilled, (state, action) => {
+                state.pallets = action.payload as PalletType[]
+            })
+            .addCase(setPalletParameters.fulfilled, (state, action) => {
+                state.palletParam = action.payload as PalletType
+            })
+    }
 });
-export const page5Reducer = slice.reducer;
+export const pageFiveReducer = slice.reducer;
+export const palletActions = slice.actions;
+
+export type palletVariantType = 'FIN' | 'EUR' | 'E-BOX' | 'CARGO_SMALL' | 'CARGO_BASE';
+export type PalletType = {
+    id: string
+    typePallet: string
+    length: number
+    width: number
+    height: number
+    carryingCapacity: number
+    maxLoadingHeight: number
+    separatorSheetHeight: number
+    img?: string
+};
+export type P5_State = typeof initialState;

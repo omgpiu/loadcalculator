@@ -109,8 +109,6 @@ const slice = createSlice({
                 const cargo = state.packagingItems.find(item => item.id === action.payload.id);
                 cargo && state.packagingCargo.push({...cargo, id: v1()});
             }
-
-
         }
     })
 ;

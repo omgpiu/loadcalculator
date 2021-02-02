@@ -1,71 +1,43 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../main/m2-bll/store';
+import {getPalletsTC, P5_State} from './p5-reducer';
 import st from './p5.module.scss';
+import './p5_antd.css';
+import {PalletForm} from './palletForm/palletForm';
+import {PalletSelected} from './p5-selected';
 
 
-export const Page5Pallets = () => {
+export const Page5Pallets = React.memo(() => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getPalletsTC())
+    }, [dispatch])
 
-    const palletParameters: PalletType[] = [
-        {id: 1, name: 'Длина:', value: '500', units: 'мм'},
-        {id: 2, name: 'Ширина:', value: '1200', units: 'мм'},
-        {id: 3, name: 'Высота:', value: '150', units: 'мм'},
-        {id: 4, name: 'Грузоподъемность:', value: '750', units: 'кг'},
-        {id: 5, name: 'Максимальная высота загрузки:', value: '2000', units: 'мм'},
-        {id: 6, name: 'Высота разделительного листа:', value: '50', units: 'мм'},
-    ]
 
+    const {pallets, palletType} = useSelector<AppRootStateType, P5_State>(state => state.pageFive)
+    const selectedPallet = pallets.filter(el => el.typePallet === palletType)
+    // для прелоадера
+    // const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
     return (
         <div className={st.pallets}>
-            <h3 className={st.pallets_head}>
-                Паллеты
-            </h3>
+            <h3 className={st.pallets_head}>Паллеты</h3>
             <p> Параметры паллетов: </p>
             <span className={st.pallets_descr}>
                     Укажите габариты используемых паллетов и ограничения на расположение груза на паллетах.
-                </span>
-            <div className={st.pallets_inner}>
-                <div className={st.pallets_img}></div>
-                <PalletTable palletParameters={palletParameters}/>
-            </div>
-
-            <div className={st.pallets_wrapBtn}>
-                <button className={st.pallets_btn}
-                        onClick={() => console.log('pallets_btn')}>Назад
-                </button>
-                <button className={st.pallets_btn}
-                        onClick={() => console.log('pallets_btn')}>Продолжить
-                </button>
-            </div>
-        </div>
-    )
-};
-
-
-const PalletTable: React.FC<PalletTableType> = ({palletParameters}) => {
-    return (
-        <table className={st.palletTable}>
-            <tbody>
+            </span>
             {
-                palletParameters.map((el) => {
-                    return <tr key={el.id}>
-                        <td>{el.name}</td>
-                        <td>
-                            <input type="number" value={el.value} onChange={() => {
-                            }}/>
-                        </td>
-                        <td>мм</td>
-                    </tr>
+                selectedPallet.map(el => {
+                    return (
+                        <div key={el.id} className={st.pallets_inner}>
+                            <PalletSelected palletImg={el.img}/>
+                            <PalletForm pallet={el}/>
+                        </div>)
                 })
             }
-            </tbody>
-        </table>
+        </div>
     )
-}
-type PalletTableType = {
-    palletParameters: PalletType[]
-}
-type PalletType = {
-    id: number
-    name: string
-    value: string
-    units: string
-}
+});
+
+
