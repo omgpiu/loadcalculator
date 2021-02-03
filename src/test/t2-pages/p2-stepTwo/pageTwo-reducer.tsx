@@ -97,13 +97,12 @@ const slice = createSlice({
         initialState,
         reducers: {
             setPackagingParams(state, action: PayloadAction<{ id: string, param: 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight', paramQuantity: number }>) {
-                console.log(action.payload.id, action.payload.param, action.payload.paramQuantity);
                 state.packagingItems.map(item => {
-                    if (item.id === action.payload.id) {
-                        item[action.payload.param] = action.payload.paramQuantity;
-
+                        if (item.id === action.payload.id) {
+                            item[action.payload.param] = action.payload.paramQuantity;
+                        }
                     }
-                });
+                );
             },
             setPackagingCargo(state, action: PayloadAction<{ id: string }>) {
                 const cargo = state.packagingItems.find(item => item.id === action.payload.id);
