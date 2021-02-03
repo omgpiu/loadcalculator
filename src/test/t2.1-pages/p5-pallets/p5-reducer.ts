@@ -9,7 +9,7 @@ import {AppRootStateType} from '../../../main/m2-bll/store';
 const initialState = {
     palletType: 'FIN' as palletVariantType,
     pallets: [] as PalletType[],
-    palletParam: {} as PalletType
+    palletParam: null as null | PalletType
 }
 
 //thunk's
@@ -83,6 +83,6 @@ export type PalletType = {
     carryingCapacity: number
     maxLoadingHeight: number
     separatorSheetHeight: number
-    img?: string
+    img?: any
 };
 export type P5_State = typeof initialState;

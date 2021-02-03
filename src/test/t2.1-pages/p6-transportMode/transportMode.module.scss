@@ -1,0 +1,24 @@
+h3{
+   padding-bottom: 20px;
+}
+
+.TransportMode {
+   display: flex;
+   justify-content: space-around;
+
+   &_descr {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      p {
+         margin: 0;
+      }
+   }
+
+
+   &_img {
+      width: 200px;
+      padding-bottom: 15px;
+   }
+}
