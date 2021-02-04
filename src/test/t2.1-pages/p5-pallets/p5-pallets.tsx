@@ -16,14 +16,16 @@ export const Page5Pallets = React.memo(() => {
     const {pallets, palletType} = useSelector<AppRootStateType, P5_State>(state => state.pageFive)
     const dispatch = useDispatch();
     useEffect(() => {
+        //если в стейте нет паллетов, тогда запрашиваем (избугать запроса при возврате на страницу)
         if (pallets.length === 0) {
             dispatch(getPalletsTC())
         }
     }, [dispatch])
 
-
+        // находим паллет по типу выбранному через селект => в массиве 1 нужный объект
     const selectedPallet = pallets.filter(el => el.typePallet === palletType)
     return (
+        // лоадер в момент "запроса"
         <Spin spinning={status === 'loading'} delay={0}>
             <div className={st.pallets}>
                 <h3 className={st.pallets_head}>Паллеты</h3>

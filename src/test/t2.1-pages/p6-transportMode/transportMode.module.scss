@@ -1,4 +1,4 @@
-h3{
+h3 {
    padding-bottom: 20px;
 }
 
@@ -11,14 +11,16 @@ h3{
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+
       p {
          margin: 0;
       }
    }
 
-
    &_img {
       width: 200px;
-      padding-bottom: 15px;
+      height: 150px;
+      margin-bottom: 15px;
    }
+
 }
