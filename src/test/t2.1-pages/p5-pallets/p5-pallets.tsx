@@ -12,17 +12,17 @@ import {RequestStatusType} from '../../../main/m2-bll/appReducer';
 
 export const Page5Pallets = React.memo(() => {
 
-    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
-    const {pallets, palletType} = useSelector<AppRootStateType, P5_State>(state => state.pageFive)
+    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status);
+    const {pallets, palletType} = useSelector<AppRootStateType, P5_State>(state => state.pageFive);
     const dispatch = useDispatch();
     useEffect(() => {
         if (pallets.length === 0) {
-            dispatch(getPalletsTC())
+            dispatch(getPalletsTC());
         }
-    }, [dispatch])
+    }, [dispatch]);
 
 
-    const selectedPallet = pallets.filter(el => el.typePallet === palletType)
+    const selectedPallet = pallets.filter(el => el.typePallet === palletType);
     return (
         <Spin spinning={status === 'loading'} delay={0}>
             <div className={st.pallets}>
@@ -37,11 +37,11 @@ export const Page5Pallets = React.memo(() => {
                             <div key={el.id} className={st.pallets_inner}>
                                 <PalletSelected palletImg={el.img}/>
                                 <PalletForm pallet={el}/>
-                            </div>)
+                            </div>);
                     })
                 }
             </div>
         </Spin>
-    )
+    );
 });
 

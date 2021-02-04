@@ -5,23 +5,21 @@ import imgContainer from '../../../assets/images/container.png';
 import st from './transportMode.module.scss';
 
 
-
-
 export const TransportMode: React.FC = () => {
     const [mode, setMode] = React.useState(0);
 
     const autoModeText = 'При автоматическом подборе контейнеров будут использованны следующие типы контейнеров:' +
-        ' 20\'dv, 40\'dv и 40`hq. Количество контейнеров каждого типа будет рассчитано автоматически.'
+        ' 20\'dv, 40\'dv и 40`hq. Количество контейнеров каждого типа будет рассчитано автоматически.';
     const selectModeText = 'При ручном указании контейнеров вы сами выбираете количество контейнеров' +
-        ' доступных для загрузки груза и их типы из имеющихся в базе.'
+        ' доступных для загрузки груза и их типы из имеющихся в базе.';
     const onChange = (e: RadioChangeEvent) => setMode(e.target.value);
 
-    const style:CSSProperties = {
+    const style: CSSProperties = {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
         paddingLeft: '15px'
-    }
+    };
 
     return (
         <>
@@ -50,5 +48,5 @@ export const TransportMode: React.FC = () => {
                 }
             </div>
         </>
-    )
-}
+    );
+};
