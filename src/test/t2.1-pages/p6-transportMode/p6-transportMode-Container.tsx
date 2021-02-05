@@ -6,10 +6,7 @@ import {TransportMode} from './p6-transportMode';
 
 
 export const TransportModeContainer = () => {
-
     const typeTransport = useSelector<AppRootStateType, placeToLoadType>(state => state.pageOne.loadPlace)
-
-
     const text_description = {
         autoModeText: 'Автоматический подбор транспорта и его количества с учетом характеристик вашего груза.',
         selectModeText: 'При ручном выборе, вы сами выбираете количество, виды, размер транспорта, ' +
@@ -24,9 +21,20 @@ export const TransportModeContainer = () => {
         {
             (typeTransport === 'Контейнер')
                 ?
-                <TransportMode img={containerImg}  text_description={text_description} onHandleClick={onHandleClick}/>
+                <TransportMode img={containerImg} text_description={text_description} onHandleClick={onHandleClick}/>
                 :
-                <TransportMode img={autoImg}  text_description={text_description} onHandleClick={onHandleClick}/>
+                <TransportMode img={autoImg} text_description={text_description} onHandleClick={onHandleClick}/>
         }
     </>
 }
+
+
+// таблица п6 :
+
+//    при ручном выборе:    - добавление удаление видов транспорта
+//                          -виды транспортв сделать в селекте
+//                          -сделать предварительный расчет груза и выводить его на экран на обеих страницах
+// при автоматическом выборе транспорта сделать расчет и фильрацию подходящих машин и вывести их на UI
+
+// выбранные варианты сетать в стейт отправлять на сервер
+// продумать реализацию стейта

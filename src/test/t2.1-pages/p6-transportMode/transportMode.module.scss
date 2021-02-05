@@ -4,7 +4,11 @@ h3 {
 
 .TransportMode {
    display: flex;
-   justify-content: space-around;
+   justify-content: space-between;
+   &_wrapper{
+      margin: 0 auto;
+      max-width: 650px;
+   }
 
    &_descr {
       width: 50%;
