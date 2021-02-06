@@ -1,4 +1,4 @@
-import {Button, Table} from 'antd';
+import {Table} from 'antd';
 import React from 'react';
 
 
@@ -30,25 +30,28 @@ type PropsType = {
 export const CargoTable: React.FC = () => {
 
 
+    const columns = [
+        {
+            title: 'Action',
+            dataIndex: '',
+            key: 'x',
+            render: () => <button>Delete</button>,
+        }, {
+            dataIndex: 'title',
+            title: 'Название ',
+            key: 'title'
 
+        }, {
+            dataIndex: 'amount',
+            title: 'Кол-во',
+            key: 'amount'
 
+        }, {
+            dataIndex: 'height',
+            title: 'Высота (мм)',
+            key: 'height'
 
-    const columns = [{
-        dataIndex: 'title',
-        title: 'Название ',
-        key: 'title'
-
-    }, {
-        dataIndex: 'amount',
-        title: 'Кол-во',
-        key: 'amount'
-
-    }, {
-        dataIndex: 'height',
-        title: 'Высота (мм)',
-        key: 'height'
-
-    },
+        },
         {
             dataIndex: 'color',
             title: 'Цвет',
@@ -76,10 +79,10 @@ export const CargoTable: React.FC = () => {
             render: () => <Button >Delete</Button>,
         },
         {
-            title: 'Colour',
-            dataIndex: '',
-            key: 'x',
-            render: () => <button>Delete</button>,
+            title: 'Цвет',
+            dataIndex: 'color',
+            key: 'color',
+            render: () => <TableSelect/>,
         }
     ];
     const data: DataType[] =
