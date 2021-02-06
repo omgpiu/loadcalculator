@@ -1,7 +1,9 @@
-import {CloseCircleTwoTone} from '@ant-design/icons';
+import {CloseCircleTwoTone, DropboxOutlined} from '@ant-design/icons';
 import {Table} from 'antd';
 import React from 'react';
 import {TableSelect} from '../p3-stepThree/select';
+import {useSelector} from 'react-redux';
+import {getPackagingCargo} from './pageTwo-selector';
 
 
 type ColumnsType = {
@@ -30,11 +32,12 @@ type PropsType = {
 
 
 export const CargoTable: React.FC = () => {
+    const packagingCargo = useSelector(getPackagingCargo);
 
 
     const columns = [
         {
-            title: 'Action',
+            title: <DropboxOutlined style={{fontSize: '35px', color: '#CD853F'}}/>,
             dataIndex: '',
             key: 'x',
             render: () => <CloseCircleTwoTone twoToneColor="red" style={{fontSize: '35px'}}
@@ -79,34 +82,9 @@ export const CargoTable: React.FC = () => {
             render: () => <TableSelect/>,
         }
     ];
-    const data: DataType[] =
-        [{
-            width: 15,
-            amount: 10,
-            color: 'blue',
-            height: 12,
-            key: '1',
-            length: 13,
-            title: 'Pallet',
-            weight: 14,
 
-        },
-            {
-                width: 15,
-                amount: 10,
-                color: 'blue',
-                height: 12,
-                key: '2',
-                length: 13,
-                title: 'Pallet',
-                weight: 14,
-
-            }]
-
-
-    ;
     return (<>
-            <Table columns={columns} dataSource={data} pagination={false}/>
+            <Table columns={columns} dataSource={packagingCargo} pagination={false}/>
         </>
 
     );

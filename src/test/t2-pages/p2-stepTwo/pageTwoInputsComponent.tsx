@@ -16,6 +16,7 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
 
     return (
         <div>
+
             <div>
                 {item.length >= 0 ? <InputNumber type="number" min={1} value={item.length} onChange={(e) => {
                     onChange(item.id, 'length', e as number);
@@ -50,6 +51,11 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
                     <InputNumber min={1} type="number" value={item.weight} onChange={(e) => {
                         onChangeHandler(item.id, 'weight', e as number);
                     }}/> : null}
+            </div>
+            <div>
+                <InputNumber min={1} type="number" value={item.amount} onChange={(e) => {
+                    onChangeHandler(item.id, 'amount', e as number);
+                }}/>
             </div>
 
 

@@ -23,8 +23,8 @@ export const TableSelect: React.FC = () => {
     return (
         <Select
             showSearch
-            style={{width: 200}}
-            placeholder="Select a colour"
+            style={{width: 120}}
+            placeholder="Color"
             optionFilterProp="children"
             onChange={onChange}
             onFocus={onFocus}

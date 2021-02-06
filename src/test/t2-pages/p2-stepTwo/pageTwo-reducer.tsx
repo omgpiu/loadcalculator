@@ -20,7 +20,8 @@ const initialState: InitialStatePageTwoType = {
             length: 1000,
             diameter: -1,
             volume: -1,
-            weight: 100
+            weight: 100,
+            amount: 10,
         },
         {
             id: '12',
@@ -32,6 +33,7 @@ const initialState: InitialStatePageTwoType = {
             diameter: -1,
             volume: -1,
             weight: 100,
+            amount: 10,
         },
         {
             id: '13',
@@ -42,7 +44,8 @@ const initialState: InitialStatePageTwoType = {
             length: 1000,
             diameter: -1,
             volume: -1,
-            weight: 100
+            weight: 100,
+            amount: 10,
         },
         {
             id: '14',
@@ -54,6 +57,7 @@ const initialState: InitialStatePageTwoType = {
             diameter: 50,
             volume: 50,
             weight: 100,
+            amount: 10,
         },
         {
             id: '15',
@@ -65,6 +69,7 @@ const initialState: InitialStatePageTwoType = {
             diameter: 500,
             volume: -1,
             weight: 100,
+            amount: 10,
         },
         {
             id: '16',
@@ -75,7 +80,8 @@ const initialState: InitialStatePageTwoType = {
             length: 1000,
             diameter: -1,
             volume: -1,
-            weight: 100
+            weight: 100,
+            amount: 10,
         }, {
             id: '17',
             img: barrel,
@@ -85,7 +91,8 @@ const initialState: InitialStatePageTwoType = {
             length: -1,
             diameter: 200,
             volume: 500,
-            weight: 100
+            weight: 100,
+            amount: 10,
         },
 
     ]
@@ -96,7 +103,7 @@ const slice = createSlice({
         name: 'pageTwo',
         initialState,
         reducers: {
-            setPackagingParams(state, action: PayloadAction<{ id: string, param: 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight', paramQuantity: number }>) {
+            setPackagingParams(state, action: PayloadAction<{ id: string, param: ParamType, paramQuantity: number }>) {
                 state.packagingItems.map(item => {
                         if (item.id === action.payload.id) {
                             item[action.payload.param] = action.payload.paramQuantity;
@@ -111,7 +118,7 @@ const slice = createSlice({
         }
     })
 ;
-export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight'
+export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight' | 'amount'
 export type InitialStatePageTwoType = {
     packagingCargo: PackagingItemType[]
     packagingItems: PackagingItemType[]
@@ -126,6 +133,7 @@ export type PackagingItemType = {
     diameter: number
     volume: number
     weight: number
+    amount: number
 }
 
 

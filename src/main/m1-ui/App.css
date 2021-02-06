@@ -1,3 +1,9 @@
+
+
+.ant-modal-mask {
+    background-color: rgba(0, 0, 0, 0.10)
+}
+
 #components-layout-demo-custom-trigger .trigger {
     font-size: 18px;
     line-height: 64px;
@@ -23,4 +29,3 @@
 .ant-layout-sider-children {
     background-color: #c7dbff;
 }
-
