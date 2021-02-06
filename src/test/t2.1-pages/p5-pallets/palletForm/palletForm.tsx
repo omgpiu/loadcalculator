@@ -11,6 +11,8 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
     const palletParam = useSelector<AppRootStateType, PalletType | null>(state => state.pageFive.palletParam)
     const history = useHistory();
     const dispatch = useDispatch();
+    //модель для отрисовки формы, value либо стандарт,
+    // либо если уже был ранее выбран паллет возвращаются значения из стейта "palletParam"
     const palletModel = [
         {id: 1, name: 'length', label: 'Длина (мм):', value: pallet.length, disabled: true},
         {id: 2, name: 'width', label: 'Ширина (мм):', value: pallet.width, disabled: true},
