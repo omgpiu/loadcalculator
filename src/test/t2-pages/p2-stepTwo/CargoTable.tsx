@@ -1,4 +1,4 @@
-import {Table} from 'antd';
+import {Button, Table} from 'antd';
 import React from 'react';
 
 
@@ -73,7 +73,7 @@ export const CargoTable: React.FC = () => {
             title: 'Action',
             dataIndex: '',
             key: 'x',
-            render: () => <button>Delete</button>,
+            render: () => <Button >Delete</Button>,
         },
         {
             title: 'Colour',
