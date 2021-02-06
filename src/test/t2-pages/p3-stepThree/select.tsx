@@ -3,7 +3,7 @@ import {Select} from 'antd';
 
 const {Option} = Select;
 
-export const PageThree: React.FC = () => {
+export const TableSelect: React.FC = () => {
     function handleChange(value: any) {
         console.log(`selected ${value}`);
     }

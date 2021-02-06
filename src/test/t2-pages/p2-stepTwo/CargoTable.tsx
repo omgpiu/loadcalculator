@@ -1,5 +1,6 @@
 import {Table} from 'antd';
 import React from 'react';
+import {TableSelect} from '../p3-stepThree/select';
 
 
 type ColumnsType = {
@@ -30,31 +31,29 @@ type PropsType = {
 export const CargoTable: React.FC = () => {
 
 
-
-
-
-    const columns = [{
-        dataIndex: 'title',
-        title: 'Название ',
-        key: 'title'
-
-    }, {
-        dataIndex: 'amount',
-        title: 'Кол-во',
-        key: 'amount'
-
-    }, {
-        dataIndex: 'height',
-        title: 'Высота (мм)',
-        key: 'height'
-
-    },
+    const columns = [
         {
-            dataIndex: 'color',
-            title: 'Цвет',
-            key: 'color'
+            title: 'Action',
+            dataIndex: '',
+            key: 'x',
+            render: () => <button>Delete</button>,
+        }, {
+            dataIndex: 'title',
+            title: 'Название ',
+            key: 'title'
 
         }, {
+            dataIndex: 'amount',
+            title: 'Кол-во',
+            key: 'amount'
+
+        }, {
+            dataIndex: 'height',
+            title: 'Высота (мм)',
+            key: 'height'
+
+        },
+        {
             dataIndex: 'length',
             title: 'Длина (мм)',
             key: 'length'
@@ -69,17 +68,12 @@ export const CargoTable: React.FC = () => {
             title: 'Ширина мм',
             key: 'width'
 
-        }, {
-            title: 'Action',
-            dataIndex: '',
-            key: 'x',
-            render: () => <button>Delete</button>,
         },
         {
-            title: 'Colour',
-            dataIndex: '',
-            key: 'x',
-            render: () => <button>Delete</button>,
+            title: 'Цвет',
+            dataIndex: 'color',
+            key: 'color',
+            render: () => <TableSelect/>,
         }
     ];
     const data: DataType[] =
