@@ -1,26 +1,30 @@
 h3 {
-  padding-bottom: 20px;
+   padding-bottom: 20px;
 }
 
 .TransportMode {
-  display: flex;
-  justify-content: space-around;
+   display: flex;
+   justify-content: space-between;
+   &_wrapper{
+      margin: 0 auto;
+      max-width: 650px;
+   }
 
-  &_descr {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+   &_descr {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
 
-    p {
-      margin: 0;
-    }
-  }
+      p {
+         margin: 0;
+      }
+   }
 
-  &_img {
-    width: 200px;
-    height: 150px;
-    margin-bottom: 15px;
-  }
+   &_img {
+      width: 200px;
+      height: 150px;
+      margin-bottom: 15px;
+   }
 
 }
