@@ -7,6 +7,7 @@ import {ParamType, setPackagingCargo, setPackagingParams} from './pageTwo-reduce
 import {Link} from 'react-router-dom';
 import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
 import {PageTwoInputsComponent} from './pageTwoInputsComponent';
+import {CargoTable} from './CargoTable';
 
 
 export const PageTwo: React.FC = () => {
@@ -56,7 +57,7 @@ export const PageTwo: React.FC = () => {
             }
         </Row>}
 
-
+        <CargoTable/>
         <div style={{margin: '10px'}}>
             <Link to={PAGE_ONE}> <Button type={'default'}>Назад</Button></Link>
         </div>

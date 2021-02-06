@@ -1,4 +1,5 @@
-import {Button, Table} from 'antd';
+import {CloseCircleTwoTone} from '@ant-design/icons';
+import {Table} from 'antd';
 import React from 'react';
 import {TableSelect} from '../p3-stepThree/select';
 
@@ -36,7 +37,9 @@ export const CargoTable: React.FC = () => {
             title: 'Action',
             dataIndex: '',
             key: 'x',
-            render: () => <button>Delete</button>,
+            render: () => <CloseCircleTwoTone twoToneColor="red" style={{fontSize: '35px'}}
+                                              onClick={() => alert('delete')}/>
+
         }, {
             dataIndex: 'title',
             title: 'Название ',
@@ -54,11 +57,6 @@ export const CargoTable: React.FC = () => {
 
         },
         {
-            dataIndex: 'color',
-            title: 'Цвет',
-            key: 'color'
-
-        }, {
             dataIndex: 'length',
             title: 'Длина (мм)',
             key: 'length'
@@ -73,11 +71,6 @@ export const CargoTable: React.FC = () => {
             title: 'Ширина мм',
             key: 'width'
 
-        }, {
-            title: 'Action',
-            dataIndex: '',
-            key: 'x',
-            render: () => <Button>Delete</Button>,
         },
         {
             title: 'Цвет',
@@ -97,7 +90,18 @@ export const CargoTable: React.FC = () => {
             title: 'Pallet',
             weight: 14,
 
-        },]
+        },
+            {
+                width: 15,
+                amount: 10,
+                color: 'blue',
+                height: 12,
+                key: '2',
+                length: 13,
+                title: 'Pallet',
+                weight: 14,
+
+            }]
 
 
     ;
