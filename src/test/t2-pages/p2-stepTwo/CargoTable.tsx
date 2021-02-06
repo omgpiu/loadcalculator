@@ -28,7 +28,12 @@ type PropsType = {
 
 
 export const CargoTable: React.FC = () => {
-    const columns: ColumnsType[] = [{
+
+
+
+
+
+    const columns = [{
         dataIndex: 'title',
         title: 'Название ',
         key: 'title'
@@ -64,7 +69,19 @@ export const CargoTable: React.FC = () => {
             title: 'Ширина мм',
             key: 'width'
 
-        },];
+        }, {
+            title: 'Action',
+            dataIndex: '',
+            key: 'x',
+            render: () => <button>Delete</button>,
+        },
+        {
+            title: 'Colour',
+            dataIndex: '',
+            key: 'x',
+            render: () => <button>Delete</button>,
+        }
+    ];
     const data: DataType[] =
         [{
             width: 15,

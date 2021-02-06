@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {PAGE_FIVE, PAGE_THREE, PAGE_TWO} from '../../routes/routes';
+import {PAGE_FIVE, PAGE_TWO} from '../../routes/routes';
 import {Button} from 'antd';
 import {CargoTable} from '../p2-stepTwo/CargoTable';
 
