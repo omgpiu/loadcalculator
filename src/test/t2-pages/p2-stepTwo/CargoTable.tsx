@@ -36,12 +36,8 @@ export const CargoTable: React.FC = () => {
     const dispatch = useDispatch();
 
     const packagingCargo = useSelector(getPackagingCargo);
-    console.log(packagingCargo);
 
-    // const onClickDeleteHandler = (id: string) => {
-    //     dispatch(deletePackagingCargo({id}));
-    // };
-    const deleteRow = (id: string) => {
+    const onClickDeleteHandler = (id: string) => {
         dispatch(deletePackagingCargo({id}));
         console.log(packagingCargo);
 
@@ -52,7 +48,7 @@ export const CargoTable: React.FC = () => {
             dataIndex: '',
             key: 'x',
             render: (cargo: PackagingItemType) => <CloseCircleTwoTone twoToneColor="red" style={{fontSize: '35px'}}
-                                                                      onClick={() => deleteRow(cargo.id)}/>
+                                                                      onClick={() => onClickDeleteHandler(cargo.id)}/>
 
         }, {
             dataIndex: 'title',
@@ -95,7 +91,8 @@ export const CargoTable: React.FC = () => {
     ];
 
     return (<>
-            <Table columns={columns} dataSource={packagingCargo} pagination={false}/>
+            <Table columns={columns} dataSource={packagingCargo} pagination={false}
+                   rowKey="id"/>
         </>
 
     );
