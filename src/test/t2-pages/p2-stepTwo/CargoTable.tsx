@@ -1,5 +1,6 @@
-import {Table} from 'antd';
+import {Button, Table} from 'antd';
 import React from 'react';
+import {TableSelect} from '../p3-stepThree/select';
 
 
 type ColumnsType = {
@@ -76,7 +77,7 @@ export const CargoTable: React.FC = () => {
             title: 'Action',
             dataIndex: '',
             key: 'x',
-            render: () => <Button >Delete</Button>,
+            render: () => <Button>Delete</Button>,
         },
         {
             title: 'Цвет',
