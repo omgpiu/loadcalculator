@@ -12,11 +12,11 @@ interface Column {
     id: string
     img: string
     title: string
-    width: number
-    height: number
-    length: number
-    diameter: number
-    volume: number
+    width: number | null
+    height: number | null
+    length: number | null
+    diameter: number | null
+    volume: number | null
     weight: number
     amount: number
 }
@@ -70,12 +70,7 @@ export const CargoTable: React.FC = () => {
             key: 'diameter'
 
         },
-        {
-            dataIndex: 'volume',
-            title: 'Объем (мм)',
-            key: 'volume'
 
-        },
         {
             dataIndex: 'weight',
             title: 'Масса (кг)',

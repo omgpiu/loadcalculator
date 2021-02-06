@@ -34,6 +34,7 @@ export const TableSelect: React.FC = () => {
                 !!option && option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
             bordered={false}
+            defaultValue="blue"
         >
             <Option value="blue">Blue</Option>
             <Option value="red">Red</Option>

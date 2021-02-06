@@ -9,28 +9,36 @@ import {getLoadPlace} from './pageOne-selector';
 import {setLoadPlace} from './pageOne-reducer';
 import {Link} from 'react-router-dom';
 import {PAGE_TWO} from '../../routes/routes';
+import {setCurrentStep} from '../../../main/m2-bll/appReducer';
 
 export type placeToLoadType = 'Грузовик' | 'Контейнер' | ''
+
+
+type PropsType = {
+    currentPage: number
+}
 
 export const PageOne: React.FC = () => {
     const TRUCK = 'Грузовик';
     const CONTAINER = 'Контейнер';
-
-
     const dispatch = useDispatch();
-    //TODO rename this const
-    const loadPlacem = useSelector(getLoadPlace);
+
+
+    const load = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
 
 
     const onClickTruckHandler = () => {
-
         dispatch(setLoadPlace({loadPlace: TRUCK}));
     };
     const onClickContainerHandler = () => {
-
         dispatch(setLoadPlace({loadPlace: CONTAINER}));
     };
+
+    const forwardStepOnClickHandler = () => {
+        dispatch(setCurrentStep({page: 1}));
+    };
+
 
     return (
         <div className={st.pageOneMain}>
@@ -43,7 +51,7 @@ export const PageOne: React.FC = () => {
                     <img src={truck} alt="" onClick={onClickTruckHandler}/>
                     <div>
                         <Button onClick={onClickTruckHandler}
-                                type={loadPlacem === TRUCK ? 'primary' : 'default'}
+                                type={load === TRUCK ? 'primary' : 'default'}
                         >Грузовик</Button>
                     </div>
                     <div>
@@ -56,12 +64,12 @@ export const PageOne: React.FC = () => {
                     <img src={container} alt="" onClick={onClickContainerHandler}/>
                     <div>
                         <Button onClick={onClickContainerHandler}
-                                type={loadPlacem === CONTAINER ? 'primary' : 'default'}
+                                type={load === CONTAINER ? 'primary' : 'default'}
                         >Контейнер</Button>
                     </div>
                     <div>
                         <div>
-                            <Link to={PAGE_TWO}>
+                            <Link to={PAGE_TWO} onClick={forwardStepOnClickHandler}>
                                 <Button type="default" block
                                         icon={<CaretRightOutlined/>}
                                 >
@@ -79,7 +87,7 @@ export const PageOne: React.FC = () => {
 
     );
 };
-
+// export default WithCurrentPage(PageOne);
 
 
 
