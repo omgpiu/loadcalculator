@@ -18,36 +18,36 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
         <div>
 
             <div>
-                {item.length >= 0 ? <InputNumber type="number" min={1} value={item.length} onChange={(e) => {
+                {item.length > 0 ? <InputNumber type="number" min={1} value={item.length} onChange={(e) => {
                     onChange(item.id, 'length', e as number);
                 }}/> : null}
             </div>
             <div>
-                {item.width >= 0 ? <InputNumber min={1} type="number" value={item.width} onChange={(e) => {
+                {item.width > 0 ? <InputNumber min={1} type="number" value={item.width} onChange={(e) => {
                     onChangeHandler(item.id, 'width', e as number);
                 }}/> : null}
             </div>
             <div>
-                {item.height >= 0 ? <InputNumber min={1} type="number" value={item.height} onChange={(e) => {
+                {item.height > 0 ? <InputNumber min={1} type="number" value={item.height} onChange={(e) => {
                     onChangeHandler(item.id, 'height', e as number);
                 }}/> : null}
             </div>
 
 
             <div>
-                {item.diameter >= 0 ? <InputNumber min={1} type="number" value={item.diameter} onChange={(e) => {
+                {item.diameter > 0 ? <InputNumber min={1} type="number" value={item.diameter} onChange={(e) => {
                     onChangeHandler(item.id, 'diameter', e as number);
                 }}/> : null}
             </div>
 
             <div>
-                {item.volume >= 0 ?
+                {item.volume > 0 ?
                     <InputNumber min={1} type="number" value={item.volume} onChange={(e) => {
                         onChangeHandler(item.id, 'volume', e as number);
                     }}/> : null}
             </div>
             <div>
-                {item.weight >= 0 ?
+                {item.weight > 0 ?
                     <InputNumber min={1} type="number" value={item.weight} onChange={(e) => {
                         onChangeHandler(item.id, 'weight', e as number);
                     }}/> : null}

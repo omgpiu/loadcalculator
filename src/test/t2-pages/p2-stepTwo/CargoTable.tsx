@@ -5,49 +5,36 @@ import {TableSelect} from '../p3-stepThree/select';
 import {useDispatch, useSelector} from 'react-redux';
 import {getPackagingCargo} from './pageTwo-selector';
 import {deletePackagingCargo, PackagingItemType} from './pageTwo-reducer';
+import {ColumnsType} from 'antd/es/table';
 
 
-type ColumnsType = {
+interface Column {
+    id: string
+    img: string
     title: string
-    dataIndex: string
-    key: string,
-
-
-}
-type DataType = {
-    key: string
-    title: string
-    length: number
     width: number
     height: number
+    length: number
+    diameter: number
+    volume: number
     weight: number
     amount: number
-    color: string
-}
-
-
-type PropsType = {
-    columns: ColumnsType[]
-    data: DataType[]
 }
 
 
 export const CargoTable: React.FC = () => {
     const dispatch = useDispatch();
-
     const packagingCargo = useSelector(getPackagingCargo);
-
     const onClickDeleteHandler = (id: string) => {
         dispatch(deletePackagingCargo({id}));
-        console.log(packagingCargo);
 
     };
-    const columns = [
+    const columns: ColumnsType<Column> = [
         {
             title: <DropboxOutlined style={{fontSize: '35px', color: '#CD853F'}}/>,
             dataIndex: '',
             key: 'x',
-            render: (cargo: PackagingItemType) => <CloseCircleTwoTone twoToneColor="red" style={{fontSize: '35px'}}
+            render: (cargo: PackagingItemType) => <CloseCircleTwoTone twoToneColor="pink" style={{fontSize: '35px'}}
                                                                       onClick={() => onClickDeleteHandler(cargo.id)}/>
 
         }, {
@@ -72,19 +59,32 @@ export const CargoTable: React.FC = () => {
             key: 'length'
 
         }, {
-            dataIndex: 'weight',
-            title: 'Масса (кг)',
-            key: 'weight'
-
-        }, {
             dataIndex: 'width',
-            title: 'Ширина мм',
+            title: 'Ширина (мм)',
             key: 'width'
 
         },
         {
-            title: 'Цвет',
+            dataIndex: 'diameter',
+            title: 'Диаметр (мм)',
+            key: 'diameter'
+
+        },
+        {
+            dataIndex: 'volume',
+            title: 'Объем (мм)',
+            key: 'volume'
+
+        },
+        {
+            dataIndex: 'weight',
+            title: 'Масса (кг)',
+            key: 'weight'
+
+        },
+        {
             dataIndex: 'color',
+            title: 'Цвет',
             key: 'color',
             render: () => <TableSelect/>,
         }
@@ -92,7 +92,9 @@ export const CargoTable: React.FC = () => {
 
     return (<>
             <Table columns={columns} dataSource={packagingCargo} pagination={false}
-                   rowKey="id"/>
+                   rowKey="id"
+
+            />
         </>
 
     );
