@@ -2,8 +2,9 @@ import {CloseCircleTwoTone, DropboxOutlined} from '@ant-design/icons';
 import {Table} from 'antd';
 import React from 'react';
 import {TableSelect} from '../p3-stepThree/select';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getPackagingCargo} from './pageTwo-selector';
+import {deletePackagingCargo, PackagingItemType} from './pageTwo-reducer';
 
 
 type ColumnsType = {
@@ -32,16 +33,26 @@ type PropsType = {
 
 
 export const CargoTable: React.FC = () => {
+    const dispatch = useDispatch();
+
     const packagingCargo = useSelector(getPackagingCargo);
+    console.log(packagingCargo);
 
+    // const onClickDeleteHandler = (id: string) => {
+    //     dispatch(deletePackagingCargo({id}));
+    // };
+    const deleteRow = (id: string) => {
+        dispatch(deletePackagingCargo({id}));
+        console.log(packagingCargo);
 
+    };
     const columns = [
         {
             title: <DropboxOutlined style={{fontSize: '35px', color: '#CD853F'}}/>,
             dataIndex: '',
             key: 'x',
-            render: () => <CloseCircleTwoTone twoToneColor="red" style={{fontSize: '35px'}}
-                                              onClick={() => alert('delete')}/>
+            render: (cargo: PackagingItemType) => <CloseCircleTwoTone twoToneColor="red" style={{fontSize: '35px'}}
+                                                                      onClick={() => deleteRow(cargo.id)}/>
 
         }, {
             dataIndex: 'title',

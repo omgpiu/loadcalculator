@@ -114,7 +114,15 @@ const slice = createSlice({
             setPackagingCargo(state, action: PayloadAction<{ id: string }>) {
                 const cargo = state.packagingItems.find(item => item.id === action.payload.id);
                 cargo && state.packagingCargo.push({...cargo, id: v1()});
-            }
+            },
+            deletePackagingCargo(state, action: PayloadAction<{ id: string }>) {
+                const index = state.packagingCargo.findIndex(c => c.id === action.payload.id);
+                if (index > -1) {
+                    state.packagingCargo.splice(index, 1);
+                }
+
+            },
+
         }
     })
 ;
@@ -137,6 +145,6 @@ export type PackagingItemType = {
 }
 
 
-export const {setPackagingParams, setPackagingCargo} = slice.actions;
+export const {setPackagingParams, setPackagingCargo, deletePackagingCargo} = slice.actions;
 export const pageTwoReducer = slice.reducer;
 
