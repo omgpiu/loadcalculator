@@ -88,6 +88,7 @@ export const CargoTable: React.FC = () => {
     return (<>
             <Table columns={columns} dataSource={packagingCargo} pagination={false}
                    rowKey="id"
+                   scroll={{ x: 'max-content' }}
 
             />
         </>

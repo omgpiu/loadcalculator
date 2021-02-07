@@ -2,22 +2,25 @@ import React, {useState} from 'react';
 import './App.css';
 import {Calculator} from '../../test/calculator/Calculator';
 import {Layout, Steps} from 'antd';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getCurrentPageStep, getSteps} from '../m2-bll/app-selector';
+import {setCurrentStep} from '../m2-bll/appReducer';
 
 const {Header, Content, Footer, Sider} = Layout;
 const {Step} = Steps;
 
 const App = () => {
+    const dispatch = useDispatch();
     const steps = useSelector(getSteps);
     const currentPageStep = useSelector(getCurrentPageStep);
-
+    const onChangeHandler = (currentPageStep:number) => {
+        dispatch(setCurrentStep({page: currentPageStep}));
+    };
 
     const [collapsed, setCollapsed] = useState(false);
     const onCollapse = () => {
         setCollapsed(!collapsed);
     };
-
 
 
     return (
@@ -28,8 +31,9 @@ const App = () => {
 
             </Sider>
             <Layout className="site-layout">
-                <Header className="site-layout-background" style={{paddingLeft: '10px',paddingRight:'15px',paddingTop:'10px'}}>
-                    <Steps current={currentPageStep} size={'small'}>
+                <Header className="site-layout-background"
+                        style={{paddingLeft: '10px', paddingRight: '15px', paddingTop: '10px'}}>
+                    <Steps current={currentPageStep} size={'small'} onChange={onChangeHandler}>
                         {steps.map(item => (
                             <Step key={item.title} title={item.title}
                                   description={item.description}/>

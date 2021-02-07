@@ -40,7 +40,6 @@ export const PageTwo: React.FC = () => {
                             <div>
                                 <Button onClick={() => {
                                     onClickHandler(item.id);
-
                                 }}>{item.title}</Button>
                             </div>
                         </div>
