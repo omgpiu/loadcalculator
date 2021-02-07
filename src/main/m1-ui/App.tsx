@@ -6,11 +6,11 @@ import {Layout, Steps} from 'antd';
 const {Header, Content, Footer, Sider} = Layout;
 const {Step} = Steps;
 
-
-
 const App = () => {
 
     return (
+
+
         <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
             <Sider>
                 <Steps direction="vertical" current={1}>

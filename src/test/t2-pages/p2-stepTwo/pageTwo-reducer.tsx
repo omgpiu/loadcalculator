@@ -15,77 +15,84 @@ const initialState: InitialStatePageTwoType = {
             id: '11',
             img: box,
             title: 'КОРОБКИ',
-            width: 1000,
-            height: 1000,
-            length: 1000,
-            diameter: -1,
-            volume: -1,
-            weight: 100
+            width: 1001,
+            height: 1002,
+            length: 1003,
+            diameter: null,
+            volume: null,
+            weight: 1006,
+            amount: 10,
         },
         {
             id: '12',
             img: bigBag,
             title: 'БИГ БЭГИ',
-            width: 1000,
-            height: 1000,
-            length: 1000,
-            diameter: -1,
-            volume: -1,
-            weight: 100,
+            width: 1001,
+            height: 1002,
+            length: 1003,
+            diameter: null,
+            volume: null,
+            weight: 1006,
+            amount: 10,
         },
         {
             id: '13',
             img: pallet,
             title: 'ПАЛЛЕТЫ',
-            width: 1000,
-            height: 1000,
-            length: 1000,
-            diameter: -1,
-            volume: -1,
-            weight: 100
+            width: 1001,
+            height: 1002,
+            length: 1003,
+            diameter: null,
+            volume: null,
+            weight: 106,
+            amount: 10,
         },
         {
             id: '14',
             img: pipe,
             title: 'ТРУБЫ',
-            width: -1,
-            height: -1,
-            length: 1000,
-            diameter: 50,
-            volume: 50,
-            weight: 100,
+            width: null,
+            height: null,
+            length: 1003,
+            diameter: 504,
+            volume: 505,
+            weight: 1006,
+            amount: 10,
         },
         {
             id: '15',
             img: tire,
             title: 'ШИНЫ',
-            width: 500,
-            height: 500,
-            length: -1,
-            diameter: 500,
-            volume: -1,
-            weight: 100,
+            width: 5001,
+            height: 5002,
+            length: null,
+            diameter: 5004,
+            volume: null,
+            weight: 1006,
+            amount: 10,
         },
         {
             id: '16',
             img: woodenBox,
             title: 'ЯЩИКИ',
-            width: 1000,
-            height: 1000,
-            length: 1000,
-            diameter: -1,
-            volume: -1,
-            weight: 100
+            width: 1001,
+            height: 1002,
+            length: 1003,
+            diameter: null,
+            volume: null,
+            weight: 106,
+            amount: 10,
         }, {
             id: '17',
             img: barrel,
             title: 'БОЧКИ',
-            width: -1,
-            height: 1000,
-            length: -1,
-            diameter: 200,
-            volume: 500,
-            weight: 100
+            width: null,
+            height: 1002,
+            length: null,
+            diameter: 2004,
+            volume: 5005,
+            weight: 1006,
+            amount: 10,
         },
 
     ]
@@ -96,7 +103,7 @@ const slice = createSlice({
         name: 'pageTwo',
         initialState,
         reducers: {
-            setPackagingParams(state, action: PayloadAction<{ id: string, param: 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight', paramQuantity: number }>) {
+            setPackagingParams(state, action: PayloadAction<{ id: string, param: ParamType, paramQuantity: number }>) {
                 state.packagingItems.map(item => {
                         if (item.id === action.payload.id) {
                             item[action.payload.param] = action.payload.paramQuantity;
@@ -106,12 +113,23 @@ const slice = createSlice({
             },
             setPackagingCargo(state, action: PayloadAction<{ id: string }>) {
                 const cargo = state.packagingItems.find(item => item.id === action.payload.id);
+
                 cargo && state.packagingCargo.push({...cargo, id: v1()});
-            }
+
+
+            },
+            deletePackagingCargo(state, action: PayloadAction<{ id: string }>) {
+                const index = state.packagingCargo.findIndex(c => c.id === action.payload.id);
+                if (index > -1) {
+                    state.packagingCargo.splice(index, 1);
+                }
+
+            },
+
         }
     })
 ;
-export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight'
+export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight' | 'amount'
 export type InitialStatePageTwoType = {
     packagingCargo: PackagingItemType[]
     packagingItems: PackagingItemType[]
@@ -120,15 +138,16 @@ export type PackagingItemType = {
     id: string
     img: string
     title: string
-    width: number
-    height: number
-    length: number
-    diameter: number
-    volume: number
+    width: number | null
+    height: number | null
+    length: number | null
+    diameter: number | null
+    volume: number | null
     weight: number
+    amount: number
 }
 
 
-export const {setPackagingParams, setPackagingCargo} = slice.actions;
+export const {setPackagingParams, setPackagingCargo, deletePackagingCargo} = slice.actions;
 export const pageTwoReducer = slice.reducer;
 

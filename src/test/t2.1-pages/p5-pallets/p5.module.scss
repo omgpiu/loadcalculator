@@ -1,36 +1,32 @@
 .pallets {
-   min-height: 500px;
-   margin: 0 auto;
-   max-width: 650px;
-   position: relative;
+  min-height: 500px;
+  margin: 0 auto;
+  max-width: 650px;
+  position: relative;
 
-   &_head {
-      font-size: 24px;
-      margin: 0 auto;
-   }
+  &_head {
+    font-size: 24px;
+    margin: 0 auto;
+  }
 
-   p {
-      font-size: 20px;
-      margin: 10px 0 0 0;
-   }
+  p {
+    font-size: 20px;
+    margin: 10px 0 0 0;
+  }
 
-   &_descr {
+  &_descr {
 
-   }
+  }
 
-   &_inner {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-   }
+  &_inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 
-   &_img {
-      margin-bottom: 20px;
-      display: block;
-      max-width: 190px;
-   }
+  &_img {
+    margin-bottom: 20px;
+    display: block;
+    max-width: 190px;
+  }
 }
-
-
-
-

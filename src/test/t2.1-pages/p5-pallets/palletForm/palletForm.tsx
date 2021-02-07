@@ -1,14 +1,15 @@
 import React from 'react';
 import {PalletType, setPalletParameters} from '../p5-reducer';
 import './palletForm.css';
-import {Button, Form, InputNumber} from 'antd';
+import {Form, InputNumber} from 'antd';
 import {Link, useHistory} from 'react-router-dom';
 import {PAGE_SIX, PAGE_THREE} from '../../../routes/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../main/m2-bll/store';
+import {ReusableNavButton} from '../../../ReusebleNavigationButtons/BtnReus';
 
 export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}) => {
-    const palletParam = useSelector<AppRootStateType, PalletType | null>(state => state.pageFive.palletParam)
+    const palletParam = useSelector<AppRootStateType, PalletType | null>(state => state.pageFive.palletParam);
     const history = useHistory();
     const dispatch = useDispatch();
     //модель для отрисовки формы, value либо стандарт,
@@ -41,12 +42,12 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
         required: 'Required',
         types: {number: 'Is not a number!'},
         number: {range: '${min} - ${max}'}
-    }
+    };
     const onFinish = (values: PalletParamFormType) => {
         dispatch(setPalletParameters(values));
         //Сделать проверку: если запрос успешно отработал, пришел ответ( в данном случае объект palletParam)
         // и засетался в стейт, переход на p6
-        history.push(PAGE_SIX)
+        history.push(PAGE_SIX);
     };
 
     return (
@@ -60,19 +61,20 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
                                        initialValue={el.value}>
                                 <InputNumber disabled={el.disabled}/>
                             </Form.Item>
-                        </div>
+                        </div>;
                     })
                 }
                 <div className='palletForm_btn'>
                     <Link to={PAGE_THREE}>
-                        <Button type="default">Назад</Button>
+                        <ReusableNavButton step={'backward'}/>
                     </Link>
-                    <Button type="default" htmlType="submit">Продолжить</Button>
+                    <ReusableNavButton step='forward' htmlType="submit"/>
+                    {/*<Button type="default" htmlType="submit">Продолжить</Button>*/}
                 </div>
             </Form>
         </div>
-    )
-})
+    );
+});
 type FormModelType = {
     id: number
     label: string
