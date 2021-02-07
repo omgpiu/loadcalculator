@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {Button, Col, Row} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import st from './pageTwo.module.css';
@@ -9,24 +9,12 @@ import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
 import {CargoTable} from './CargoTable';
 import '../../../main/m1-ui/App.css';
 import {PageTwoInputsComponent} from './pageTwoInputsComponent';
+import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
 
-type PropsType = {
-    nextPage: () => void
-    prevPage: () => void
-}
 
-export const PageTwo: React.FC<PropsType> = React.memo(({nextPage, prevPage}) => {
+export const PageTwo: React.FC = () => {
     const dispatch = useDispatch();
     const packagingItems = useSelector(getPackagingItems);
-
-
-    const nextPageHandler = useCallback(() => {
-        nextPage();
-    }, [nextPage]);
-    const prevPageHandler = useCallback(() => {
-        prevPage();
-    }, [prevPage]);
-
 
     const onClickHandler = (id: string) => {
         dispatch(setPackagingCargo({id}));
@@ -59,15 +47,15 @@ export const PageTwo: React.FC<PropsType> = React.memo(({nextPage, prevPage}) =>
             }</Row>
         <CargoTable/>
         <div style={{margin: '10px'}}>
-            <Link to={PAGE_ONE} onClick={prevPageHandler}> <Button type={'default'}>Назад</Button></Link>
+            <Link to={PAGE_ONE}> <ReusableNavButton step={'backward'}/></Link>
         </div>
         <div style={{margin: '10px'}}>
-            <Link to={PAGE_THREE}> <Button type={'default'} onClick={nextPageHandler}>Далее</Button></Link>
+            <Link to={PAGE_THREE}> <ReusableNavButton step={'forward'}/></Link>
         </div>
 
 
     </div>;
-});
+};
 
 
 

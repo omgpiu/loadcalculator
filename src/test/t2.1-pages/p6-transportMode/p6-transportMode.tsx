@@ -3,30 +3,31 @@ import React, {useState} from 'react';
 import {ContentTransportMode} from './contentTransportMode/contentTransportMode';
 import {Link} from 'react-router-dom';
 import {PAGE_FIVE} from '../../routes/routes';
-import st from './transportMode.module.scss'
+import st from './transportMode.module.scss';
 import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../main/m2-bll/store';
+import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
 
 
 export const TransportMode: React.FC<PropsType> = (props) => {
-    const totalCargoValue = useSelector<AppRootStateType, TotalCargoValueType>(s => s.pageThree.TotalCargoValue)
+    const totalCargoValue = useSelector<AppRootStateType, TotalCargoValueType>(s => s.pageThree.TotalCargoValue);
     const {text_description, img, onHandleClick} = props;
     const [mode, setMode] = React.useState(0);
-    const [error, setError] = useState<null | number>(null)
+    const [error, setError] = useState<null | number>(null);
 
     const onChange = (e: RadioChangeEvent) => {
-        setMode(e.target.value)
+        setMode(e.target.value);
         // при выборе поля снимаем ошибку
-        setError(null)
-    }
+        setError(null);
+    };
     const handleClick = () => {
         //если не выбрано ни одно поле сетаем ошибку и выводим алерт
         if (!mode) {
-            return setError(1)
+            return setError(1);
         }
-        onHandleClick()
-    }
+        onHandleClick();
+    };
 
     return (
         <div className={st.TransportMode_wrapper}>
@@ -41,14 +42,14 @@ export const TransportMode: React.FC<PropsType> = (props) => {
             </div>
             <div>
                 <Link to={PAGE_FIVE}>
-                    <Button type="default">Назад</Button>
+                    <ReusableNavButton step={'backward'}/>
                 </Link>
                 <Button type="default" onClick={handleClick}>Продолжить</Button>
             </div>
             {(error) && <Alert message='Не выбрано ни одного поля !' type="error"/>}
         </div>
-    )
-}
+    );
+};
 
 type PropsType = {
     img: string
@@ -66,6 +67,6 @@ const TotalCargoValue: React.FC<{ totalCargoValue: TotalCargoValueType }> = ({to
             <span> Обьем: {totalCargoValue.CargoVolume} m3</span>
             <span> Масса: {totalCargoValue.CargoMass} т </span>
         </div>
-    )
-}
+    );
+};
 

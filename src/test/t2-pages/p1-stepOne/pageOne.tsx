@@ -1,7 +1,7 @@
 import {Button, Col, Row, Upload} from 'antd';
-import React, {useCallback} from 'react';
+import React from 'react';
 import st from './pageOne.module.css';
-import {CaretRightOutlined, UploadOutlined} from '@ant-design/icons';
+import {UploadOutlined} from '@ant-design/icons';
 import container from '../../../assets/images/container.png';
 import truck from '../../../assets/images/truck.jpg';
 import {useDispatch, useSelector} from 'react-redux';
@@ -9,6 +9,7 @@ import {getLoadPlace} from './pageOne-selector';
 import {setLoadPlace} from './pageOne-reducer';
 import {Link} from 'react-router-dom';
 import {PAGE_TWO} from '../../routes/routes';
+import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
 
 export type placeToLoadType = 'Грузовик' | 'Контейнер' | ''
 
@@ -16,7 +17,7 @@ type PropsType = {
     nextPage: () => void
 }
 
-export const PageOne: React.FC<PropsType> = React.memo(({nextPage}) => {
+export const PageOne: React.FC = () => {
     const TRUCK = 'Грузовик';
     const CONTAINER = 'Контейнер';
     const dispatch = useDispatch();
@@ -25,9 +26,6 @@ export const PageOne: React.FC<PropsType> = React.memo(({nextPage}) => {
     const load = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
 
-    const nextPageHandler = useCallback(() => {
-        nextPage();
-    }, [nextPage]);
 
     const onClickTruckHandler = () => {
         dispatch(setLoadPlace({loadPlace: TRUCK}));
@@ -66,11 +64,8 @@ export const PageOne: React.FC<PropsType> = React.memo(({nextPage}) => {
                     </div>
                     <div>
                         <div>
-                            <Link to={PAGE_TWO} onClick={nextPageHandler}>
-                                <Button type="default" block
-                                        icon={<CaretRightOutlined/>}
-                                >
-                                    Далее</Button></Link>
+                            <Link to={PAGE_TWO}>
+                                <ReusableNavButton step={'forward'}/></Link>
                         </div>
                     </div>
 
@@ -83,8 +78,7 @@ export const PageOne: React.FC<PropsType> = React.memo(({nextPage}) => {
 
 
     );
-});
-// export default WithCurrentPage(PageOne);
+};
 
 
 

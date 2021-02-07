@@ -15,21 +15,13 @@ import {setCurrentStep} from '../../main/m2-bll/appReducer';
 //
 // }
 
+
 function WithCurrentPage<WCP>(Component: React.ComponentType<WCP>) {
     const NewComponent = (props: any) => {
-        const dispatch = useDispatch();
-        const currentPage = useSelector(getCurrentPageStep);
-        const nextPage = () => {
-            dispatch(setCurrentStep({page: currentPage + 1}));
-        };
-        const prevPage = () => {
-            dispatch(setCurrentStep({page: currentPage - 1}));
-        };
 
 
-        return <Component {...props} currentPage={currentPage} nextPage={nextPage} prevPage={prevPage}/>;
+        return <Component {...props} />;
     };
-
 
     return NewComponent;
 
