@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Calculator} from '../../test/calculator/Calculator';
-import {Button, Layout, Steps} from 'antd';
+import {Layout, Steps} from 'antd';
 import {useSelector} from 'react-redux';
 import {getCurrentPageStep, getSteps} from '../m2-bll/app-selector';
 
@@ -28,7 +28,7 @@ const App = () => {
 
             </Sider>
             <Layout className="site-layout">
-                <Header className="site-layout-background" style={{padding: 0}}>
+                <Header className="site-layout-background" style={{paddingLeft: '10px',paddingRight:'15px',paddingTop:'10px'}}>
                     <Steps current={currentPageStep} size={'small'}>
                         {steps.map(item => (
                             <Step key={item.title} title={item.title}

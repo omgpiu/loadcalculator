@@ -22,7 +22,7 @@ const initialState = {
         },
         {
             title: 'Шаг 5',
-            description: 'Параметры упаковки.',
+            description: 'Упаковка.',
         }, {
             title: 'Шаг 6',
             description: 'Выбор транспорта.',
