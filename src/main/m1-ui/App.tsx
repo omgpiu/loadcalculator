@@ -15,36 +15,7 @@ const App = () => {
     const steps = useSelector(getSteps);
     const currentPageStep = useSelector(getCurrentPageStep);
 
-    const onChangeHandler = (currentPageStep: any) => {
-        debugger
-        // switch (currentPageStep) {
-        //
-        //     case  0: {
-        //
-        //         dispatch(setCurrentStep({page: PAGE_ONE}));
-        //         console.log(currentPageStep);
-        //         break;
-        //     }
-        //     case  1: {
-        //         dispatch(setCurrentStep({page: PAGE_TWO}));
-        //         console.log(currentPageStep);
-        //         break;
-        //     }
-        //     case  2: {
-        //         dispatch(setCurrentStep({page: PAGE_THREE}));
-        //         console.log(currentPageStep);
-        //         break;
-        //     }
-        //     case  3: {
-        //         dispatch(setCurrentStep({page: PAGE_FIVE}));
-        //         console.log(currentPageStep);
-        //         break;
-        //     }
-        // }
-        // debugger
-        dispatch(setCurrentStep({page: currentPageStep}));
-        // console.log(currentPageStep);
-    };
+
 
     const [collapsed, setCollapsed] = useState(false);
     const onCollapse = () => {
@@ -62,7 +33,7 @@ const App = () => {
             <Layout className="site-layout">
                 <Header className="site-layout-background"
                         style={{paddingLeft: '10px', paddingRight: '15px', paddingTop: '10px'}}>
-                    <Steps current={+currentPageStep} size={'small'} onChange={onChangeHandler}>
+                    <Steps current={+currentPageStep} size={'small'} >
                         {steps.map(item => (
                             <Step key={item.title} title={item.title}
                                   description={item.description}/>

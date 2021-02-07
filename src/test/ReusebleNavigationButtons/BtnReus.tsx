@@ -14,19 +14,17 @@ type PropsType = {
 }
 
 
-export const ReusableNavButton: React.FC<PropsType> = ({type = 'default', htmlType = 'button', step,page}) => {
+export const ReusableNavButton: React.FC<PropsType> = ({type = 'default', htmlType = 'button', step, page}) => {
     const dispatch = useDispatch();
     const currentPage = useSelector(getCurrentPageStep);
     const nextPage = () => {
         dispatch(setCurrentStep({page: currentPage + 1}));
     };
     const prevPage = () => {
-        dispatch(setCurrentStep({page: '1'}));
+        dispatch(setCurrentStep({page: currentPage - 1}));
     };
     const FORWARD = 'forward';
-    const nextPage1 = () => {
-        dispatch(setCurrentStep({page: page}));
-    };
+
     return (<>
             {step === FORWARD ?
                 <Button type={type} onClick={nextPage} htmlType={htmlType}>Вперед</Button> :

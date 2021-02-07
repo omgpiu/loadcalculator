@@ -31,7 +31,7 @@ const initialState = {
             title: 'Шаг 7',
             description: 'Результат.',
         },],
-    currentStep: 1,
+    currentStep: 0,
 
 
 } as InitialAppStateType;
@@ -98,5 +98,5 @@ export type InitialAppStateType = {
     // true когда приложение проинициализировалось (проверили юзера, настройки получили и т.д.)
     isInitialized: boolean
     steps: StepType[]
-    currentStep: any
+    currentStep: number
 }
