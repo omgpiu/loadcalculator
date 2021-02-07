@@ -31,7 +31,7 @@ const initialState = {
             title: 'Шаг 7',
             description: 'Результат.',
         },],
-    currentStep: 0,
+    currentStep: 1,
 
 
 } as InitialAppStateType;
@@ -64,7 +64,8 @@ const slice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        setCurrentStep(state, action: PayloadAction<{ page: number }>) {
+        setCurrentStep(state, action: PayloadAction<{ page: any }>) {
+            debugger
             state.currentStep = action.payload.page;
         }
     },
@@ -97,5 +98,5 @@ export type InitialAppStateType = {
     // true когда приложение проинициализировалось (проверили юзера, настройки получили и т.д.)
     isInitialized: boolean
     steps: StepType[]
-    currentStep: number
+    currentStep: any
 }

@@ -49,7 +49,7 @@ export const PageTwo: React.FC = () => {
             }</Row>
         <CargoTable/>
         <div style={{margin: '10px'}}>
-            <Link to={PAGE_ONE}> <ReusableNavButton step={'backward'}/></Link>
+            <Link to={PAGE_ONE}> <ReusableNavButton step={'backward'} page={PAGE_THREE}/></Link>
         </div>
         <div style={{margin: '10px'}}>
             <Link to={PAGE_THREE}> <ReusableNavButton step={'forward'}/></Link>
