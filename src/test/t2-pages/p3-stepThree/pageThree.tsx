@@ -7,7 +7,7 @@ import withPallets from '../../../assets/images/pagethree/car_pallet_packing_mes
 import {Button, Col, Row} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import {withPallet} from './pageThree-selector';
-import {setPayloadType} from './pageThree-reducer';
+import {NO_PALLETS, PALLETS, setPayloadType} from './pageThree-reducer';
 
 
 export const PageThree: React.FC = () => {
@@ -15,33 +15,35 @@ export const PageThree: React.FC = () => {
     const isWithPallet = useSelector(withPallet);
 
 
-    const onClickPayloadHandler = () => {
-        dispatch(setPayloadType());
+    const onClickPayloadPalletsHandler = () => {
+        dispatch(setPayloadType({payloadTypeLoad: PALLETS}));
     };
-
+    const onClickPayloadNoPalletsHandler = () => {
+        dispatch(setPayloadType({payloadTypeLoad: NO_PALLETS}));
+    };
 
     return (
         <div>
             <Row justify="center">
                 <Col>
-                    <img src={withOutPallets} width={'600px'} alt=""/>
+                    <img src={withOutPallets} width={'600px'} alt="" onClick={onClickPayloadPalletsHandler}/>
                     <p>Загрузка груза непосредственно в транспортное средство
                     </p>
                     <div>
-                        <Button onClick={onClickPayloadHandler}
-                                type={isWithPallet ? 'default' : 'primary'}
+                        <Button onClick={onClickPayloadPalletsHandler}
+                                type={isWithPallet === PALLETS ? 'primary' : 'default'}
                         >Без паллет</Button>
                     </div>
 
                 </Col>
                 <Col>
-                    <img src={withPallets} width={'600px'} alt=""/>
+                    <img src={withPallets} width={'600px'} alt="" onClick={onClickPayloadNoPalletsHandler}/>
                     <p> Предварительное размещение груза на паллетах.
 
                     </p>
                     <div>
-                        <Button onClick={onClickPayloadHandler}
-                                type={isWithPallet ? 'primary' : 'default'}
+                        <Button onClick={onClickPayloadNoPalletsHandler}
+                                type={isWithPallet === NO_PALLETS ? 'primary' : 'default'}
                         >С паллетами</Button>
                     </div>
                 </Col>

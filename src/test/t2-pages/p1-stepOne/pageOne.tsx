@@ -24,6 +24,7 @@ export const PageOne: React.FC = () => {
     const load = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
 
+
     const onClickTruckHandler = () => {
         dispatch(setLoadPlace({loadPlace: TRUCK}));
     };

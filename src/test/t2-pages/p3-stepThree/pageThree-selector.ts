@@ -1,5 +1,6 @@
 import {AppRootStateType} from '../../../main/m2-bll/store';
+import {PayloadTypeForLoading} from './pageThree-reducer';
 
-export const withPallet = (state: AppRootStateType): boolean => {
-    return state.pageThree.withPallets;
+export const withPallet = (state: AppRootStateType): PayloadTypeForLoading => {
+    return state.pageThree.payloadTypeLoad;
 };

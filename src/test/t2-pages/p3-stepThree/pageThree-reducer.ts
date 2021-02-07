@@ -32,29 +32,32 @@ const initialState = {
         CargoMass: 0.03,
         CargoVolume: 0.024,
     } as TotalCargoValueType,
-    withPallets: false
+    payloadTypeLoad: 'pallets' as PayloadTypeForLoading
 };
 
 //thunk's
 
 
 const slice = createSlice({
-    name: 'pageThree',
-    initialState,
-    reducers: {
-        setPayloadType(state, action: PayloadAction) {
-            state.withPallets = !state.withPallets;
+        name: 'pageThree',
+        initialState,
+        reducers: {
+            setPayloadType(state, action: PayloadAction<{ payloadTypeLoad: PayloadTypeForLoading }>) {
+                state.payloadTypeLoad = action.payload.payloadTypeLoad;
 
-        }
+            }
 
 
-    },
-});
+        },
+    })
+;
 export const pageThreeReducer = slice.reducer;
 export const {setPayloadType} = slice.actions;
 
 export type PageThreeInitialState = typeof initialState;
-
+export type PayloadTypeForLoading = 'pallets' | 'no_pallets'
+export const PALLETS = 'pallets';
+export const NO_PALLETS = 'no_pallets';
 
 export type CustomerCargo = {
     id: string
