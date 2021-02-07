@@ -11,7 +11,6 @@ const {Step} = Steps;
 const App = () => {
     const steps = useSelector(getSteps);
     const currentPageStep = useSelector(getCurrentPageStep);
-    const [current, setCurrent] = React.useState(0);
 
 
     const [collapsed, setCollapsed] = useState(false);
@@ -19,13 +18,7 @@ const App = () => {
         setCollapsed(!collapsed);
     };
 
-    const next = () => {
-        setCurrent(current + 1);
-    };
 
-    const prev = () => {
-        setCurrent(current - 1);
-    };
 
     return (
 
@@ -42,23 +35,8 @@ const App = () => {
                                   description={item.description}/>
                         ))}
                     </Steps>
-                    <div className="steps-action">
-                        {current < steps.length - 1 && (
-                            <Button type="primary" onClick={() => next()}>
-                                Next
-                            </Button>
-                        )}
-                        {current === steps.length - 1 && (
-                            <Button type="primary">
-                                Done
-                            </Button>
-                        )}
-                        {current > 0 && (
-                            <Button style={{margin: '0 8px'}} onClick={() => prev()}>
-                                Previous
-                            </Button>
-                        )}
-                    </div>
+
+
                 </Header>
                 <Content style={{margin: '80px 80px'}}>
                     <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>

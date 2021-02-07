@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Button, Col, Row} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import st from './pageTwo.module.css';
@@ -9,21 +9,23 @@ import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
 import {CargoTable} from './CargoTable';
 import '../../../main/m1-ui/App.css';
 import {PageTwoInputsComponent} from './pageTwoInputsComponent';
-import {setCurrentStep} from '../../../main/m2-bll/appReducer';
 
+type PropsType = {
+    nextPage: () => void
+    prevPage: () => void
+}
 
-
-export const PageTwo: React.FC = () => {
+export const PageTwo: React.FC<PropsType> = React.memo(({nextPage, prevPage}) => {
     const dispatch = useDispatch();
     const packagingItems = useSelector(getPackagingItems);
 
 
-    const forwardStepOnClickHandler = () => {
-        dispatch(setCurrentStep({page: 2}));
-    };
-
-
-
+    const nextPageHandler = useCallback(() => {
+        nextPage();
+    }, [nextPage]);
+    const prevPageHandler = useCallback(() => {
+        prevPage();
+    }, [prevPage]);
 
 
     const onClickHandler = (id: string) => {
@@ -57,15 +59,15 @@ export const PageTwo: React.FC = () => {
             }</Row>
         <CargoTable/>
         <div style={{margin: '10px'}}>
-            <Link  to={PAGE_ONE} onClick={forwardStepOnClickHandler}> <Button type={'default'}>Назад</Button></Link>
+            <Link to={PAGE_ONE} onClick={prevPageHandler}> <Button type={'default'}>Назад</Button></Link>
         </div>
         <div style={{margin: '10px'}}>
-            <Link to={PAGE_THREE}> <Button type={'default'}>Далее</Button></Link>
+            <Link to={PAGE_THREE}> <Button type={'default'} onClick={nextPageHandler}>Далее</Button></Link>
         </div>
 
 
     </div>;
-};
+});
 
 
 

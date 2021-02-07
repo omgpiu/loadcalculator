@@ -8,26 +8,27 @@ import {PageThree} from '../t2-pages/p3-stepThree/pageThree';
 import {Page404} from '../t5-common/page404/page404';
 import {TransportModeContainer} from '../t2.1-pages/p6-transportMode/p6-transportMode-Container';
 import {PageOne} from '../t2-pages/p1-stepOne/pageOne';
+import WithCurrentPage from '../HOC/withCurrentPage';
 
 
 export const LOGIN = '/login';
-
-
 export const PAGE_ONE = '/';
 export const PAGE_TWO = '/packing';
 export const PAGE_THREE = '/cargo';
 export const PAGE_FIVE = '/pallets';
 export const PAGE_SIX = '/modeTransport';
 
-// const A = WithCurrentPage(PageOne)
+export const PageOneContainer = WithCurrentPage(PageOne);
+export const PageTwoContainer = WithCurrentPage(PageTwo);
+
 export const Routes = () => {
 
     return <>
         <Switch>
             <Route path={LOGIN} render={Login}/>
 
-            <Route exact path={PAGE_ONE} component={() => <PageOne/>}/>
-            <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
+            <Route exact path={PAGE_ONE} component={() => <PageOneContainer/>}/>
+            <Route path={PAGE_TWO} render={() => <PageTwoContainer/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
             <Route path={PAGE_FIVE} render={() => <Page5Pallets/>}/>
             <Route path={PAGE_SIX} render={() => <TransportModeContainer/>}/>

@@ -1,5 +1,5 @@
 import {Button, Col, Row, Upload} from 'antd';
-import React from 'react';
+import React, {useCallback} from 'react';
 import st from './pageOne.module.css';
 import {CaretRightOutlined, UploadOutlined} from '@ant-design/icons';
 import container from '../../../assets/images/container.png';
@@ -9,16 +9,14 @@ import {getLoadPlace} from './pageOne-selector';
 import {setLoadPlace} from './pageOne-reducer';
 import {Link} from 'react-router-dom';
 import {PAGE_TWO} from '../../routes/routes';
-import {setCurrentStep} from '../../../main/m2-bll/appReducer';
 
 export type placeToLoadType = 'Грузовик' | 'Контейнер' | ''
 
-
 type PropsType = {
-    currentPage: number
+    nextPage: () => void
 }
 
-export const PageOne: React.FC = () => {
+export const PageOne: React.FC<PropsType> = React.memo(({nextPage}) => {
     const TRUCK = 'Грузовик';
     const CONTAINER = 'Контейнер';
     const dispatch = useDispatch();
@@ -27,16 +25,15 @@ export const PageOne: React.FC = () => {
     const load = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
 
+    const nextPageHandler = useCallback(() => {
+        nextPage();
+    }, [nextPage]);
 
     const onClickTruckHandler = () => {
         dispatch(setLoadPlace({loadPlace: TRUCK}));
     };
     const onClickContainerHandler = () => {
         dispatch(setLoadPlace({loadPlace: CONTAINER}));
-    };
-
-    const forwardStepOnClickHandler = () => {
-        dispatch(setCurrentStep({page: 1}));
     };
 
 
@@ -69,7 +66,7 @@ export const PageOne: React.FC = () => {
                     </div>
                     <div>
                         <div>
-                            <Link to={PAGE_TWO} onClick={forwardStepOnClickHandler}>
+                            <Link to={PAGE_TWO} onClick={nextPageHandler}>
                                 <Button type="default" block
                                         icon={<CaretRightOutlined/>}
                                 >
@@ -86,7 +83,7 @@ export const PageOne: React.FC = () => {
 
 
     );
-};
+});
 // export default WithCurrentPage(PageOne);
 
 
