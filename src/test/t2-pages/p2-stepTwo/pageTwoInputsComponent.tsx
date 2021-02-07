@@ -1,6 +1,7 @@
 import {InputNumber} from 'antd';
 import React from 'react';
 import {PackagingItemType, ParamType} from './pageTwo-reducer';
+import st from './pageTwoInputsComponent.module.css';
 
 type PropsType = {
     onChangeHandler: (id: string, param: ParamType, paramQuantity: number) => void
@@ -13,12 +14,12 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
     const onChange = (id: string, param: ParamType, paramQuantity: number) => {
         onChangeHandler(id, param, paramQuantity);
     };
-
+    // text-align-last: justify;
     return (
-        <div>
+        <div className={st.wrapper}>
 
             <div>
-                {item.length && 'Длинна'}{item.length && item.length > 0 ?
+                {item.length && 'Длинна'} {item.length && item.length > 0 ?
                 <InputNumber type="number" min={1} value={item.length} onChange={(e) => {
                     onChange(item.id, 'length', e as number);
                 }}/> : null}

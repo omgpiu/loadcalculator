@@ -1,7 +1,6 @@
 import React from 'react';
 import {Modal} from 'antd';
 import '../../../main/m1-ui/App.css';
-import {PageTwoInputsComponent} from './pageTwoInputsComponent';
 import {PackagingItemType, ParamType} from './pageTwo-reducer';
 
 type PropsType = {

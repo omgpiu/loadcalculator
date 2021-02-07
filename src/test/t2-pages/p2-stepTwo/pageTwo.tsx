@@ -32,16 +32,19 @@ export const PageTwo: React.FC = () => {
             {
                 packagingItems.map(item => {
                     return <Col className={st.pageTwoMain_col} key={item.id}>
-                        <img src={item.img} alt={item.title} width={'100px'} height={'100px'}/>
-                        <div>
-                            <PageTwoInputsComponent item={item} onChangeHandler={onChangeHandler}/>
-                        </div>
-                        <div>
-                            <Button onClick={() => {
-                                onClickHandler(item.id);
+                        <div className={st.pageTwoMain_wrapper}>
+                            <img src={item.img} alt={item.title} width={'100px'} height={'100px'}/>
+                            <div>
+                                <PageTwoInputsComponent item={item} onChangeHandler={onChangeHandler}/>
+                            </div>
+                            <div>
+                                <Button onClick={() => {
+                                    onClickHandler(item.id);
 
-                            }}>{item.title}</Button>
+                                }}>{item.title}</Button>
+                            </div>
                         </div>
+
                     </Col>;
                 })
             }</Row>
