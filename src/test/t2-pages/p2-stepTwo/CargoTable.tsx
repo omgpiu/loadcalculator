@@ -1,4 +1,4 @@
-import {CloseCircleTwoTone, DropboxOutlined} from '@ant-design/icons';
+import {CloseOutlined, DropboxOutlined} from '@ant-design/icons';
 import {Table} from 'antd';
 import React from 'react';
 import {TableSelect} from '../p3-stepThree/select';
@@ -34,9 +34,8 @@ export const CargoTable: React.FC = () => {
             title: <DropboxOutlined style={{fontSize: '35px', color: '#CD853F'}}/>,
             dataIndex: '',
             key: 'x',
-            render: (cargo: PackagingItemType) => <CloseCircleTwoTone twoToneColor="pink" style={{fontSize: '35px'}}
-                                                                      onClick={() => onClickDeleteHandler(cargo.id)}/>
-
+            render: (cargo: PackagingItemType) => <CloseOutlined style={{fontSize: '20px', color: 'red'}}
+                                                                 onClick={() => onClickDeleteHandler(cargo.id)}/>
         }, {
             dataIndex: 'title',
             title: 'Название ',
@@ -88,7 +87,7 @@ export const CargoTable: React.FC = () => {
     return (<>
             <Table columns={columns} dataSource={packagingCargo} pagination={false}
                    rowKey="id"
-                   scroll={{ x: 'max-content' }}
+                   scroll={{x: 900}}
 
             />
         </>

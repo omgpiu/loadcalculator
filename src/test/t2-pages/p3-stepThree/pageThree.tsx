@@ -2,23 +2,55 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {PAGE_FIVE, PAGE_TWO} from '../../routes/routes';
 import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
+import withOutPallets from '../../../assets/images/pagethree/car_packing_meshok.jpg';
+import withPallets from '../../../assets/images/pagethree/car_pallet_packing_meshok.jpg';
+import {Button, Col, Row} from 'antd';
+import {useDispatch, useSelector} from 'react-redux';
+import {withPallet} from './pageThree-selector';
+import {setPayloadType} from './pageThree-reducer';
 
 
 export const PageThree: React.FC = () => {
+    const dispatch = useDispatch();
+    const isWithPallet = useSelector(withPallet);
+
+
+    const onClickPayloadHandler = () => {
+        dispatch(setPayloadType());
+    };
+
 
     return (
         <div>
+            <Row justify="center">
+                <Col>
+                    <img src={withOutPallets} width={'600px'} alt=""/>
+                    <p>Загрузка груза непосредственно в транспортное средство
+                    </p>
+                    <div>
+                        <Button onClick={onClickPayloadHandler}
+                                type={isWithPallet ? 'default' : 'primary'}
+                        >Без паллет</Button>
+                    </div>
 
+                </Col>
+                <Col>
+                    <img src={withPallets} width={'600px'} alt=""/>
+                    <p> Предварительное размещение груза на паллетах.
 
-            PAGE THREE
+                    </p>
+                    <div>
+                        <Button onClick={onClickPayloadHandler}
+                                type={isWithPallet ? 'primary' : 'default'}
+                        >С паллетами</Button>
+                    </div>
+                </Col>
+
+            </Row>
+
             <div style={{margin: '10px'}}>
                 <Link to={PAGE_TWO}> <ReusableNavButton step={'backward'}/></Link>
-
-
-                {/*для удобства*/}
-                <div style={{margin: '10px'}}>
-                    <Link to={PAGE_FIVE}> <ReusableNavButton step={'forward'}/></Link>
-                </div>
+                <Link to={PAGE_FIVE}> <ReusableNavButton step={'forward'}/></Link>
             </div>
         </div>
 
