@@ -29,7 +29,7 @@ const App = () => {
             <Layout className="site-layout">
                 <Header className="site-layout-background"
                         style={{paddingLeft: '10px', paddingRight: '15px', paddingTop: '10px'}}>
-                    <Steps current={+currentPageStep} size={'small'}>
+                    <Steps current={currentPageStep}  size={'small'}>
                         {steps.map(item => (
                             <Step key={item.title} title={item.title}
                                   description={item.description}/>

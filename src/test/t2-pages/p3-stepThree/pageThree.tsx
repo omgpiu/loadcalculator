@@ -8,13 +8,12 @@ import {Button, Col, Row} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import {withPallet} from './pageThree-selector';
 import {NO_PALLETS, PALLETS, setPayloadType} from './pageThree-reducer';
+import st from './pageThree.module.css';
 
 
 export const PageThree: React.FC = () => {
     const dispatch = useDispatch();
     const isWithPallet = useSelector(withPallet);
-
-
     const onClickPayloadPalletsHandler = () => {
         dispatch(setPayloadType({payloadTypeLoad: PALLETS}));
     };
@@ -23,8 +22,7 @@ export const PageThree: React.FC = () => {
     };
 
     return (
-        <div>
-            <Row justify="center">
+        <div className={st.wrapper}>
                 <Col>
                     <img src={withOutPallets} width={'600px'} alt="" onClick={onClickPayloadPalletsHandler}/>
                     <p>Загрузка груза непосредственно в транспортное средство
@@ -36,7 +34,7 @@ export const PageThree: React.FC = () => {
                     </div>
 
                 </Col>
-                <Col>
+                <Col >
                     <img src={withPallets} width={'600px'} alt="" onClick={onClickPayloadNoPalletsHandler}/>
                     <p> Предварительное размещение груза на паллетах.
 
@@ -48,12 +46,13 @@ export const PageThree: React.FC = () => {
                     </div>
                 </Col>
 
-            </Row>
+
 
             <div style={{margin: '10px'}}>
                 <Link to={PAGE_TWO}> <ReusableNavButton step={'backward'}/></Link>
                 <Link to={PAGE_FIVE}> <ReusableNavButton step={'forward'}/></Link>
             </div>
+            ;
         </div>
 
 

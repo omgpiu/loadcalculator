@@ -23,7 +23,6 @@ export const Routes = () => {
     return <>
         <Switch>
             <Route path={LOGIN} render={Login}/>
-
             <Route exact path={PAGE_ONE} component={() => <PageOne/>}/>
             <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
