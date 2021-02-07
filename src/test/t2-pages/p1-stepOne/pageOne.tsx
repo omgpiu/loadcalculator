@@ -12,10 +12,13 @@ import {PAGE_TWO} from '../../routes/routes';
 
 export type placeToLoadType = 'Грузовик' | 'Контейнер' | ''
 
+
+
+
+
 export const PageOne: React.FC = () => {
     const TRUCK = 'Грузовик';
     const CONTAINER = 'Контейнер';
-
 
     const dispatch = useDispatch();
     //TODO rename this const
@@ -31,6 +34,8 @@ export const PageOne: React.FC = () => {
 
         dispatch(setLoadPlace({loadPlace: CONTAINER}));
     };
+
+
 
     return (
         <div className={st.pageOneMain}>
@@ -75,8 +80,6 @@ export const PageOne: React.FC = () => {
 
 
         </div>
-
-
     );
 };
 

@@ -5,12 +5,14 @@ import {Link} from 'react-router-dom';
 import {PAGE_FIVE} from '../../routes/routes';
 import st from './transportMode.module.scss'
 import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../main/m2-bll/store';
+import {getTransportDataTC} from './p6-reducer';
 
 
 export const TransportMode: React.FC<PropsType> = (props) => {
-    const totalCargoValue = useSelector<AppRootStateType, TotalCargoValueType>(s => s.pageThree.TotalCargoValue)
+    const dispatch = useDispatch();
+    const totalCargoValue = useSelector<AppRootStateType, TotalCargoValueType>(s => s.pageThree.totalCargoValue)
     const {text_description, img, onHandleClick} = props;
     const [mode, setMode] = React.useState(0);
     const [error, setError] = useState<null | number>(null)
@@ -58,14 +60,22 @@ type PropsType = {
 }
 
 const TotalCargoValue: React.FC<{ totalCargoValue: TotalCargoValueType }> = ({totalCargoValue}) => {
-
-
     return (
         <div>
             <h4> Общие параметры груза:</h4>
-            <span> Обьем: {totalCargoValue.CargoVolume} m3</span>
-            <span> Масса: {totalCargoValue.CargoMass} т </span>
+            <span> Обьем: {totalCargoValue.cargoVolume} m3</span>
+            <span> Масса: {totalCargoValue.cargoMass} т </span>
         </div>
     )
 }
 
+
+const autoMode = (suitableTransport: Array<any>) => {
+
+    return <>
+        <div>Подходящий вид транспорта: </div>
+
+
+    </>
+
+}

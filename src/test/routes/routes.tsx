@@ -10,8 +10,6 @@ import {TransportModeContainer} from '../t2.1-pages/p6-transportMode/p6-transpor
 
 
 export const LOGIN = '/login';
-
-
 export const PAGE_ONE = '/';
 export const PAGE_TWO = '/packing';
 export const PAGE_THREE = '/cargo';
@@ -31,11 +29,9 @@ export const Routes = () => {
             <Route path={PAGE_FIVE} render={() => <Page5Pallets/>}/>
             <Route path={PAGE_SIX} render={() => <TransportModeContainer/>}/>
 
-
             <Route path={'*'}
                    render={() => <Page404/>}
             />
         </Switch>
-
     </>;
 };

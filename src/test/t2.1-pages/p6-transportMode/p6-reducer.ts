@@ -1,23 +1,32 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {page6, TransportType} from '../../../main/m3-dal/api-service';
+import {appActions} from '../../../main/m2-bll/appReducer';
+import {AppRootStateType} from '../../../main/m2-bll/store';
 
-const initialState = {}
+const initialState = {
+    containers: [] as TransportType[],
+    trucks: [] as TransportType[],
+    autoChoice: [] as TransportType[],
+    selectChoice: [] as TransportType[]
+
+}
 
 //thunk's
 //   createAsyncThunk<что санка возвращает, аргументы которые принимает санка, описание ошибок - rejectValue: {errors: Array<string> } >
-export const getPalletsTC = createAsyncThunk('pageSix/transportMode',
+export const getTransportDataTC = createAsyncThunk('pageSix/transportMode',
     // ... ( param,thunkAPI и внутри => dispatch,rejectWithValue, getState() )
-    async (param, {dispatch, rejectWithValue}) => {
+    async (param, {dispatch, rejectWithValue, getState}) => {
+        const state = getState() as AppRootStateType
+        const transportType = state.pageOne.loadPlace
         try {
-
+            dispatch(appActions.setAppStatusAC({status: 'loading'}))
+            const res = await page6.getTransport(transportType)
+            dispatch(Tr_ModeActions.setTransportDataAC({transports: res as TransportType[], transportType}))
+            dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
+            return res
         } catch (err) {
-        }
-    })
-export const setPalletParameters = createAsyncThunk('pageSix/transportMode',
-    async (param, thunkAPI) => {
-        try {
-
-
-        } catch (err) {
+            dispatch(appActions.setAppStatusAC({status: 'failed'}))
+            return rejectWithValue(err)
         }
     })
 
@@ -25,7 +34,21 @@ export const setPalletParameters = createAsyncThunk('pageSix/transportMode',
 const slice = createSlice({
     name: 'pageFive',
     initialState,
-    reducers: {},
+    reducers: {
+        setTransportDataAC(state, action: PayloadAction<{ transports: TransportType[], transportType: string }>) {
+            //устанавливаем в стэйт пришедший  массив с траспортом
+            action.payload.transportType === 'Грузовик'
+                ? state.trucks = action.payload.transports
+                : state.containers = action.payload.transports
+        },
+        // setAutoChoiceTransportAC(state, action: PayloadAction<{ transports: TransportType[], transportType: string }>) {
+        //     state.
+        //     //устанавливаем в стэйт пришедший  массив с траспортом
+        //     action.payload.transportType === 'Грузовик'
+        //         ? state.trucks = action.payload.transports
+        //         : state.containers = action.payload.transports
+        // },
+    },
     // extraReducers: (builder) => {
     //
     // }
