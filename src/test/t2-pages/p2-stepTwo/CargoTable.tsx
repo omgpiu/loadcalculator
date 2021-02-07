@@ -1,42 +1,42 @@
+import {CloseCircleTwoTone, DropboxOutlined} from '@ant-design/icons';
 import {Table} from 'antd';
 import React from 'react';
 import {TableSelect} from '../p3-stepThree/select';
+import {useDispatch, useSelector} from 'react-redux';
+import {getPackagingCargo} from './pageTwo-selector';
+import {deletePackagingCargo, PackagingItemType} from './pageTwo-reducer';
+import {ColumnsType} from 'antd/es/table';
 
 
-type ColumnsType = {
+interface Column {
+    id: string
+    img: string
     title: string
-    dataIndex: string
-    key: string,
-
-
-}
-type DataType = {
-    key: string
-    title: string
-    length: number
-    width: number
-    height: number
+    width: number | null
+    height: number | null
+    length: number | null
+    diameter: number | null
+    volume: number | null
     weight: number
     amount: number
-    color: string
-}
-
-
-type PropsType = {
-    columns: ColumnsType[]
-    data: DataType[]
 }
 
 
 export const CargoTable: React.FC = () => {
+    const dispatch = useDispatch();
+    const packagingCargo = useSelector(getPackagingCargo);
+    const onClickDeleteHandler = (id: string) => {
+        dispatch(deletePackagingCargo({id}));
 
-
-    const columns = [
+    };
+    const columns: ColumnsType<Column> = [
         {
-            title: 'Action',
+            title: <DropboxOutlined style={{fontSize: '35px', color: '#CD853F'}}/>,
             dataIndex: '',
             key: 'x',
-            render: () => <button>Delete</button>,
+            render: (cargo: PackagingItemType) => <CloseCircleTwoTone twoToneColor="pink" style={{fontSize: '35px'}}
+                                                                      onClick={() => onClickDeleteHandler(cargo.id)}/>
+
         }, {
             dataIndex: 'title',
             title: 'Название ',
@@ -59,40 +59,37 @@ export const CargoTable: React.FC = () => {
             key: 'length'
 
         }, {
-            dataIndex: 'weight',
-            title: 'Масса (кг)',
-            key: 'weight'
-
-        }, {
             dataIndex: 'width',
-            title: 'Ширина мм',
+            title: 'Ширина (мм)',
             key: 'width'
 
         },
         {
-            title: 'Цвет',
+            dataIndex: 'diameter',
+            title: 'Диаметр (мм)',
+            key: 'diameter'
+
+        },
+
+        {
+            dataIndex: 'weight',
+            title: 'Масса (кг)',
+            key: 'weight'
+
+        },
+        {
             dataIndex: 'color',
+            title: 'Цвет',
             key: 'color',
             render: () => <TableSelect/>,
         }
     ];
-    const data: DataType[] =
-        [{
-            width: 15,
-            amount: 10,
-            color: 'blue',
-            height: 12,
-            key: '1',
-            length: 13,
-            title: 'Pallet',
-            weight: 14,
 
-        },]
-
-
-    ;
     return (<>
-            <Table columns={columns} dataSource={data} pagination={false}/>
+            <Table columns={columns} dataSource={packagingCargo} pagination={false}
+                   rowKey="id"
+
+            />
         </>
 
     );

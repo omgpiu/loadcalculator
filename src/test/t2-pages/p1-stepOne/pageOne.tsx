@@ -1,7 +1,7 @@
 import {Button, Col, Row, Upload} from 'antd';
 import React from 'react';
 import st from './pageOne.module.css';
-import {CaretRightOutlined, UploadOutlined} from '@ant-design/icons';
+import {UploadOutlined} from '@ant-design/icons';
 import container from '../../../assets/images/container.png';
 import truck from '../../../assets/images/truck.jpg';
 import {useDispatch, useSelector} from 'react-redux';
@@ -9,28 +9,31 @@ import {getLoadPlace} from './pageOne-selector';
 import {setLoadPlace} from './pageOne-reducer';
 import {Link} from 'react-router-dom';
 import {PAGE_TWO} from '../../routes/routes';
+import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
 
 export type placeToLoadType = 'Грузовик' | 'Контейнер' | ''
+
+type PropsType = {
+    nextPage: () => void
+}
 
 export const PageOne: React.FC = () => {
     const TRUCK = 'Грузовик';
     const CONTAINER = 'Контейнер';
-
-
     const dispatch = useDispatch();
-    //TODO rename this const
-    const loadPlacem = useSelector(getLoadPlace);
+
+
+    const load = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
 
 
     const onClickTruckHandler = () => {
-
         dispatch(setLoadPlace({loadPlace: TRUCK}));
     };
     const onClickContainerHandler = () => {
-
         dispatch(setLoadPlace({loadPlace: CONTAINER}));
     };
+
 
     return (
         <div className={st.pageOneMain}>
@@ -43,7 +46,7 @@ export const PageOne: React.FC = () => {
                     <img src={truck} alt="" onClick={onClickTruckHandler}/>
                     <div>
                         <Button onClick={onClickTruckHandler}
-                                type={loadPlacem === TRUCK ? 'primary' : 'default'}
+                                type={load === TRUCK ? 'primary' : 'default'}
                         >Грузовик</Button>
                     </div>
                     <div>
@@ -56,16 +59,13 @@ export const PageOne: React.FC = () => {
                     <img src={container} alt="" onClick={onClickContainerHandler}/>
                     <div>
                         <Button onClick={onClickContainerHandler}
-                                type={loadPlacem === CONTAINER ? 'primary' : 'default'}
+                                type={load === CONTAINER ? 'primary' : 'default'}
                         >Контейнер</Button>
                     </div>
                     <div>
                         <div>
                             <Link to={PAGE_TWO}>
-                                <Button type="default" block
-                                        icon={<CaretRightOutlined/>}
-                                >
-                                    Далее</Button></Link>
+                                <ReusableNavButton step={'forward'}/></Link>
                         </div>
                     </div>
 
@@ -79,7 +79,6 @@ export const PageOne: React.FC = () => {
 
     );
 };
-
 
 
 

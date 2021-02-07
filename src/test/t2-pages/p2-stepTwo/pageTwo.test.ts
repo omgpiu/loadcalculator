@@ -15,9 +15,10 @@ beforeEach(() => {
                 width: 1000,
                 height: 1000,
                 length: 1000,
-                diameter: undefined,
-                volume: undefined,
-                weight: 100
+                diameter: 1,
+                volume: 1,
+                weight: 100,
+                amount: 10,
             },
             {
                 id: '12',
@@ -26,9 +27,9 @@ beforeEach(() => {
                 width: 1000,
                 height: 1000,
                 length: 1000,
-                diameter: undefined,
-                volume: undefined,
-                weight: 100,
+                diameter: 1,
+                volume: 1,
+                weight: 100, amount: 10,
 
             }]
 
