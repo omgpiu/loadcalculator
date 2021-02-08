@@ -22,7 +22,7 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
             id: 4,
             name: 'carryingCapacity',
             label: 'Грузоподъемность (кг):',
-            value: palletParam ? palletParam.carryingCapacity : pallet.carryingCapacity
+            value: palletParam ? palletParam.carryingCapacity : pallet.carryingCapacity,
         },
         {
             id: 5,

@@ -7,9 +7,9 @@ import {ButtonHTMLType, ButtonType} from 'antd/lib/button/button';
 
 
 type PropsType = {
+    step: 'forward' | 'backward'
     htmlType?: ButtonHTMLType
     type?: ButtonType
-    step: 'forward' | 'backward'
 }
 
 
@@ -29,8 +29,6 @@ export const ReusableNavButton: React.FC<PropsType> = ({type = 'default', htmlTy
                 <Button type={type} onClick={nextPage} htmlType={htmlType}>Вперед</Button> :
                 <Button type={type} onClick={prevPage} htmlType={htmlType}>Назад</Button>}
         </>
-
-
     )
         ;
 };

@@ -1,0 +1,27 @@
+.autoChoice{
+   &_title{
+      font-size: 22px;
+      font-style: italic;
+   }
+   &_inner{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      img{
+         width: 200px;
+         height: 150px;
+      }
+   }
+   &_btn {
+      margin-top: 30px;
+      padding-bottom: 10px;
+      width: 100%;
+      left: 0;
+      bottom: 15px;
+      display: flex;
+      justify-content: space-around;
+      button{
+         width: 125px;
+      }
+   }
+}

@@ -13,7 +13,7 @@ export const ContentTransportMode: React.FC<PropsType> = (props) => {
 
     return (
         <>
-            <h3> Подбор траспортного средства </h3>
+            <h3 className={st.title}> Подбор траспортного средства </h3>
             <div className={st.TransportMode}>
                 <div className={st.TransportMode_descr}>
                     <p>{text_description.autoModeText}</p>
@@ -21,11 +21,11 @@ export const ContentTransportMode: React.FC<PropsType> = (props) => {
                 </div>
                 <div>
                     <Radio.Group style={style} onChange={onChange} value={mode}>
-                        <Radio value={1} onChange={onChange}>
-                            <img className={st.TransportMode_img} src={containerImg} alt='choice'/>
+                        <Radio value={1}>
+                            <img className={st.TransportMode_img} src={containerImg} alt='autoChoice'/>
                         </Radio>
-                        <Radio value={2} onChange={onChange}>
-                            <img className={st.TransportMode_img} src={containerImg} alt='choice'/>
+                        <Radio value={2}>
+                            <img className={st.TransportMode_img} src={containerImg} alt='selectChoice'/>
                         </Radio>
                     </Radio.Group>
                 </div>

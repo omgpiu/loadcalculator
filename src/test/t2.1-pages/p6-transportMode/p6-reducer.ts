@@ -4,9 +4,8 @@ import {appActions} from '../../../main/m2-bll/appReducer';
 import {AppRootStateType} from '../../../main/m2-bll/store';
 
 const initialState = {
-    containers: [] as TransportType[],
-    trucks: [] as TransportType[],
-    autoChoice: [] as TransportType[],
+    transports: [] as TransportType[],
+    autoChoiceFiltered: [] as TransportType[],
     selectChoice: [] as TransportType[]
 
 }
@@ -21,7 +20,23 @@ export const getTransportDataTC = createAsyncThunk('pageSix/transportMode',
         try {
             dispatch(appActions.setAppStatusAC({status: 'loading'}))
             const res = await page6.getTransport(transportType)
-            dispatch(Tr_ModeActions.setTransportDataAC({transports: res as TransportType[], transportType}))
+            dispatch(Tr_ModeActions.setTransportDataAC({transports: res as TransportType[]}))
+            dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
+            return res
+        } catch (err) {
+            dispatch(appActions.setAppStatusAC({status: 'failed'}))
+            return rejectWithValue(err)
+        }
+    })
+export const getAutoFilterDataTC = createAsyncThunk('pageSix/getAutoFilterData',
+    async (param, {dispatch, rejectWithValue, getState}) => {
+        const state = getState() as AppRootStateType
+        const totalCargoValue = state.pageThree.totalCargoValue
+        const transportType = state.pageOne.loadPlace
+        try {
+            dispatch(appActions.setAppStatusAC({status: 'loading'}))
+            const res = await page6.getAutoFilterData(totalCargoValue, transportType)
+            dispatch(Tr_ModeActions.setFilterAutoChoiceAC({autoChoiceFiltered: res as TransportType[]}))
             dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
             return res
         } catch (err) {
@@ -35,19 +50,16 @@ const slice = createSlice({
     name: 'pageFive',
     initialState,
     reducers: {
-        setTransportDataAC(state, action: PayloadAction<{ transports: TransportType[], transportType: string }>) {
+        setTransportDataAC(state, action: PayloadAction<{ transports: TransportType[] }>) {
             //устанавливаем в стэйт пришедший  массив с траспортом
-            action.payload.transportType === 'Грузовик'
-                ? state.trucks = action.payload.transports
-                : state.containers = action.payload.transports
+            state.transports = action.payload.transports
+
         },
-        // setAutoChoiceTransportAC(state, action: PayloadAction<{ transports: TransportType[], transportType: string }>) {
-        //     state.
-        //     //устанавливаем в стэйт пришедший  массив с траспортом
-        //     action.payload.transportType === 'Грузовик'
-        //         ? state.trucks = action.payload.transports
-        //         : state.containers = action.payload.transports
-        // },
+        setFilterAutoChoiceAC(state, action: PayloadAction<{ autoChoiceFiltered: TransportType[] }>) {
+            //сетаем отфильтрованный массив в state.autoChoiceFiltered
+            state.autoChoiceFiltered = action.payload.autoChoiceFiltered
+        }
+
     },
     // extraReducers: (builder) => {
     //

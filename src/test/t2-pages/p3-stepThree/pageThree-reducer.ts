@@ -13,7 +13,7 @@ const initialState = {
             name: 'cargo 1',
             length: 200,
             width: 300,
-            height: 200,
+            height: 1400,
             mass: 10,
             quantity: 10,
         },
@@ -29,11 +29,11 @@ const initialState = {
 
     ] as CustomerCargo[],
     totalCargoValue: {
-        cargoMass: 0.03,
-        cargoVolume: 0.024,
-        maxH: 450,
-        maxL: 300,
-        maxW: 400,
+        cargoMass: 0.5,
+        cargoVolume: 0.84,
+        maxH: 1.4,
+        maxL: 0.3,
+        maxW: 0.4,
     } as TotalCargoValueType
 }
 
