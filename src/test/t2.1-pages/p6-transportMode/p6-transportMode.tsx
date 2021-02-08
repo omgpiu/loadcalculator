@@ -11,8 +11,8 @@ import {TotalCargoValue} from './totalCargoValue/totalCargoValue';
 
 
 export const TransportMode: React.FC<PropsType> = React.memo((props) => {
-
-    const {text_description, img, totalCargoValue, transports} = props;
+// transports добавить в пропсы для selectChoice
+    const {text_description, img, totalCargoValue, } = props;
     const dispatch = useDispatch()
     const [mode, setMode] = React.useState(0);
 
@@ -32,12 +32,12 @@ export const TransportMode: React.FC<PropsType> = React.memo((props) => {
             <hr/>
             <div>
                 {
-                    (mode === 1)
-                        ? <>
-                            <TotalCargoValue totalCargoValue={totalCargoValue}/>
-                            <AutoChoice/>
-                        </>
-                        : <div> в разработке </div>
+                    (mode === 1) ? <>
+                                         <TotalCargoValue totalCargoValue={totalCargoValue}/>
+                                         <AutoChoice/>
+                                         </>
+                        : (mode === 2)
+                        ? <div> в разработке </div> : ''
                 }
             </div>
         </div>

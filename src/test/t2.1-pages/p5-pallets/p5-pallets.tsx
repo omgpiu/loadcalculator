@@ -20,7 +20,7 @@ export const Page5Pallets = React.memo(() => {
         if (pallets.length === 0) {
             dispatch(getPalletsTC())
         }
-    }, [dispatch])
+    }, [dispatch,pallets.length])
 
         // находим паллет по типу выбранному через селект => в массиве 1 нужный объект
     const selectedPallet = pallets.filter(el => el.typePallet === palletType)

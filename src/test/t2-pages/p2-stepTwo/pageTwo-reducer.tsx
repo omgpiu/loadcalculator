@@ -9,17 +9,23 @@ import barrel from './../../../assets/images/i2-pagetwo/steel-barrel.jpg';
 import {v1} from 'uuid';
 
 const initialState: InitialStatePageTwoType = {
-    packagingCargo: [],
-    packagingItems: [
+    totalCargoValue: {
+        cargoMass: 0.5,
+        cargoVolume: 0.84,
+        maxH: 1.4,
+        maxL: 0.3,
+        maxW: 0.4,
+    },
+    packagingCargo: [
         {
             id: '11',
             img: box,
             title: 'КОРОБКИ',
             width: 1001,
-            height: 1002,
+            height: 1400,
             length: 1003,
-            diameter: null,
-            volume: null,
+            diameter: 0,
+            volume: 0,
             weight: 1006,
             amount: 10,
         },
@@ -30,8 +36,34 @@ const initialState: InitialStatePageTwoType = {
             width: 1001,
             height: 1002,
             length: 1003,
-            diameter: null,
-            volume: null,
+            diameter:0,
+            volume: 0,
+            weight: 1006,
+            amount: 10,
+        },
+    ],
+    packagingItems: [
+        {
+            id: '11',
+            img: box,
+            title: 'КОРОБКИ',
+            width: 1001,
+            height: 1002,
+            length: 1003,
+            diameter: 0,
+            volume: 0,
+            weight: 1006,
+            amount: 10,
+        },
+        {
+            id: '12',
+            img: bigBag,
+            title: 'БИГ БЭГИ',
+            width: 1001,
+            height: 1002,
+            length: 1003,
+            diameter: 0,
+            volume: 0,
             weight: 1006,
             amount: 10,
         },
@@ -42,8 +74,8 @@ const initialState: InitialStatePageTwoType = {
             width: 1001,
             height: 1002,
             length: 1003,
-            diameter: null,
-            volume: null,
+            diameter: 0,
+            volume: 0,
             weight: 106,
             amount: 10,
         },
@@ -51,8 +83,8 @@ const initialState: InitialStatePageTwoType = {
             id: '14',
             img: pipe,
             title: 'ТРУБЫ',
-            width: null,
-            height: null,
+            width: 0,
+            height: 0,
             length: 1003,
             diameter: 504,
             volume: 505,
@@ -65,9 +97,9 @@ const initialState: InitialStatePageTwoType = {
             title: 'ШИНЫ',
             width: 5001,
             height: 5002,
-            length: null,
+            length: 0,
             diameter: 5004,
-            volume: null,
+            volume: 0,
             weight: 1006,
             amount: 10,
         },
@@ -78,17 +110,17 @@ const initialState: InitialStatePageTwoType = {
             width: 1001,
             height: 1002,
             length: 1003,
-            diameter: null,
-            volume: null,
+            diameter: 0,
+            volume: 0,
             weight: 106,
             amount: 10,
         }, {
             id: '17',
             img: barrel,
             title: 'БОЧКИ',
-            width: null,
+            width: 0,
             height: 1002,
-            length: null,
+            length: 0,
             diameter: 2004,
             volume: 5005,
             weight: 1006,
@@ -96,6 +128,7 @@ const initialState: InitialStatePageTwoType = {
         },
 
     ]
+
 };
 
 
@@ -133,18 +166,26 @@ export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 
 export type InitialStatePageTwoType = {
     packagingCargo: PackagingItemType[]
     packagingItems: PackagingItemType[]
+    totalCargoValue:TotalCargoValueType
 }
 export type PackagingItemType = {
     id: string
     img: string
     title: string
-    width: number | null
-    height: number | null
-    length: number | null
-    diameter: number | null
-    volume: number | null
+    width: number
+    height: number
+    length: number
+    diameter: number
+    volume: number
     weight: number
     amount: number
+}
+export type TotalCargoValueType = {
+    cargoVolume: number
+    cargoMass: number
+    maxL: number
+    maxH: number
+    maxW: number
 }
 
 

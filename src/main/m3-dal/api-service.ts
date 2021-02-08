@@ -68,9 +68,9 @@ export const page6 = {
 }
 
 
-export type ThunkErrorType = {
-    rejectValue: { errors: Array<string> }
-}
+// export type ThunkErrorType = {
+//     rejectValue: { errors: Array<string> }
+// }
 //page 4 pallets
 const pallets: PalletType[] = [
     {

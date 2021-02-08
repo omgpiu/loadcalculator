@@ -31,7 +31,7 @@ export const getTransportDataTC = createAsyncThunk('pageSix/transportMode',
 export const getAutoFilterDataTC = createAsyncThunk('pageSix/getAutoFilterData',
     async (param, {dispatch, rejectWithValue, getState}) => {
         const state = getState() as AppRootStateType
-        const totalCargoValue = state.pageThree.totalCargoValue
+        const totalCargoValue = state.pageTwo.totalCargoValue
         const transportType = state.pageOne.loadPlace
         try {
             dispatch(appActions.setAppStatusAC({status: 'loading'}))

@@ -11,7 +11,7 @@ import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
 export const TransportModeContainer = React.memo(() => {
     const dispatch = useDispatch();
     const transports = useSelector<AppRootStateType, TransportType[]>(s=> s.pageSix.transports)
-    const totalCargoValue = useSelector<AppRootStateType, TotalCargoValueType>(s => s.pageThree.totalCargoValue)
+    const totalCargoValue = useSelector<AppRootStateType, TotalCargoValueType>(s => s.pageTwo.totalCargoValue)
     const typeTransport = useSelector<AppRootStateType, placeToLoadType>(state => state.pageOne.loadPlace)
     useEffect( ()=> {
         if(transports.length === 0){

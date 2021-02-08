@@ -3,11 +3,10 @@ import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../main/m2-bll/store';
 import {TransportType} from '../../../../main/m3-dal/api-service';
 import {RequestStatusType} from '../../../../main/m2-bll/appReducer';
-import {Alert, Button, Radio, RadioChangeEvent, Spin} from 'antd';
-import {Link} from 'react-router-dom';
-import {PAGE_FIVE} from '../../../routes/routes';
-import {ReusableNavButton} from '../../../ReusebleNavigationButtons/BtnReus';
+import {Alert, Radio, RadioChangeEvent, Spin} from 'antd';
+import {PAGE_FIVE, PAGE_SIX} from '../../../routes/routes';
 import st from './autoChoice.module.scss'
+import {ButtonBlock} from '../../../t5-common/buttonBlock/buttonBlock';
 
 export const AutoChoice: React.FC = () => {
     const [error, setError] = useState<null | number>(null)
@@ -20,8 +19,7 @@ export const AutoChoice: React.FC = () => {
     }
     const handleClick = () => {
         return radioValue
-            ? alert('Обработка выбора Т/С SelectCurrentTransportTC()+ переход страницы History.push' +
-                    '+ засетать currentPage  в санке')
+            ? alert('Обработка выбора Т/С SelectCurrentTransportTC()+ переход страницы ')
             : setError(1)//если не выбрано ни одно поле ( radio ) сетаем ошибку и выводим алерт
     }
     return (
@@ -39,12 +37,7 @@ export const AutoChoice: React.FC = () => {
                         </div>
                     )
                 }
-                <div className={st.autoChoice_btn}>
-                    <Link to={PAGE_FIVE}>
-                        <ReusableNavButton step={'backward'}/>
-                    </Link>
-                    <Button type="default" onClick={handleClick}>Продолжить</Button>
-                </div>
+                <ButtonBlock prevPageLink={PAGE_FIVE} nextPageLink={PAGE_SIX} parentClickHandler={handleClick}/>
                 {(error) && <Alert message='Не выбрано ни одного поля !' type="error"/>}
             </Spin>
         </div>
