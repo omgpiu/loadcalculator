@@ -1,22 +1,30 @@
-import {InputNumber} from 'antd';
-import React from 'react';
+import {Input, InputNumber} from 'antd';
+import React, {ChangeEvent} from 'react';
 import {PackagingItemType, ParamType} from './pageTwo-reducer';
 import st from './pageTwoInputsComponent.module.css';
 
 type PropsType = {
-    onChangeHandler: (id: string, param: ParamType, paramQuantity: number) => void
+    onChangeHandler: (id: string, param: ParamType, paramQuantity: number | string) => void
     item: PackagingItemType
 }
+//компонента для отрисовки импутов товара
 export const PageTwoInputsComponent: React.FC<PropsType> = ({
                                                                 item,
                                                                 onChangeHandler
                                                             }) => {
-    const onChange = (id: string, param: ParamType, paramQuantity: number) => {
+    const onChange = (id: string, param: ParamType, paramQuantity: number | string) => {
         onChangeHandler(id, param, paramQuantity);
+        debugger
     };
+
     return (
         <div className={st.wrapper}>
-
+            <div>
+                'Название'
+                <Input value={item.cargoTitle} onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    onChange(item.id, 'cargoTitle', e.currentTarget.value);
+                }}/>
+            </div>
             <div>
                 {!!item.length && 'Длинна'} {item.length && item.length !== 0 ?
                 <InputNumber type="number" min={1} value={item.length} onChange={(e) => {

@@ -19,12 +19,14 @@ interface Column {
     volume: number | null
     weight: number
     amount: number
+    cargoTitle: string | number
 }
 
 
 export const CargoTable: React.FC = () => {
     const dispatch = useDispatch();
     const packagingCargo = useSelector(getPackagingCargo);
+
     const onClickDeleteHandler = (id: string) => {
         dispatch(deletePackagingCargo({id}));
 
@@ -37,7 +39,7 @@ export const CargoTable: React.FC = () => {
             render: (cargo: PackagingItemType) => <CloseOutlined style={{fontSize: '20px', color: 'red'}}
                                                                  onClick={() => onClickDeleteHandler(cargo.id)}/>
         }, {
-            dataIndex: 'title',
+            dataIndex: 'cargoTitle',
             title: 'Название ',
             key: 'title'
 

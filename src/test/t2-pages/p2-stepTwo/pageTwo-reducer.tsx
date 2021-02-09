@@ -30,6 +30,8 @@ const initialState = {
             volume: 0,
             weight: 1006,
             amount: 10,
+            cargoTitle: 'КОРОБКИ'
+
         },
         {
             id: '12',
@@ -42,6 +44,7 @@ const initialState = {
             volume: 0,
             weight: 1006,
             amount: 10,
+            cargoTitle: 'БИГ БЭГИ'
         },
     ] as PackagingItemType[],
     packagingItems: [
@@ -56,6 +59,7 @@ const initialState = {
             volume: 0,
             weight: 1006,
             amount: 10,
+            cargoTitle: 'КОРОБКИ'
         },
         {
             id: '12',
@@ -68,6 +72,8 @@ const initialState = {
             volume: 0,
             weight: 1006,
             amount: 10,
+            cargoTitle: 'БИГ БЭГИ'
+
         },
         {
             id: '13',
@@ -80,6 +86,7 @@ const initialState = {
             volume: 0,
             weight: 106,
             amount: 10,
+            cargoTitle: 'ПАЛЛЕТЫ'
         },
         {
             id: '14',
@@ -92,6 +99,7 @@ const initialState = {
             volume: 505,
             weight: 1006,
             amount: 10,
+            cargoTitle: 'ТРУБЫ'
         },
         {
             id: '15',
@@ -104,6 +112,8 @@ const initialState = {
             volume: 0,
             weight: 1006,
             amount: 10,
+            cargoTitle: 'ШИНЫ'
+
         },
         {
             id: '16',
@@ -116,6 +126,7 @@ const initialState = {
             volume: 0,
             weight: 106,
             amount: 10,
+            cargoTitle: 'ЯЩИКИ'
         }, {
             id: '17',
             img: barrel,
@@ -127,6 +138,7 @@ const initialState = {
             volume: 5005,
             weight: 1006,
             amount: 10,
+            cargoTitle: 'БОЧКИ'
         },
 
     ] as PackagingItemType[],
@@ -142,6 +154,7 @@ const initialState = {
         volume: 0,
         weight: 1006,
         amount: 10,
+        cargoTitle: 'КОРОБКИ'
     },] as PackagingItemType[]
 
 };
@@ -165,10 +178,10 @@ const slice = createSlice({
         initialState,
         reducers: {
             //сетаем значения в стейт(с инпутов), перед добавлением в таблицу с выбранным грузом
-            setPackagingParams(state, action: PayloadAction<{ id: string, param: ParamType, paramQuantity: number }>) {
+            setPackagingParams(state, action: PayloadAction<{ id: string, param: ParamType, paramQuantity: string | number }>) {
                 state.packagingItems.map(item => {
                         if (item.id === action.payload.id) {
-                            item[action.payload.param] = action.payload.paramQuantity;
+                            item[action.payload.param] = action.payload.paramQuantity as number;
                         }
                     }
                 );
@@ -197,7 +210,7 @@ const slice = createSlice({
         }
     })
 ;
-export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight' | 'amount'
+export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight' | 'amount' | 'cargoTitle'
 
 export type P2_State = typeof initialState;
 export type InitialStatePageTwoType = {
@@ -216,6 +229,7 @@ export type PackagingItemType = {
     volume: number
     weight: number
     amount: number
+    cargoTitle: string | number
 }
 export type TotalCargoValueType = {
     cargoVolume: number
