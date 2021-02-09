@@ -29,18 +29,18 @@ export const ButtonBlock: React.FC<PropsType> = ({nextPageLink, prevPageLink, ht
                 </Link>
                 }
             </div>}
-            <div style={{margin: '10px'}}>
+            {nextPageLink && <div style={{margin: '10px'}}>
                 {(prevPageLink === 'PAGE_SIX') ||
                 <Link to={nextPageLink}>
-                   <Button type={type} onClick={nextPage} htmlType={htmlType}>Вперед</Button>
+                    <Button type={type} onClick={nextPage} htmlType={htmlType}>Вперед</Button>
                 </Link>
                 }
-            </div>
+            </div>}
         </div>
     )
 }
 type PropsType = {
-    nextPageLink: string
+    nextPageLink?: string
     prevPageLink?: string
     htmlType?: ButtonHTMLType
     type?: ButtonType

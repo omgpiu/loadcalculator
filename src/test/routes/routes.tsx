@@ -8,6 +8,7 @@ import {PageThree} from '../t2-pages/p3-stepThree/pageThree';
 import {Page404} from '../t5-common/page404/page404';
 import {TransportModeContainer} from '../t2.1-pages/p6-transportMode/p6-transportMode-Container';
 import {PageOne} from '../t2-pages/p1-stepOne/pageOne';
+import {PageSeven} from '../t2-pages/p7-pageSeven/PageSeven';
 
 
 export const LOGIN = '/login';
@@ -16,6 +17,7 @@ export const PAGE_TWO = '/packing';
 export const PAGE_THREE = '/cargo';
 export const PAGE_FIVE = '/pallets';
 export const PAGE_SIX = '/modeTransport';
+export const PAGE_SEVEN = '/stuffing';
 
 
 export const Routes = () => {
@@ -28,6 +30,7 @@ export const Routes = () => {
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
             <Route path={PAGE_FIVE} render={() => <Page5Pallets/>}/>
             <Route path={PAGE_SIX} render={() => <TransportModeContainer/>}/>
+            <Route path={PAGE_SEVEN} render={() => <PageSeven/>}/>
 
             <Route path={'*'}
                    render={() => <Page404/>}
