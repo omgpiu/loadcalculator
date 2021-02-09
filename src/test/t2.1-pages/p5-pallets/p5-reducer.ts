@@ -68,6 +68,8 @@ const slice = createSlice({
             .addCase(setPalletParameters.fulfilled, (state, action) => {
                 state.palletParam = action.payload as PalletType
             })
+
+
     }
 });
 export const pageFiveReducer = slice.reducer;

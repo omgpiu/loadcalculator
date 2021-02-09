@@ -19,8 +19,8 @@ export const ButtonBlock: React.FC<PropsType> = ({nextPageLink, prevPageLink, ht
     const prevPage = () => {
         dispatch(setCurrentStep({page: currentPage - 1}));
     };
-
     return (
+
         <div className={st.buttonBlock}>
             {prevPageLink && <div style={{margin: '10px'}}>
                 {(nextPageLink === 'PAGE_TWO') ||

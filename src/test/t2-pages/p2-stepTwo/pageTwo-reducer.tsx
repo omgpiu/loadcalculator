@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import box from './../../../assets/images/i2-pagetwo/box.jpg';
 import bigBag from './../../../assets/images/i2-pagetwo/big_bag.jpg';
 import pallet from './../../../assets/images/i2-pagetwo/pallet.jpg';
@@ -7,15 +7,17 @@ import tire from './../../../assets/images/i2-pagetwo/tire.jpg';
 import woodenBox from './../../../assets/images/i2-pagetwo/woodenBox.jpg';
 import barrel from './../../../assets/images/i2-pagetwo/steel-barrel.jpg';
 import {v1} from 'uuid';
+import {appActions} from '../../../main/m2-bll/appReducer';
+import {page5} from '../../../main/m3-dal/api-service';
 
-const initialState: InitialStatePageTwoType = {
+const initialState = {
     totalCargoValue: {
         cargoMass: 0.5,
         cargoVolume: 0.84,
         maxH: 1.4,
         maxL: 0.3,
         maxW: 0.4,
-    },
+    } as TotalCargoValueType,
     packagingCargo: [
         {
             id: '11',
@@ -36,12 +38,12 @@ const initialState: InitialStatePageTwoType = {
             width: 1001,
             height: 1002,
             length: 1003,
-            diameter:0,
+            diameter: 0,
             volume: 0,
             weight: 1006,
             amount: 10,
         },
-    ],
+    ] as PackagingItemType[],
     packagingItems: [
         {
             id: '11',
@@ -127,15 +129,29 @@ const initialState: InitialStatePageTwoType = {
             amount: 10,
         },
 
-    ]
+    ] as PackagingItemType[],
+    packagingCargoBack: [] as PackagingItemType[]
+
 };
+
+
+export const setCountedCargoParam = createAsyncThunk('pageTwo/sendCargo',
+    async (param: PackagingItemType[], thunkAPI) => {
+        try {
+            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}))
+            const res = await page5.sendCargo(param)
+            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
+            return res
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err.messages[0])
+        }
+    })
 
 
 const slice = createSlice({
         name: 'pageTwo',
         initialState,
         reducers: {
-
             //сетаем значения в стейт(с инпутов), перед добавлением в таблицу с выбранным грузом
             setPackagingParams(state, action: PayloadAction<{ id: string, param: ParamType, paramQuantity: number }>) {
                 state.packagingItems.map(item => {
@@ -156,17 +172,26 @@ const slice = createSlice({
                 if (index > -1) {
                     state.packagingCargo.splice(index, 1);
                 }
-
             },
+        },
+        extraReducers: (builder) => {
+            builder
+                .addCase(setCountedCargoParam.fulfilled, (state, action) => {
+                    state.packagingCargoBack = action.payload as PackagingItemType[]
+                    console.log(state.packagingCargoBack)
+                })
+
 
         }
     })
 ;
 export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight' | 'amount'
+
+export type P2_State = typeof initialState;
 export type InitialStatePageTwoType = {
     packagingCargo: PackagingItemType[]
     packagingItems: PackagingItemType[]
-    totalCargoValue:TotalCargoValueType
+    totalCargoValue: TotalCargoValueType
 }
 export type PackagingItemType = {
     id: string

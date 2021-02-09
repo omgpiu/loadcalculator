@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
-
+export const PALLETS = 'pallets';
+export const NO_PALLETS = 'no_pallets';
 
 const initialState = {
     // примерный стейт для расчетов на 5 странице;
@@ -32,7 +33,7 @@ const initialState = {
     //     CargoMass: 0.03,
     //     CargoVolume: 0.024,
     // } as TotalCargoValueType,
-    payloadTypeLoad: 'pallets' as PayloadTypeForLoading
+    payloadTypeLoad: NO_PALLETS as PayloadTypeForLoading
 };
 
 //thunk's
@@ -44,7 +45,6 @@ const slice = createSlice({
         reducers: {
             setPayloadType(state, action: PayloadAction<{ payloadTypeLoad: PayloadTypeForLoading }>) {
                 state.payloadTypeLoad = action.payload.payloadTypeLoad;
-
             }
 
 
@@ -56,8 +56,7 @@ export const {setPayloadType} = slice.actions;
 
 export type PageThreeInitialState = typeof initialState;
 export type PayloadTypeForLoading = 'pallets' | 'no_pallets'
-export const PALLETS = 'pallets';
-export const NO_PALLETS = 'no_pallets';
+
 
 export type CustomerCargo = {
     id: string

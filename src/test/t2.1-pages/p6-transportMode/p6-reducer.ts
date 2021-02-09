@@ -47,7 +47,7 @@ export const getAutoFilterDataTC = createAsyncThunk('pageSix/getAutoFilterData',
 
 
 const slice = createSlice({
-    name: 'pageFive',
+    name: 'pageSix',
     initialState,
     reducers: {
         setTransportDataAC(state, action: PayloadAction<{ transports: TransportType[] }>) {

@@ -65,7 +65,6 @@ const slice = createSlice({
     initialState,
     reducers: {
         setCurrentStep(state, action: PayloadAction<{ page: number }>) {
-            debugger
             state.currentStep = action.payload.page;
         }
     },

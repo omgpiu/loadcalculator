@@ -51,7 +51,7 @@ export const page5 = {
         return fakeRequest(palletParam, 'page5 submit form - отправили на сервер параметры выбранных ' +
             'палетов пользователем, и засетали этот обьект с параметрами в стейт')
     },
-    sendCargo(cargoParam:PackagingItemType){
+    sendCargo(cargoParam: PackagingItemType[]) {
         return fakeRequest(cargoParam, 'page5 submit form - отправили на сервер параметры выбранных  без паллет' +
             'и засетали этот обьект с параметрами в стейт')
     }
