@@ -1,23 +1,22 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../main/m2-bll/store';
-import {placeToLoadType} from '../../t2-pages/p1-stepOne/pageOne';
 import {TransportMode} from './p6-transportMode';
 import {getTransportDataTC} from './p6-reducer';
-import {TransportType} from '../../../main/m3-dal/api-service';
-import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
+import {getTransports} from './p6-selector';
+import {getTotalCargoValue} from '../../t2-pages/p2-stepTwo/pageTwo-selector';
+import {getLoadPlace} from '../../t2-pages/p1-stepOne/pageOne-selector';
 
 
 export const TransportModeContainer = React.memo(() => {
     const dispatch = useDispatch();
-    const transports = useSelector<AppRootStateType, TransportType[]>(s=> s.pageSix.transports)
-    const totalCargoValue = useSelector<AppRootStateType, TotalCargoValueType>(s => s.pageTwo.totalCargoValue)
-    const typeTransport = useSelector<AppRootStateType, placeToLoadType>(state => state.pageOne.loadPlace)
-    useEffect( ()=> {
-        if(transports.length === 0){
+    const transports = useSelector(getTransports)
+    const totalCargoValue = useSelector(getTotalCargoValue)
+    const typeTransport = useSelector(getLoadPlace)
+    useEffect(() => {
+        if (transports.length === 0) {
             dispatch(getTransportDataTC())
         }
-    },[dispatch,transports.length])
+    }, [dispatch, transports.length])
 
 
     const text_description = {
