@@ -13,6 +13,8 @@ import maz_kamaz from '../../assets/images/transport/auto/maz_kamaz.png';
 import fura from '../../assets/images/transport/auto/fura.jpg';
 import fura2 from '../../assets/images/transport/auto/fura2.jpg';
 import fura_scep from '../../assets/images/transport/auto/fura_scep.jpg';
+import {TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
+import {PackagingItemType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
 
 const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') => {
     // имитация асинхронного запроса, задержка ответа 1сек, reject выходит рандомно , примерно 1 из 10 раз
@@ -48,19 +50,23 @@ export const page5 = {
     setPalletParam(palletParam: PalletType) {
         return fakeRequest(palletParam, 'page5 submit form - отправили на сервер параметры выбранных ' +
             'палетов пользователем, и засетали этот обьект с параметрами в стейт')
+    },
+    sendCargo(cargoParam:PackagingItemType){
+        return fakeRequest(cargoParam, 'page5 submit form - отправили на сервер параметры выбранных  без паллет' +
+            'и засетали этот обьект с параметрами в стейт')
     }
 }
 
 export const page6 = {
     getTransport(transportType: string) {
-        return fakeRequest(transportType === 'Грузовик' ? autoData : containerData,
+        return fakeRequest(transportType === TRUCK ? autoData : containerData,
             `page6 получили общий массив с типом транспорта ${transportType}`)
     },
     getAutoFilterData(totalCargoValue: TotalCargoValueType, transportType: string) {
 
         //фильтруем общий массив с транспортом в зависимости от типа Т/С, удовлетворяющий
         // totalCargoValue(обьект с общией массой и обьемом груза,а также с наибольшими габаритными размерами)
-        const autoChoiceFiltered = filterTransports(totalCargoValue, transportType === 'Грузовик' ? autoData : containerData)
+        const autoChoiceFiltered = filterTransports(totalCargoValue, transportType === TRUCK ? autoData : containerData)
         return fakeRequest(autoChoiceFiltered,
             `page6 получили массив автоматического выбора Т/С - типа:${transportType}`)
     },

@@ -135,6 +135,8 @@ const slice = createSlice({
         name: 'pageTwo',
         initialState,
         reducers: {
+
+            //сетаем значения в стейт(с инпутов), перед добавлением в таблицу с выбранным грузом
             setPackagingParams(state, action: PayloadAction<{ id: string, param: ParamType, paramQuantity: number }>) {
                 state.packagingItems.map(item => {
                         if (item.id === action.payload.id) {
@@ -143,13 +145,12 @@ const slice = createSlice({
                     }
                 );
             },
+            //заполняем массив грузом(таблица), для отправки на север и переприсваеваем id
             setPackagingCargo(state, action: PayloadAction<{ id: string }>) {
                 const cargo = state.packagingItems.find(item => item.id === action.payload.id);
-
                 cargo && state.packagingCargo.push({...cargo, id: v1()});
-
-
             },
+            //удаляем не нужный груз из массива(таблица с грузом)
             deletePackagingCargo(state, action: PayloadAction<{ id: string }>) {
                 const index = state.packagingCargo.findIndex(c => c.id === action.payload.id);
                 if (index > -1) {
