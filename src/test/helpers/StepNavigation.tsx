@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {ReusableNavButton} from "./ReusebleNavigationButtons/BtnReus";
+import {ReusableNavButton} from "../ReusebleNavigationButtons/BtnReus";
 import React from "react";
 
 type PropsType = {
