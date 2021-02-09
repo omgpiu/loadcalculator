@@ -6,18 +6,23 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getCurrentPageStep} from '../../../main/m2-bll/app-selector';
 import {setCurrentStep} from '../../../main/m2-bll/appReducer';
 import st from './buttonBlock.module.scss';
+import {useLocalStorage} from "../../helpers/useLocalStorage";
 
 export const ButtonBlock: React.FC<PropsType> = ({nextPageLink, prevPageLink, htmlType, type, parentClickHandler}) => {
 
     const dispatch = useDispatch();
     const currentPage = useSelector(getCurrentPageStep);
 
+    const [storedCurrentPage, setCurrentPage] = useLocalStorage('currentStep', currentPage)
+
     const nextPage = () => {
         dispatch(setCurrentStep({page: currentPage + 1}));
-        parentClickHandler && parentClickHandler()
+        parentClickHandler && parentClickHandler();
+        setCurrentPage(currentPage + 1)
     };
     const prevPage = () => {
         dispatch(setCurrentStep({page: currentPage - 1}));
+        setCurrentPage(currentPage - 1)
     };
     return (
 
