@@ -24,7 +24,6 @@ export const PageThree: React.FC = () => {
     };
 
     const noPalletsSendOnClickHandler = () => {
-
         dispatch(setCountedCargoParam(cargoToSend))
     }
 

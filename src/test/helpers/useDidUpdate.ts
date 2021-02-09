@@ -10,7 +10,7 @@ export const useDidUpdate = (callback: () => void, deps?: any) => {
 		} else {
 			hasMount.current = true
 		}
-	}, deps)
+	}, [deps])
 };
 
 // примеры использования

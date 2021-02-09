@@ -19,7 +19,7 @@ export const PageTwo: React.FC = () => {
         dispatch(setPackagingCargo({id}));
     };
 
-    const onChangeHandler = (id: string, param: ParamType, paramQuantity: number) => {
+    const onChangeHandler = (id: string, param: ParamType, paramQuantity: number | string) => {
         dispatch(setPackagingParams({id, param, paramQuantity}));
     };
 

@@ -10,7 +10,7 @@ import {CONTAINER, setLoadPlace, TRUCK} from './pageOne-reducer';
 import {PAGE_TWO} from '../../routes/routes';
 import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
 
-export type placeToLoadType = 'Грузовик' | 'Контейнер' | ''
+
 
 
 export const PageOne: React.FC = () => {
