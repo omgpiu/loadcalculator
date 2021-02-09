@@ -130,6 +130,7 @@ const initialState = {
         },
 
     ] as PackagingItemType[],
+    //тестовый массив , в дальнейшем будет возвращать в  totalCargoValue
     packagingCargoBack: [] as PackagingItemType[]
 
 };
