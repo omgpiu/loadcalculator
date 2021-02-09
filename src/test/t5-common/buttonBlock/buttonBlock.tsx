@@ -7,8 +7,7 @@ import {getCurrentPageStep} from '../../../main/m2-bll/app-selector';
 import {setCurrentStep} from '../../../main/m2-bll/appReducer';
 import st from './buttonBlock.module.scss';
 
-export const ButtonBlock: React.FC<PropsType> = (props) => {
-    const {nextPageLink, prevPageLink, htmlType, type, parentClickHandler} = props;
+export const ButtonBlock: React.FC<PropsType> = ({nextPageLink, prevPageLink, htmlType, type, parentClickHandler}) => {
 
     const dispatch = useDispatch();
     const currentPage = useSelector(getCurrentPageStep);
@@ -23,13 +22,13 @@ export const ButtonBlock: React.FC<PropsType> = (props) => {
 
     return (
         <div className={st.buttonBlock}>
-            <div style={{margin: '10px'}}>
+            {prevPageLink && <div style={{margin: '10px'}}>
                 {(nextPageLink === 'PAGE_TWO') ||
                 <Link to={prevPageLink}>
-                   <Button type={type} onClick={prevPage} htmlType={htmlType}>Назад</Button>
+                    <Button type={type} onClick={prevPage} htmlType={htmlType}>Назад</Button>
                 </Link>
                 }
-            </div>
+            </div>}
             <div style={{margin: '10px'}}>
                 {(prevPageLink === 'PAGE_SIX') ||
                 <Link to={nextPageLink}>
@@ -42,7 +41,7 @@ export const ButtonBlock: React.FC<PropsType> = (props) => {
 }
 type PropsType = {
     nextPageLink: string
-    prevPageLink: string
+    prevPageLink?: string
     htmlType?: ButtonHTMLType
     type?: ButtonType
     parentClickHandler?: (values?: any) => void

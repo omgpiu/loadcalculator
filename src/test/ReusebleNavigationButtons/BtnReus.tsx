@@ -35,14 +35,3 @@ export const ReusableNavButton: React.FC<PropsType> = ({type = 'default', htmlTy
     )
         ;
 };
-// export const BtnReuseBack: React.FC<PropsType> = ({type, htmlType}) => {
-//     const dispatch = useDispatch();
-//     const currentPage = useSelector(getCurrentPageStep);
-//     const prevPage = () => {
-//         dispatch(setCurrentStep({page: currentPage - 1}));
-//     };
-//
-//     return (
-//         <Button type={'default'} onClick={prevPage} htmlType={htmlType}>Назад</Button>
-//     );
-// };

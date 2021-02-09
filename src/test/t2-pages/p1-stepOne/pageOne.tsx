@@ -8,8 +8,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getLoadPlace} from './pageOne-selector';
 import {setLoadPlace} from './pageOne-reducer';
 import {Link} from 'react-router-dom';
-import {PAGE_TWO} from '../../routes/routes';
+import {PAGE_ONE, PAGE_TWO} from '../../routes/routes';
 import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
+import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
 
 export type placeToLoadType = 'Грузовик' | 'Контейнер' | ''
 
@@ -47,7 +48,7 @@ export const PageOne: React.FC = () => {
                                 type={load === TRUCK ? 'primary' : 'default'}
                         >Грузовик</Button>
                     </div>
-                    <div>
+                    <div style={{marginTop: '9px'}}>
                         <Upload>
                             <Button block icon={<UploadOutlined/>}>Загрузка Документа</Button>
                         </Upload>
@@ -60,13 +61,7 @@ export const PageOne: React.FC = () => {
                                 type={load === CONTAINER ? 'primary' : 'default'}
                         >Контейнер</Button>
                     </div>
-                    <div>
-                        <div>
-                            <Link to={PAGE_TWO}>
-                                <ReusableNavButton step={'forward'}/></Link>
-                        </div>
-                    </div>
-
+                        <ButtonBlock nextPageLink={PAGE_TWO}/>
                 </Col>
 
             </Row>
