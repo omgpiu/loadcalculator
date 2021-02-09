@@ -14,7 +14,6 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
     const onChange = (id: string, param: ParamType, paramQuantity: number) => {
         onChangeHandler(id, param, paramQuantity);
     };
-    // text-align-last: justify;
     return (
         <div className={st.wrapper}>
 

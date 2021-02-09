@@ -4,12 +4,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import st from './pageTwo.module.css';
 import {getPackagingItems} from './pageTwo-selector';
 import {ParamType, setPackagingCargo, setPackagingParams} from './pageTwo-reducer';
-import {Link} from 'react-router-dom';
 import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
 import {CargoTable} from './CargoTable';
 import '../../../main/m1-ui/App.css';
 import {PageTwoInputsComponent} from './pageTwoInputsComponent';
-import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
+import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
 
 
 export const PageTwo: React.FC = () => {
@@ -48,12 +47,7 @@ export const PageTwo: React.FC = () => {
                 })
             }</Row>
         <CargoTable/>
-        <div style={{margin: '10px'}}>
-            <Link to={PAGE_ONE}> <ReusableNavButton step={'backward'} page={PAGE_THREE}/></Link>
-        </div>
-        <div style={{margin: '10px'}}>
-            <Link to={PAGE_THREE}> <ReusableNavButton step={'forward'}/></Link>
-        </div>
+        <ButtonBlock prevPageLink={PAGE_ONE} nextPageLink={PAGE_THREE}/>
     </div>;
 };
 

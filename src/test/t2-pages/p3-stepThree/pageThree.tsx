@@ -1,7 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {PAGE_FIVE, PAGE_TWO} from '../../routes/routes';
-import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
 import withOutPallets from '../../../assets/images/pagethree/car_packing_meshok.jpg';
 import withPallets from '../../../assets/images/pagethree/car_pallet_packing_meshok.jpg';
 import {Button, Col} from 'antd';
@@ -9,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {withPallet} from './pageThree-selector';
 import {NO_PALLETS, PALLETS, setPayloadType} from './pageThree-reducer';
 import st from './pageThree.module.css';
+import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
 
 
 export const PageThree: React.FC = () => {
@@ -24,7 +23,7 @@ export const PageThree: React.FC = () => {
     return (
         <div className={st.wrapper}>
             <Col>
-                <img src={withOutPallets}  alt="" onClick={onClickPayloadPalletsHandler}/>
+                <img src={withOutPallets} alt="" onClick={onClickPayloadPalletsHandler}/>
                 <p>Загрузка груза непосредственно в транспортное средство
                 </p>
                 <div>
@@ -35,7 +34,7 @@ export const PageThree: React.FC = () => {
 
             </Col>
             <Col>
-                <img src={withPallets}  alt="" onClick={onClickPayloadNoPalletsHandler}/>
+                <img src={withPallets} alt="" onClick={onClickPayloadNoPalletsHandler}/>
                 <p> Предварительное размещение груза на паллетах.
 
                 </p>
@@ -46,11 +45,7 @@ export const PageThree: React.FC = () => {
                 </div>
             </Col>
 
-
-            <div className={st.wrapper_button_block}>
-                <Link to={PAGE_TWO}> <ReusableNavButton step={'backward'}/></Link>
-                <Link to={PAGE_FIVE}> <ReusableNavButton step={'forward'}/></Link>
-            </div>
+            <ButtonBlock prevPageLink={PAGE_TWO} nextPageLink={PAGE_FIVE}/>
 
         </div>
 

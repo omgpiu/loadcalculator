@@ -5,7 +5,7 @@ import {Form, InputNumber} from 'antd';
 import {PAGE_SIX, PAGE_THREE} from '../../../routes/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../main/m2-bll/store';
-import {ButtonBlock} from '../../../t5-common/buttonBlock/buttonBlock';
+import { ButtonBlock } from '../../../t5-common/buttonBlock/buttonBlock';
 
 
 export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}) => {

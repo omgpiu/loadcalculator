@@ -6,8 +6,9 @@ import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
 import {useDispatch} from 'react-redux';
 import {getAutoFilterDataTC} from './p6-reducer';
 import {TransportType} from '../../../main/m3-dal/api-service';
-import {AutoChoice} from './autoChoice/autoChoice';
-import {TotalCargoValue} from './totalCargoValue/totalCargoValue';
+import { TotalCargoValue } from './totalCargoValue/totalCargoValue';
+import { AutoChoice } from './autoChoice/autoChoice';
+
 
 
 export const TransportMode: React.FC<PropsType> = React.memo((props) => {
