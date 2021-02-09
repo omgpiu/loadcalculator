@@ -6,40 +6,27 @@ import container from '../../../assets/images/container.png';
 import truck from '../../../assets/images/truck.jpg';
 import {useDispatch, useSelector} from 'react-redux';
 import {getLoadPlace} from './pageOne-selector';
-import {setLoadPlace} from './pageOne-reducer';
-import {Link} from 'react-router-dom';
-import {PAGE_ONE, PAGE_TWO} from '../../routes/routes';
-import {ReusableNavButton} from '../../ReusebleNavigationButtons/BtnReus';
+import {CONTAINER, setLoadPlace, TRUCK} from './pageOne-reducer';
+import {PAGE_TWO} from '../../routes/routes';
 import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
 
 export type placeToLoadType = 'Грузовик' | 'Контейнер' | ''
 
-type PropsType = {
-    nextPage: () => void
-}
 
 export const PageOne: React.FC = () => {
-    const TRUCK = 'Грузовик';
-    const CONTAINER = 'Контейнер';
+
     const dispatch = useDispatch();
     const load = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
-
-
     const onClickTruckHandler = () => {
         dispatch(setLoadPlace({loadPlace: TRUCK}));
     };
     const onClickContainerHandler = () => {
         dispatch(setLoadPlace({loadPlace: CONTAINER}));
     };
-
-
     return (
         <div className={st.pageOneMain}>
-
             <p>Выбор загружаемого пространства</p>
-
-
             <Row justify="center">
                 <Col className={st.pageOneMain_Block}>
                     <img src={truck} alt="" onClick={onClickTruckHandler}/>
@@ -61,7 +48,7 @@ export const PageOne: React.FC = () => {
                                 type={load === CONTAINER ? 'primary' : 'default'}
                         >Контейнер</Button>
                     </div>
-                        <ButtonBlock nextPageLink={PAGE_TWO}/>
+                    <ButtonBlock nextPageLink={PAGE_TWO}/>
                 </Col>
 
             </Row>

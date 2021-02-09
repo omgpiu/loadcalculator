@@ -1,6 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {placeToLoadType} from './pageOne';
 
+
+
+
+export const TRUCK = 'Грузовик';
+export const CONTAINER = 'Контейнер';
 const initialState: InitialPageOneStateType = {loadPlace: 'Грузовик'};
 
 
