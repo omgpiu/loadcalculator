@@ -18,19 +18,19 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
         <div className={st.wrapper}>
 
             <div>
-                {item.length && 'Длинна'} {item.length && item.length > 0 ?
+                {!!item.length && 'Длинна'} {item.length && item.length !== 0 ?
                 <InputNumber type="number" min={1} value={item.length} onChange={(e) => {
                     onChange(item.id, 'length', e as number);
                 }}/> : null}
             </div>
             <div>
-                {item.width && 'Ширина'} {item.width && item.width > 0 ?
+                {!!item.width && 'Ширина'} {item.width && item.width !== 0 ?
                 <InputNumber min={1} type="number" value={item.width} onChange={(e) => {
                     onChangeHandler(item.id, 'width', e as number);
                 }}/> : null}
             </div>
             <div>
-                {item.height && 'Высота'} {item.height && item.height > 0 ?
+                {!!item.height && 'Высота'} {item.height && item.height !== 0 ?
                 <InputNumber min={1} type="number" value={item.height} onChange={(e) => {
                     onChangeHandler(item.id, 'height', e as number);
                 }}/> : null}
@@ -38,7 +38,7 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
 
 
             <div>
-                {item.diameter && 'Диаметр'} {item.diameter && item.diameter > 0 ?
+                {!!item.diameter && 'Диаметр'} {item.diameter && item.diameter !== 0 ?
                 <InputNumber min={1} type="number" value={item.diameter} onChange={(e) => {
                     onChangeHandler(item.id, 'diameter', e as number);
                 }}/> : null}
@@ -50,7 +50,7 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
             {/*        }}/> : null}*/}
             {/*</div>*/}
             <div>
-                Вес {item.weight > 0 ?
+                Вес {item.weight !== 0 ?
                 <InputNumber min={1} type="number" value={item.weight} onChange={(e) => {
                     onChangeHandler(item.id, 'weight', e as number);
                 }}/> : null}

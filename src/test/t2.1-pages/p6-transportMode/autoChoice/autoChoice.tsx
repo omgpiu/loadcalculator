@@ -4,7 +4,7 @@ import {AppRootStateType} from '../../../../main/m2-bll/store';
 import {TransportType} from '../../../../main/m3-dal/api-service';
 import {RequestStatusType} from '../../../../main/m2-bll/appReducer';
 import {Alert, Radio, RadioChangeEvent, Spin} from 'antd';
-import {PAGE_FIVE, PAGE_SIX} from '../../../routes/routes';
+import {PAGE_FIVE, PAGE_SEVEN} from '../../../routes/routes';
 import st from './autoChoice.module.scss'
 import {ButtonBlock} from '../../../t5-common/buttonBlock/buttonBlock';
 
@@ -37,7 +37,7 @@ export const AutoChoice: React.FC = () => {
                         </div>
                     )
                 }
-                <ButtonBlock prevPageLink={PAGE_FIVE} nextPageLink={PAGE_SIX} parentClickHandler={handleClick}/>
+                <ButtonBlock prevPageLink={PAGE_FIVE} nextPageLink={PAGE_SEVEN} parentClickHandler={handleClick}/>
                 {(error) && <Alert message='Не выбрано ни одного поля !' type="error"/>}
             </Spin>
         </div>
