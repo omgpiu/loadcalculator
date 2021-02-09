@@ -54,8 +54,6 @@ export const PageTwo: React.FC = () => {
         <div style={{margin: '10px'}}>
             <Link to={PAGE_THREE}> <ReusableNavButton step={'forward'}/></Link>
         </div>
-
-
     </div>;
 };
 

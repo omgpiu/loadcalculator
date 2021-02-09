@@ -1,0 +1,10 @@
+.TotalCargoValue{
+   &_title{
+      font-size: 24px;
+      font-style: italic;
+   }
+   &_inner{
+      display: flex;
+      justify-content: space-between;
+   }
+}

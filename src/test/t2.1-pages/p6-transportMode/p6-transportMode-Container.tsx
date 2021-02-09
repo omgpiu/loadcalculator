@@ -1,32 +1,51 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../main/m2-bll/store';
 import {placeToLoadType} from '../../t2-pages/p1-stepOne/pageOne';
 import {TransportMode} from './p6-transportMode';
+import {getTransportDataTC} from './p6-reducer';
+import {TransportType} from '../../../main/m3-dal/api-service';
+import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
 
 
-export const TransportModeContainer = () => {
+export const TransportModeContainer = React.memo(() => {
+    const dispatch = useDispatch();
+    const transports = useSelector<AppRootStateType, TransportType[]>(s=> s.pageSix.transports)
+    const totalCargoValue = useSelector<AppRootStateType, TotalCargoValueType>(s => s.pageTwo.totalCargoValue)
     const typeTransport = useSelector<AppRootStateType, placeToLoadType>(state => state.pageOne.loadPlace)
+    useEffect( ()=> {
+        if(transports.length === 0){
+            dispatch(getTransportDataTC())
+        }
+    },[dispatch,transports.length])
+
+
     const text_description = {
-        autoModeText: 'Автоматический подбор транспорта и его количества с учетом характеристик вашего груза.',
-        selectModeText: 'При ручном выборе, вы сами выбираете количество, виды, размер транспорта, ' +
-            'доступных с учетом характеристик вашего груза.'
+        autoModeText: 'Автоматический подбор транспорта с учетом характеристик вашего груза.',
+        selectModeText: 'При ручном выборе, вы сами выбираете  марку, размер транспорта, ' +
+            'доступных с учетом характеристик вашего груза и вместимости.'
     }
     const containerImg = 'https://star-shine-shipping.com/images/2019/02/11/20ft-container.jpg'
     const autoImg = 'https://logist.kiev.ua/wp-content/uploads/2018/09/gruz22.png'
-    const onHandleClick = () => {
-        console.log('продолжить')
-    }
+
     return <>
         {
             (typeTransport === 'Контейнер')
                 ?
-                <TransportMode img={containerImg} text_description={text_description} onHandleClick={onHandleClick}/>
+                <TransportMode img={containerImg}
+                               text_description={text_description}
+
+                               transports={transports}
+                               totalCargoValue={totalCargoValue}/>
                 :
-                <TransportMode img={autoImg} text_description={text_description} onHandleClick={onHandleClick}/>
+                <TransportMode img={autoImg}
+                               text_description={text_description}
+
+                               transports={transports}
+                               totalCargoValue={totalCargoValue}/>
         }
     </>
-}
+})
 
 
 // таблица п6 :

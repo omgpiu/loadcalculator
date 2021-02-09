@@ -6,6 +6,13 @@ let startState: InitialStatePageTwoType;
 
 beforeEach(() => {
     startState = {
+        totalCargoValue:{
+          cargoMass:1,
+          cargoVolume:1,
+          maxH:1,
+          maxL:1,
+          maxW:1
+        },
         packagingCargo: [],
         packagingItems: [
             {

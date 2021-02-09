@@ -29,11 +29,9 @@ export const Routes = () => {
             <Route path={PAGE_FIVE} render={() => <Page5Pallets/>}/>
             <Route path={PAGE_SIX} render={() => <TransportModeContainer/>}/>
 
-
             <Route path={'*'}
                    render={() => <Page404/>}
             />
         </Switch>
-
     </>;
 };

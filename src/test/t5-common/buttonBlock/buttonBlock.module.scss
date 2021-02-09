@@ -1,0 +1,11 @@
+.buttonBlock {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   width: 100%;
+   margin-top: 60px;
+
+   button {
+      width: 125px;
+   }
+}

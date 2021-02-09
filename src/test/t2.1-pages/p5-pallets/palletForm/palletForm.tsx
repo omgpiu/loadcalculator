@@ -2,15 +2,14 @@ import React from 'react';
 import {PalletType, setPalletParameters} from '../p5-reducer';
 import './palletForm.css';
 import {Form, InputNumber} from 'antd';
-import {Link, useHistory} from 'react-router-dom';
 import {PAGE_SIX, PAGE_THREE} from '../../../routes/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../main/m2-bll/store';
-import {ReusableNavButton} from '../../../ReusebleNavigationButtons/BtnReus';
+import {ButtonBlock} from '../../../t5-common/buttonBlock/buttonBlock';
+
 
 export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}) => {
     const palletParam = useSelector<AppRootStateType, PalletType | null>(state => state.pageFive.palletParam);
-    const history = useHistory();
     const dispatch = useDispatch();
     //модель для отрисовки формы, value либо стандарт,
     // либо если уже был ранее выбран паллет возвращаются значения из стейта "palletParam"
@@ -22,7 +21,7 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
             id: 4,
             name: 'carryingCapacity',
             label: 'Грузоподъемность (кг):',
-            value: palletParam ? palletParam.carryingCapacity : pallet.carryingCapacity
+            value: palletParam ? palletParam.carryingCapacity : pallet.carryingCapacity,
         },
         {
             id: 5,
@@ -44,10 +43,10 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
         number: {range: '${min} - ${max}'}
     };
     const onFinish = (values: PalletParamFormType) => {
+        console.log('finish form')
         dispatch(setPalletParameters(values));
         //Сделать проверку: если запрос успешно отработал, пришел ответ( в данном случае объект palletParam)
         // и засетался в стейт, переход на p6
-        history.push(PAGE_SIX);
     };
 
     return (
@@ -64,13 +63,7 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
                         </div>;
                     })
                 }
-                <div className='palletForm_btn'>
-                    <Link to={PAGE_THREE}>
-                        <ReusableNavButton step={'backward'}/>
-                    </Link>
-                    <ReusableNavButton step='forward' htmlType="submit"/>
-                    {/*<Button type="default" htmlType="submit">Продолжить</Button>*/}
-                </div>
+                <ButtonBlock nextPageLink={PAGE_SIX} prevPageLink={PAGE_THREE} parentClickHandler={onFinish}/>
             </Form>
         </div>
     );

@@ -1,0 +1,15 @@
+.autoChoice{
+   &_title{
+      font-size: 22px;
+      font-style: italic;
+   }
+   &_inner{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      img{
+         width: 200px;
+         height: 150px;
+      }
+   }
+}
