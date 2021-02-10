@@ -1,15 +1,16 @@
 import React from 'react';
-import {PalletType, setPalletParameters} from '../p5-reducer';
+
 import './palletForm.css';
 import {Form, InputNumber} from 'antd';
-import {PAGE_SIX, PAGE_THREE} from '../../../routes/routes';
+import {PAGE_FIVE, PAGE_SIX, PAGE_THREE} from '../../../routes/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../main/m2-bll/store';
 import { ButtonBlock } from '../../../t5-common/buttonBlock/buttonBlock';
+import {PalletType, setPalletParameters} from '../p4-reducer';
 
 
 export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}) => {
-    const palletParam = useSelector<AppRootStateType, PalletType | null>(state => state.pageFive.palletParam);
+    const palletParam = useSelector<AppRootStateType, PalletType | null>(state => state.pageFour.palletParam);
     const dispatch = useDispatch();
     //модель для отрисовки формы, value либо стандарт,
     // либо если уже был ранее выбран паллет возвращаются значения из стейта "palletParam"
@@ -63,7 +64,9 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
                         </div>;
                     })
                 }
-                <ButtonBlock nextPageLink={PAGE_SIX} prevPageLink={PAGE_THREE} parentClickHandler={onFinish}/>
+                <ButtonBlock type={'default'} nextPageLink={PAGE_FIVE}
+                             prevPageLink={PAGE_THREE}
+                             parentClickHandler={onFinish}/>
             </Form>
         </div>
     );

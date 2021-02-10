@@ -35,7 +35,7 @@ export const setPalletParameters = createAsyncThunk('pageFive/setPalletParam',
             const state = thunkAPI.getState() as AppRootStateType
             const palletParameters: PalletType = {
                 id: v1(),
-                typePallet: state.pageFive.palletType,
+                typePallet: state.pageFour.palletType,
                 ...param,
             }
             const res = await page5.setPalletParam(palletParameters)
@@ -72,7 +72,7 @@ const slice = createSlice({
 
     }
 });
-export const pageFiveReducer = slice.reducer;
+export const pageFourReducer = slice.reducer;
 export const palletActions = slice.actions;
 
 export type palletVariantType = 'FIN' | 'EUR' | 'E-BOX' | 'CARGO_SMALL' | 'CARGO_BASE';
@@ -87,4 +87,4 @@ export type PalletType = {
     separatorSheetHeight: number
     img?: any
 };
-export type P5_State = typeof initialState;
+export type P4_State = typeof initialState;

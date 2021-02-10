@@ -9,13 +9,13 @@ import st from './autoChoice.module.scss'
 import {ButtonBlock} from '../../../t5-common/buttonBlock/buttonBlock';
 
 export const AutoChoice: React.FC = () => {
-    const [error, setError] = useState<null | number>(null)
+    const [error, setError] = useState<undefined | number>(undefined)
     const [radioValue, setMode] = React.useState(null);
     const autoChoiceFiltered = useSelector<AppRootStateType, TransportType[]>(s => s.pageSix.autoChoiceFiltered)
     const status = useSelector<AppRootStateType, RequestStatusType>(s => s.app.status)
     const onChangeHand = (e: RadioChangeEvent) => {
         setMode(e.target.value)
-        setError(null)
+        setError(undefined)
     }
     const handleClick = () => {
         return radioValue
@@ -37,7 +37,8 @@ export const AutoChoice: React.FC = () => {
                         </div>
                     )
                 }
-                <ButtonBlock prevPageLink={PAGE_FIVE} nextPageLink={PAGE_SEVEN} parentClickHandler={handleClick}/>
+                <ButtonBlock type={'default'} prevPageLink={PAGE_FIVE}
+                             nextPageLink={PAGE_SEVEN} parentClickHandler={handleClick}/>
                 {(error) && <Alert message='Не выбрано ни одного поля !' type="error"/>}
             </Spin>
         </div>

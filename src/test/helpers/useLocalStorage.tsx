@@ -3,7 +3,7 @@ import React, {useState} from "react";
 export const useLocalStorage = (key: any, initialValue: any) => {
     const [storedValue, setStoredValue] = useState(() => {
         try {
-            const item = window.localStorage.getItem(key); //
+            const item = window.sessionStorage.getItem(key) ; //
             return item ? JSON.parse(item) : initialValue; //
         } catch (err) {
             console.error(err);
@@ -16,7 +16,7 @@ export const useLocalStorage = (key: any, initialValue: any) => {
             const valueToStore =
                 value instanceof Function ? value(storedValue) : value;
             setStoredValue(valueToStore);
-            window.localStorage.setItem(key, JSON.stringify(valueToStore)); //
+            window.sessionStorage.setItem(key, JSON.stringify(valueToStore)); //
         } catch (err) {
             console.error(err);
         }
@@ -24,6 +24,7 @@ export const useLocalStorage = (key: any, initialValue: any) => {
 
     return [storedValue, setValue];
 };
+
 
 // const [storedPage, setPage] = useLocalStorage("page", "PAGE_ONE") // сам хук
 // const page = storedPage      - получение данных из Local Storage

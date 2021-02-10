@@ -1,13 +1,13 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Select} from 'antd';
-import {palletActions, palletVariantType} from '../p5-reducer';
-import st from '../p5.module.scss';
+import st from '../p4.module.scss';
 import {AppRootStateType} from '../../../../main/m2-bll/store';
+import {palletActions, palletVariantType} from '../p4-reducer';
 
 export const PalletSelected: React.FC<{ palletImg: string | undefined }> = React.memo(({palletImg}) => {
     const dispatch = useDispatch();
-    const palletType = useSelector<AppRootStateType, palletVariantType>(state => state.pageFive.palletType);
+    const palletType = useSelector<AppRootStateType, palletVariantType>(state => state.pageFour.palletType);
     const {Option} = Select;
 
     function handleChange(value: palletVariantType) {

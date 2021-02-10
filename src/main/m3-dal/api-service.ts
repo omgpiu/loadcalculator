@@ -1,4 +1,3 @@
-import {PalletType} from '../../test/t2.1-pages/p5-pallets/p5-reducer';
 import fin from '../../assets/images/pageFive/fin.png';
 import e_box from '../../assets/images/pageFive/e-box.jpg';
 import eur from '../../assets/images/pageFive/eur.jpg';
@@ -15,6 +14,7 @@ import fura2 from '../../assets/images/transport/auto/fura2.jpg';
 import fura_scep from '../../assets/images/transport/auto/fura_scep.jpg';
 import {TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
 import {PackagingItemType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
+import {PalletType} from '../../test/t2.1-pages/p4-pallets/p4-reducer';
 
 const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') => {
     // имитация асинхронного запроса, задержка ответа 1сек, reject выходит рандомно , примерно 1 из 10 раз

@@ -47,7 +47,7 @@ export const PageTwo: React.FC = () => {
                 })
             }</Row>
         <CargoTable/>
-        <ButtonBlock prevPageLink={PAGE_ONE} nextPageLink={PAGE_THREE}/>
+        <ButtonBlock type={'default'} prevPageLink={PAGE_ONE} nextPageLink={PAGE_THREE}/>
     </div>;
 };
 

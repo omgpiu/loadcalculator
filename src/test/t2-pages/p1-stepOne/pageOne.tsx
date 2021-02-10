@@ -48,7 +48,7 @@ export const PageOne: React.FC = () => {
                                 type={load === CONTAINER ? 'primary' : 'default'}
                         >Контейнер</Button>
                     </div>
-                    <ButtonBlock nextPageLink={PAGE_TWO}/>
+                    <ButtonBlock type={'default'} nextPageLink={PAGE_TWO}/>
                 </Col>
 
             </Row>

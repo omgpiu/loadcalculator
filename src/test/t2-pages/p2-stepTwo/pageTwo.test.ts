@@ -1,4 +1,4 @@
-import {InitialStatePageTwoType, P2_State, pageTwoReducer, setPackagingCargo} from './pageTwo-reducer';
+import {pageTwoReducer, setPackagingCargo} from './pageTwo-reducer';
 import box from '../../../assets/images/i2-pagetwo/box.jpg';
 import bigBag from '../../../assets/images/i2-pagetwo/big_bag.jpg';
 

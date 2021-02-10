@@ -2,27 +2,28 @@ import React, {useEffect} from 'react';
 import {Spin} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../main/m2-bll/store';
-import {getPalletsTC, P5_State} from './p5-reducer';
-import st from './p5.module.scss';
-import './p5_antd.css';
+import {getPalletsTC, P4_State} from './p4-reducer';
+import st from './p4.module.scss';
+import './p4_antd.css';
 import {PalletForm} from './palletForm/palletForm';
-import {PalletSelected} from './palletSelected/p5-selected';
+
 import {RequestStatusType} from '../../../main/m2-bll/appReducer';
+import {PalletSelected} from './palletSelected/p4-selected';
 
 
-export const Page5Pallets = React.memo(() => {
+export const Page4Pallets = React.memo(() => {
 
     const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
-    const {pallets, palletType} = useSelector<AppRootStateType, P5_State>(state => state.pageFive)
+    const {pallets, palletType} = useSelector<AppRootStateType, P4_State>(state => state.pageFour)
     const dispatch = useDispatch();
     useEffect(() => {
         //если в стейте нет паллетов, тогда запрашиваем (избугать запроса при возврате на страницу)
         if (pallets.length === 0) {
             dispatch(getPalletsTC())
         }
-    }, [dispatch,pallets.length])
+    }, [dispatch, pallets.length])
 
-        // находим паллет по типу выбранному через селект => в массиве 1 нужный объект
+    // находим паллет по типу выбранному через селект => в массиве 1 нужный объект
     const selectedPallet = pallets.filter(el => el.typePallet === palletType)
     return (
         // лоадер в момент "запроса"

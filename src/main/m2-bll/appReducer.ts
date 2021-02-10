@@ -1,35 +1,44 @@
 import {createAction, createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {authAPI} from '../m3-dal/api-service';
 
+
 const initialState = {
     status: 'idle',
     error: null,
     isInitialized: false,
-    steps: [{
-        title: 'Шаг 1',
-        description: 'Тип контейнера.',
-    },
+    steps: [
+        {
+            title: 'Шаг 1',
+            description: 'Тип контейнера.',
+            dataStep: 0
+        },
         {
             title: 'Шаг 2',
             description: 'Тип груза.',
+            dataStep: 1
         },
         {
             title: 'Шаг 3',
             description: 'Тип погрузки.',
+            dataStep: 2
         }, {
             title: 'Шаг 4',
             description: 'Выбор паллет.',
+            dataStep: 3
         },
         {
             title: 'Шаг 5',
             description: 'Упаковка.',
+            dataStep: 4
         }, {
             title: 'Шаг 6',
             description: 'Выбор транспорта.',
+            dataStep: 5
         },
         {
             title: 'Шаг 7',
             description: 'Результат.',
+            dataStep: 6
         },],
     currentStep: 0,
 
@@ -88,6 +97,7 @@ export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type StepType = {
     title: string
     description: string
+    dataStep:number
 }
 export type InitialAppStateType = {
     // происходит ли сейчас взаимодействие с сервером
