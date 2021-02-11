@@ -17,10 +17,10 @@ export const PageOne: React.FC = () => {
     const load = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
     const onClickTruckHandler = () => {
-        dispatch(determineLoadPlace(TRUCK));
+        dispatch(determineLoadPlace({loadPlace: TRUCK}));
     };
     const onClickContainerHandler = () => {
-        dispatch(determineLoadPlace( CONTAINER));
+        dispatch(determineLoadPlace( {loadPlace: CONTAINER}));
     };
     return (
         <div className={st.pageOneMain}>

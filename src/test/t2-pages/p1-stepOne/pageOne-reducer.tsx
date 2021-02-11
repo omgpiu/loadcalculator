@@ -14,14 +14,14 @@ const initialState = {
 
 
 export const determineLoadPlace = createAsyncThunk('pageOne/loadPlace',
-    async (param: placeToLoadType, {dispatch, rejectWithValue}) => {
+    async (param: InitialPageOneStateType, {dispatch, rejectWithValue}) => {
         try {
             dispatch(appActions.setAppStatusAC({status: 'loading'}));
-            const res = await pageOne.setLoadPlacePoint(param);
+            const res = await pageOne.setLoadPlacePoint(param) as Promise<InitialPageOneStateType>;
             dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
             console.log(res);
             //TODO узнать
-            return {loadPlace:res as placeToLoadType };
+            return res;
         } catch (err) {
             return rejectWithValue(err.messages[0]);
         }
@@ -35,8 +35,7 @@ const slice = createSlice({
         extraReducers: (builder) => {
             builder
                 .addCase(determineLoadPlace.fulfilled, (state, action) => {
-                    console.log(action.payload.loadPlace);
-                    state.loadPlace = action.payload.loadPlace;
+                    state.loadPlace = action.payload.loadPlace
 
                 });
 

@@ -12,7 +12,7 @@ import maz_kamaz from '../../assets/images/transport/auto/maz_kamaz.png';
 import fura from '../../assets/images/transport/auto/fura.jpg';
 import fura2 from '../../assets/images/transport/auto/fura2.jpg';
 import fura_scep from '../../assets/images/transport/auto/fura_scep.jpg';
-import {placeToLoadType, TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
+import {InitialPageOneStateType, TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
 import {PackagingItemType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
 import {PalletType} from '../../test/t2.1-pages/p4-pallets/p4-reducer';
 
@@ -21,62 +21,62 @@ const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') 
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (Math.random() > 0.9) {
-                return reject(new Error('ОШИБКА СДЕЛАНА СПЕЦИАЛЬНО !!! ОБНОВИ СТРАНИЦУ ...'))
+                return reject(new Error('ОШИБКА СДЕЛАНА СПЕЦИАЛЬНО !!! ОБНОВИ СТРАНИЦУ ...'));
             } else {
-                console.log(textLog)
-                resolve(value)
+                console.log(textLog);
+                resolve(value);
             }
-        }, 1000)
-    })
-}
+        }, 1000);
+    });
+};
 
 
 export const authAPI = {
     authMe() {
-        return fakeRequest()
+        return fakeRequest();
     },
     login() {
-        return fakeRequest()
+        return fakeRequest();
     },
     logout() {
-        return fakeRequest()
+        return fakeRequest();
     },
-}
+};
 export const pageOne = {
-    setLoadPlacePoint(param:placeToLoadType) {
-        return fakeRequest(param, 'pageOne отправка флага места загрузки')
+    setLoadPlacePoint(param: InitialPageOneStateType) {
+        return fakeRequest(param, 'pageOne отправка флага места загрузки');
     },
 
-}
+};
 export const page5 = {
     getPallets() {
-        return fakeRequest(pallets, 'page5 получили виды паллетов и засетали в стэйт')
+        return fakeRequest(pallets, 'page5 получили виды паллетов и засетали в стэйт');
     },
     setPalletParam(palletParam: PalletType) {
         return fakeRequest(palletParam, 'page5 submit form - отправили на сервер параметры выбранных ' +
-            'палетов пользователем, и засетали этот обьект с параметрами в стейт')
+            'палетов пользователем, и засетали этот обьект с параметрами в стейт');
     },
     sendCargo(cargoParam: PackagingItemType[]) {
         return fakeRequest(cargoParam, 'page5 submit form - отправили на сервер параметры выбранных  без паллет' +
-            'и засетали этот обьект с параметрами в стейт')
+            'и засетали этот обьект с параметрами в стейт');
     }
-}
+};
 
 export const page6 = {
     getTransport(transportType: string) {
         return fakeRequest(transportType === TRUCK ? autoData : containerData,
-            `page6 получили общий массив с типом транспорта ${transportType}`)
+            `page6 получили общий массив с типом транспорта ${transportType}`);
     },
     getAutoFilterData(totalCargoValue: TotalCargoValueType, transportType: string) {
 
         //фильтруем общий массив с транспортом в зависимости от типа Т/С, удовлетворяющий
         // totalCargoValue(обьект с общией массой и обьемом груза,а также с наибольшими габаритными размерами)
-        const autoChoiceFiltered = filterTransports(totalCargoValue, transportType === TRUCK ? autoData : containerData)
+        const autoChoiceFiltered = filterTransports(totalCargoValue, transportType === TRUCK ? autoData : containerData);
         return fakeRequest(autoChoiceFiltered,
-            `page6 получили массив автоматического выбора Т/С - типа:${transportType}`)
+            `page6 получили массив автоматического выбора Т/С - типа:${transportType}`);
     },
 
-}
+};
 
 
 // export type ThunkErrorType = {
@@ -139,7 +139,7 @@ const pallets: PalletType[] = [
         separatorSheetHeight: 90,
         img: cargo_base,
     },
-]
+];
 
 //page 5 transport mode container
 const containerData = [
@@ -275,7 +275,7 @@ const containerData = [
         car_m: 29,
         img: ''
     }
-] as TransportType[]
+] as TransportType[];
 
 //page 5 transport mode aut
 const autoData = [
@@ -367,7 +367,7 @@ const autoData = [
         car_m: 20,
         img: fura_scep
     },
-] as TransportType[]
+] as TransportType[];
 export type TransportType = {
     id: number
     car_name: string
