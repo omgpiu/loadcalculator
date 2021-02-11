@@ -1,5 +1,5 @@
 import React from 'react';
-import {PAGE_FIVE, PAGE_FOUR, PAGE_SIX, PAGE_TWO} from '../../routes/routes';
+import {PAGE_FIVE, PAGE_FOUR, PAGE_TWO} from '../../routes/routes';
 import withOutPallets from '../../../assets/images/pagethree/car_packing_meshok.jpg';
 import withPallets from '../../../assets/images/pagethree/car_pallet_packing_meshok.jpg';
 import {Button, Col} from 'antd';
@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {withPallet} from './pageThree-selector';
 import {NO_PALLETS, PALLETS, setPayloadType} from './pageThree-reducer';
 import st from './pageThree.module.css';
-import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
+import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 import {getPackagingCargo} from '../p2-stepTwo/pageTwo-selector';
 import {setCountedCargoParam} from '../p2-stepTwo/pageTwo-reducer';
 
@@ -52,8 +52,7 @@ export const PageThree: React.FC = () => {
                 </div>
             </Col>
             {/* hideP4= становится true  если выюран режим без паллетов*/}
-            <ButtonBlock type={'default'} prevPageLink={PAGE_TWO} hideP4={isWithPallet === NO_PALLETS}
-                         stopPereskokStranicP3={false}
+            <ButtonBlock type={'default'} prevPageLink={PAGE_TWO}
                 //скип 5 страницы если без паллет
                          nextPageLink={isWithPallet === NO_PALLETS ? PAGE_FIVE : PAGE_FOUR}
                 //диспатчим санку сразу если без паллет

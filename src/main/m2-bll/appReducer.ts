@@ -10,39 +10,45 @@ const initialState = {
         {
             title: 'Шаг 1',
             description: 'Тип контейнера.',
-            dataStep: 0
+            dataStep: 0,
+            url: '/'
         },
         {
             title: 'Шаг 2',
             description: 'Тип груза.',
-            dataStep: 1
+            dataStep: 1,
+            url: '/packing'
         },
         {
             title: 'Шаг 3',
             description: 'Тип погрузки.',
-            dataStep: 2
+            dataStep: 2,
+            url: '/cargo'
         }, {
             title: 'Шаг 4',
             description: 'Выбор паллет.',
-            dataStep: 3
+            dataStep: 3,
+            url: '/pallets'
         },
         {
             title: 'Шаг 5',
             description: 'Упаковка.',
-            dataStep: 4
+            dataStep: 4,
+            url: '/stuffing'
         }, {
             title: 'Шаг 6',
             description: 'Выбор транспорта.',
-            dataStep: 5
+            dataStep: 5,
+            url: '/modeTransport'
         },
         {
             title: 'Шаг 7',
             description: 'Результат.',
-            dataStep: 6
+            dataStep: 6,
+            url: '/results'
         },],
     currentStep: 0,
-
-
+    currentPageUrl: '/'
 } as InitialAppStateType;
 
 
@@ -57,8 +63,10 @@ const initializeApp = createAsyncThunk('app/initializeApp', async (param, thunkA
     thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}));
     try {
         const res = await authAPI.authMe();
-        console.log('auth Ok!');
-        thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+        if (res) {
+            console.log('auth Ok!');
+            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+        }
         // thunkAPI.dispatch(authActions.setIsLoggedIn({value: true}))  если будет логинизация....
     } catch (err) {
         thunkAPI.dispatch(appActions.setAppErrorAC(err));
@@ -69,17 +77,31 @@ export const asyncActions = {
     initializeApp
 };
 
+const setCurrentStepWithCurrentUrl = (currentUrl:string,steps: StepType[]):number => {
+    const index = steps.findIndex(el=> el.url === currentUrl)
+    let currentStep;
+    if(index>=0){
+        currentStep = steps[index].dataStep
+    }else return NaN
+    console.log(currentStep)
+    return currentStep
+}
+
 const slice = createSlice({
     name: 'app',
     initialState,
     reducers: {
+        setCurrentPageUrl(state, action: PayloadAction<{ page: string }>) {
+            state.currentPageUrl = action.payload.page;
+            state.currentStep = setCurrentStepWithCurrentUrl(action.payload.page,state.steps)
+        },
         setCurrentStep(state, action: PayloadAction<{ page: number }>) {
             state.currentStep = action.payload.page;
-        }
+        },
     },
     extraReducers: builder => {
         builder
-            .addCase(initializeApp.fulfilled, (state, action) => {
+            .addCase(initializeApp.fulfilled, (state) => {
                 state.isInitialized = true;
             })
             .addCase(appActions.setAppStatusAC, (state, action) => {
@@ -90,14 +112,15 @@ const slice = createSlice({
             });
     }
 });
-export const {setCurrentStep} = slice.actions;
+export const {setCurrentPageUrl,setCurrentStep} = slice.actions;
 export const appReducer = slice.reducer;
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type StepType = {
     title: string
     description: string
-    dataStep:number
+    dataStep: number
+    url: string
 }
 export type InitialAppStateType = {
     // происходит ли сейчас взаимодействие с сервером
@@ -108,4 +131,7 @@ export type InitialAppStateType = {
     isInitialized: boolean
     steps: StepType[]
     currentStep: number
+    currentPageUrl:string
 }
+
+

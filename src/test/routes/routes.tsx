@@ -20,14 +20,14 @@ export const PAGE_FOUR = '/pallets';
 export const PAGE_FIVE = '/stuffing';
 export const PAGE_SIX = '/modeTransport';
 export const PAGE_SEVEN = '/results'
-
+export const PAGE_NOT_FOUND = '*'
 
 export const Routes = () => {
 
     return <>
         <Switch>
             <Route path={LOGIN} render={Login}/>
-            <Route exact path={PAGE_ONE} component={() => <PageOne/>}/>
+            <Route exact path={PAGE_ONE} render={() => <PageOne/>}/>
             <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
             <Route path={PAGE_FOUR} render={() => <Page4Pallets/>}/>
@@ -35,7 +35,7 @@ export const Routes = () => {
             <Route path={PAGE_SIX} render={() => <TransportModeContainer/>}/>
             <Route path={PAGE_SEVEN} render={() => <PageSeven/>}/>
 
-            <Route path={'*'}
+            <Route path={PAGE_NOT_FOUND}
                    render={() => <Page404/>}
             />
         </Switch>

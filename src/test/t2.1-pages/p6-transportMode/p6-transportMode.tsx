@@ -6,24 +6,23 @@ import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
 import {useDispatch} from 'react-redux';
 import {getAutoFilterDataTC} from './p6-reducer';
 import {TransportType} from '../../../main/m3-dal/api-service';
-import { TotalCargoValue } from './totalCargoValue/totalCargoValue';
-import { AutoChoice } from './autoChoice/autoChoice';
-
+import {TotalCargoValue} from './totalCargoValue/totalCargoValue';
+import {AutoChoice} from './autoChoice/autoChoice';
 
 
 export const TransportMode: React.FC<PropsType> = React.memo((props) => {
 // transports добавить в пропсы для selectChoice
-    const {text_description, img, totalCargoValue, } = props;
+    const {text_description, img, totalCargoValue, setShowBtn,} = props;
     const dispatch = useDispatch()
     const [mode, setMode] = React.useState(0);
 
     const onChange = (e: RadioChangeEvent) => {
+        setShowBtn(false)
         const value = e.target.value
         setMode(value)
         if (value === 1) {
             dispatch(getAutoFilterDataTC())
         }
-
     }
 
     return (
@@ -34,9 +33,9 @@ export const TransportMode: React.FC<PropsType> = React.memo((props) => {
             <div>
                 {
                     (mode === 1) ? <>
-                                         <TotalCargoValue totalCargoValue={totalCargoValue}/>
-                                         <AutoChoice/>
-                                         </>
+                            <TotalCargoValue totalCargoValue={totalCargoValue}/>
+                            <AutoChoice/>
+                        </>
                         : (mode === 2)
                         ? <div> в разработке </div> : ''
                 }
@@ -50,6 +49,7 @@ type PropsType = {
     text_description: { autoModeText: string, selectModeText: string }
     transports: TransportType[]
     totalCargoValue: TotalCargoValueType
+    setShowBtn: (value: boolean) => void
 }
 
 
