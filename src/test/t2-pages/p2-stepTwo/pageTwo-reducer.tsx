@@ -36,7 +36,7 @@ const initialState = {
         {
             id: '12',
             img: bigBag,
-            title: 'БИГ БЭГИ',
+            title: 'Б ИГ БЭГИ',
             width: 1001,
             height: 1002,
             length: 1003,
@@ -189,7 +189,10 @@ const slice = createSlice({
             //заполняем массив грузом(таблица), для отправки на север и переприсваеваем id
             setPackagingCargo(state, action: PayloadAction<{ id: string }>) {
                 const cargo = state.packagingItems.find(item => item.id === action.payload.id);
+
                 cargo && state.packagingCargo.push({...cargo, id: v1()});
+
+
             },
             //удаляем не нужный груз из массива(таблица с грузом)
             deletePackagingCargo(state, action: PayloadAction<{ id: string }>) {
@@ -206,9 +209,10 @@ const slice = createSlice({
                     console.log(state.packagingCargoBack)
                 })
 
+            },
 
         }
-    })
+    )
 ;
 export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight' | 'amount' | 'cargoTitle'
 

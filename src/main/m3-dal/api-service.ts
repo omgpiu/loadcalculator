@@ -12,7 +12,7 @@ import maz_kamaz from '../../assets/images/transport/auto/maz_kamaz.png';
 import fura from '../../assets/images/transport/auto/fura.jpg';
 import fura2 from '../../assets/images/transport/auto/fura2.jpg';
 import fura_scep from '../../assets/images/transport/auto/fura_scep.jpg';
-import {TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
+import {placeToLoadType, TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
 import {PackagingItemType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
 import {PalletType} from '../../test/t2.1-pages/p4-pallets/p4-reducer';
 
@@ -42,7 +42,12 @@ export const authAPI = {
         return fakeRequest()
     },
 }
+export const pageOne = {
+    setLoadPlacePoint(param:placeToLoadType) {
+        return fakeRequest(param, 'pageOne отправка флага места загрузки')
+    },
 
+}
 export const page5 = {
     getPallets() {
         return fakeRequest(pallets, 'page5 получили виды паллетов и засетали в стэйт')

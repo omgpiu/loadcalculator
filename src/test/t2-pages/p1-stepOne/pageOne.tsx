@@ -6,11 +6,9 @@ import container from '../../../assets/images/container.png';
 import truck from '../../../assets/images/truck.jpg';
 import {useDispatch, useSelector} from 'react-redux';
 import {getLoadPlace} from './pageOne-selector';
-import {CONTAINER, setLoadPlace, TRUCK} from './pageOne-reducer';
+import {CONTAINER, determineLoadPlace, TRUCK} from './pageOne-reducer';
 import {PAGE_TWO} from '../../routes/routes';
 import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
-
-
 
 
 export const PageOne: React.FC = () => {
@@ -19,10 +17,10 @@ export const PageOne: React.FC = () => {
     const load = useSelector(getLoadPlace);
 //Выбор загружаемого пространства
     const onClickTruckHandler = () => {
-        dispatch(setLoadPlace({loadPlace: TRUCK}));
+        dispatch(determineLoadPlace(TRUCK));
     };
     const onClickContainerHandler = () => {
-        dispatch(setLoadPlace({loadPlace: CONTAINER}));
+        dispatch(determineLoadPlace( CONTAINER));
     };
     return (
         <div className={st.pageOneMain}>
