@@ -1,5 +1,5 @@
 import React from 'react';
-import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
+import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 import {PAGE_SIX} from '../../routes/routes';
 
 

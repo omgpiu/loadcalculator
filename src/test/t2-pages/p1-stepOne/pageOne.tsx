@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getLoadPlace} from './pageOne-selector';
 import {CONTAINER, determineLoadPlace, TRUCK} from './pageOne-reducer';
 import {PAGE_TWO} from '../../routes/routes';
-import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
+import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 
 
 export const PageOne: React.FC = () => {

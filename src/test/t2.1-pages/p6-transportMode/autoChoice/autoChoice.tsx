@@ -3,25 +3,21 @@ import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../main/m2-bll/store';
 import {TransportType} from '../../../../main/m3-dal/api-service';
 import {RequestStatusType} from '../../../../main/m2-bll/appReducer';
-import {Alert, Radio, RadioChangeEvent, Spin} from 'antd';
+import {Radio, RadioChangeEvent, Spin} from 'antd';
 import {PAGE_FIVE, PAGE_SEVEN} from '../../../routes/routes';
 import st from './autoChoice.module.scss'
-import {ButtonBlock} from '../../../t5-common/buttonBlock/buttonBlock';
+import ButtonBlock from '../../../t5-common/buttonBlock/buttonBlock';
 
 export const AutoChoice: React.FC = () => {
-    const [error, setError] = useState<undefined | number>(undefined)
+    const [error, setError] = useState<boolean>(true)
     const [radioValue, setMode] = React.useState(null);
     const autoChoiceFiltered = useSelector<AppRootStateType, TransportType[]>(s => s.pageSix.autoChoiceFiltered)
     const status = useSelector<AppRootStateType, RequestStatusType>(s => s.app.status)
     const onChangeHand = (e: RadioChangeEvent) => {
         setMode(e.target.value)
-        setError(undefined)
+        setError(false)
     }
-    const handleClick = () => {
-        return radioValue
-            ? alert('Обработка выбора Т/С SelectCurrentTransportTC()+ переход страницы ')
-            : setError(1)//если не выбрано ни одно поле ( radio ) сетаем ошибку и выводим алерт
-    }
+
     return (
         <div>
             <Spin spinning={status === 'loading'} delay={0}>
@@ -38,8 +34,7 @@ export const AutoChoice: React.FC = () => {
                     )
                 }
                 <ButtonBlock type={'default'} prevPageLink={PAGE_FIVE}
-                             nextPageLink={PAGE_SEVEN} parentClickHandler={handleClick}/>
-                {(error) && <Alert message='Не выбрано ни одного поля !' type="error"/>}
+                             nextPageLink={PAGE_SEVEN} disabled={error}/>
             </Spin>
         </div>
     )

@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {withPallet} from './pageThree-selector';
 import {NO_PALLETS, PALLETS, setPayloadType} from './pageThree-reducer';
 import st from './pageThree.module.css';
-import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
+import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 import {getPackagingCargo} from '../p2-stepTwo/pageTwo-selector';
 import {setCountedCargoParam} from '../p2-stepTwo/pageTwo-reducer';
 

@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {TransportMode} from './p6-transportMode';
 import {getTransportDataTC} from './p6-reducer';
 import {getTransports} from './p6-selector';
 import {getTotalCargoValue} from '../../t2-pages/p2-stepTwo/pageTwo-selector';
 import {getLoadPlace} from '../../t2-pages/p1-stepOne/pageOne-selector';
+import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
+import {PAGE_FIVE} from '../../routes/routes';
 
 
 export const TransportModeContainer = React.memo(() => {
@@ -12,6 +14,7 @@ export const TransportModeContainer = React.memo(() => {
     const transports = useSelector(getTransports)
     const totalCargoValue = useSelector(getTotalCargoValue)
     const typeTransport = useSelector(getLoadPlace)
+    const [showBtn, setShowBtn] = useState(true)
     useEffect(() => {
         if (transports.length === 0) {
             dispatch(getTransportDataTC())
@@ -33,16 +36,20 @@ export const TransportModeContainer = React.memo(() => {
                 ?
                 <TransportMode img={containerImg}
                                text_description={text_description}
-
+                               setShowBtn={setShowBtn}
                                transports={transports}
                                totalCargoValue={totalCargoValue}/>
                 :
                 <TransportMode img={autoImg}
                                text_description={text_description}
-
+                               setShowBtn={setShowBtn}
                                transports={transports}
                                totalCargoValue={totalCargoValue}/>
         }
+        {
+            showBtn && <ButtonBlock type={'default'} prevPageLink={PAGE_FIVE}/>
+        }
+
     </>
 })
 

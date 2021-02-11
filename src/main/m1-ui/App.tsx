@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Calculator} from '../../test/calculator/Calculator';
 import {Layout, Steps} from 'antd';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {getCurrentPageStep, getSteps} from '../m2-bll/app-selector';
-import {useLocalStorage} from '../../test/helpers/useLocalStorage';
-import {setCurrentStep} from '../m2-bll/appReducer';
 import {useHistory} from 'react-router-dom';
 import {PAGE_FIVE, PAGE_FOUR, PAGE_ONE, PAGE_SEVEN, PAGE_SIX, PAGE_THREE, PAGE_TWO} from '../../test/routes/routes';
 import {withPallet} from '../../test/t2-pages/p3-stepThree/pageThree-selector';
@@ -14,15 +12,14 @@ const {Header, Content, Footer, Sider} = Layout;
 const {Step} = Steps;
 
 const App = () => {
-    const [storedPage, setPage] = useLocalStorage('currentStep', 0)
-    const dispatch = useDispatch()
-    const history = useHistory()
-    useEffect(() => {
-        dispatch(setCurrentStep({page: storedPage}))
-    }, [storedPage])
+
+    const steps = useSelector(getSteps);
+    const currentPageStep = useSelector(getCurrentPageStep);
+    const isWithPallet = useSelector(withPallet);
+    const history = useHistory();
+
 
     const stepChange = (value: number) => {
-        setPage(value)
         switch (value) {
             case 0:
                 return history.push(PAGE_ONE)
@@ -41,10 +38,6 @@ const App = () => {
         }
     }
 
-
-    const steps = useSelector(getSteps);
-    const currentPageStep = useSelector(getCurrentPageStep);
-    const isWithPallet = useSelector(withPallet);
 
     const [collapsed, setCollapsed] = useState(false);
     const onCollapse = () => {
@@ -65,7 +58,7 @@ const App = () => {
                                 const disabledP4_pallet = item.dataStep === 3 && isWithPallet === 'no_pallets';
                                 return <Step key={item.title} title={item.title}
                                              description={item.description}
-                                             disabled={currentPageStep < item.dataStep  || disabledP4_pallet}/>
+                                             disabled={currentPageStep < item.dataStep || disabledP4_pallet}/>
                             }
                         )}
                     </Steps>

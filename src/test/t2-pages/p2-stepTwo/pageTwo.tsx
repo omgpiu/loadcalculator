@@ -8,7 +8,7 @@ import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
 import {CargoTable} from './CargoTable';
 import '../../../main/m1-ui/App.css';
 import {PageTwoInputsComponent} from './pageTwoInputsComponent';
-import {ButtonBlock} from '../../t5-common/buttonBlock/buttonBlock';
+import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 
 
 export const PageTwo: React.FC = () => {

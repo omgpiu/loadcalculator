@@ -17,7 +17,7 @@ export const Page4Pallets = React.memo(() => {
     const {pallets, palletType} = useSelector<AppRootStateType, P4_State>(state => state.pageFour)
     const dispatch = useDispatch();
     useEffect(() => {
-        //если в стейте нет паллетов, тогда запрашиваем (избугать запроса при возврате на страницу)
+        //если в стейте нет паллетов, тогда запрашиваем (избегать запроса при возврате на страницу)
         if (pallets.length === 0) {
             dispatch(getPalletsTC())
         }

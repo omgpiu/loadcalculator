@@ -2,10 +2,10 @@ import React from 'react';
 
 import './palletForm.css';
 import {Form, InputNumber} from 'antd';
-import {PAGE_FIVE, PAGE_SIX, PAGE_THREE} from '../../../routes/routes';
+import {PAGE_FIVE, PAGE_THREE} from '../../../routes/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../main/m2-bll/store';
-import { ButtonBlock } from '../../../t5-common/buttonBlock/buttonBlock';
+import ButtonBlock from '../../../t5-common/buttonBlock/buttonBlock';
 import {PalletType, setPalletParameters} from '../p4-reducer';
 
 
