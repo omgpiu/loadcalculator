@@ -24,6 +24,7 @@ export const PageTwo: React.FC = () => {
     };
 
 
+
     return <div className={st.pageTwoMain}>
         <p>Укажите тип упаковки груза</p>
 
@@ -47,7 +48,7 @@ export const PageTwo: React.FC = () => {
                 })
             }</Row>
         <CargoTable/>
-        <ButtonBlock type={'default'} prevPageLink={PAGE_ONE} nextPageLink={PAGE_THREE}/>
+        <ButtonBlock type={'default'} prevPageLink={PAGE_ONE} nextPageLink={PAGE_THREE} />
     </div>;
 };
 

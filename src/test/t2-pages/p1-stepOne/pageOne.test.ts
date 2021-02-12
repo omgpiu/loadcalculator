@@ -5,7 +5,8 @@ let startState: InitialPageOneStateType;
 
 beforeEach(() => {
     startState = {
-        loadPlace: 'Грузовик'
+        loadPlace: 'Грузовик',
+        isUpload: ''
     };
 });
 

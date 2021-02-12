@@ -48,7 +48,7 @@ const App = () => {
     return (
 
         <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
-            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}></Sider>
+            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}> </Sider>
             <Layout className="site-layout">
                 <Header className="site-layout-background"
                         style={{paddingLeft: '10px', paddingRight: '15px', paddingTop: '10px'}}>

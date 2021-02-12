@@ -5,3 +5,6 @@ export const getLoadPlace = (state: AppRootStateType): placeToLoadType => {
     console.log(state.pageOne.loadPlace);
     return state.pageOne.loadPlace;
 };
+export const getUploadStatus = (state: AppRootStateType) => {
+    return state.pageOne.isUpload;
+};

@@ -20,20 +20,21 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
     return (
         <div className={st.wrapper}>
             <div>
-                'Название'
-                <Input value={item.cargoTitle} onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                    onChange(item.id, 'cargoTitle', e.currentTarget.value);
-                }}/>
+
+                <Input  value={item.cargoTitle}
+                       onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                           onChange(item.id, 'cargoTitle', e.currentTarget.value);
+                       }}/>
             </div>
-            <div>
+            <div >
                 {!!item.length && 'Длинна'} {item.length && item.length !== 0 ?
-                <InputNumber type="number" min={1} value={item.length} onChange={(e) => {
+                <InputNumber  type="number" min={1} value={item.length} onChange={(e) => {
                     onChange(item.id, 'length', e as number);
                 }}/> : null}
             </div>
             <div>
                 {!!item.width && 'Ширина'} {item.width && item.width !== 0 ?
-                <InputNumber min={1} type="number" value={item.width} onChange={(e) => {
+                <InputNumber  min={1} type="number" value={item.width} onChange={(e) => {
                     onChangeHandler(item.id, 'width', e as number);
                 }}/> : null}
             </div>
