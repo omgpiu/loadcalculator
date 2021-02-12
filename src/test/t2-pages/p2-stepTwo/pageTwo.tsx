@@ -42,7 +42,6 @@ export const PageTwo: React.FC = () => {
                                 }}>{item.title}</Button>
                             </div>
                         </div>
-
                     </Col>;
                 })
             }</Row>

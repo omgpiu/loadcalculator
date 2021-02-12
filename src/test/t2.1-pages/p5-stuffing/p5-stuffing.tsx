@@ -23,7 +23,6 @@ export const Stuffing = () => {
                 })
             }
             Тут происходит выбор возможной укладки товара .
-            {/* hideP4= становится true  если выбран режим без паллетов*/}
             <ButtonBlock type={'default'} nextPageLink={PAGE_SIX}
                          prevPageLink={isWithPallet === NO_PALLETS ? PAGE_THREE : PAGE_FOUR}
                          parentClickHandler={onClickHandler}/>
