@@ -102,16 +102,16 @@ export const Login = () => {
                 </Form.Item>
 
                 <img src={captchaUrl ? captchaUrl : undefined} alt=""/>
-                <Form.Item
-                    // name="captcha" пофиксить капчу
+                {captchaUrl &&<Form.Item
+                    name="captcha"
                 >
-                    {captchaUrl && <Input
+                    <Input
                         placeholder="captcha"
                         onClick={resetError}
                         style={{width: '100px'}}
-                    />}
-                </Form.Item>
-            </Form>
+                    />
+                </Form.Item>}
+             </Form>
             {/*Для теста*/}
             <ButtonBlock type={'default'} prevPageLink={PAGE_ONE}/>
         </>
