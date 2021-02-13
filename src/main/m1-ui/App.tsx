@@ -71,7 +71,7 @@ const App = () => {
                         style={{paddingLeft: '10px', paddingRight: '15px', paddingTop: '10px'}}>
                     <Steps current={currentPageStep} size={'small'} type={'navigation'}
                            onChange={stepChange}>
-                        {steps.map((item, index) => {
+                        {steps.map((item) => {
                                 const disabledP4_pallet = item.dataStep === 3 && isWithPallet === 'no_pallets';
                                 return <Step key={item.title} title={item.title}
                                              description={item.description}

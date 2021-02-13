@@ -80,8 +80,6 @@ export const PageOne: React.FC = () => {
                 </Col>
             </Row>
         </div>
-
-
     );
 };
 

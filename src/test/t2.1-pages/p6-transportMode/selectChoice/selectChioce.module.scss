@@ -1,0 +1,20 @@
+.selectChoice {
+   &_inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #dedede;
+   }
+
+   &_description {
+      width: 20%;
+      p {
+         margin: 0;
+      }
+   }
+
+   &_img {
+      width: 120px;
+   }
+}

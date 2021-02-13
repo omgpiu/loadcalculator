@@ -77,13 +77,12 @@ export const asyncActions = {
     initializeApp
 };
 
-const setCurrentStepWithCurrentUrl = (currentUrl:string,steps: StepType[]):number => {
-    const index = steps.findIndex(el=> el.url === currentUrl)
+const setCurrentStepWithCurrentUrl = (currentUrl: string, steps: StepType[]): number => {
+    const index = steps.findIndex(el => el.url === currentUrl)
     let currentStep;
-    if(index>=0){
+    if (index >= 0) {
         currentStep = steps[index].dataStep
-    }else return NaN
-    console.log(currentStep)
+    } else return NaN
     return currentStep
 }
 
@@ -93,7 +92,7 @@ const slice = createSlice({
     reducers: {
         setCurrentPageUrl(state, action: PayloadAction<{ page: string }>) {
             state.currentPageUrl = action.payload.page;
-            state.currentStep = setCurrentStepWithCurrentUrl(action.payload.page,state.steps)
+            state.currentStep = setCurrentStepWithCurrentUrl(action.payload.page, state.steps)
         },
         setCurrentStep(state, action: PayloadAction<{ page: number }>) {
             state.currentStep = action.payload.page;
@@ -112,7 +111,7 @@ const slice = createSlice({
             });
     }
 });
-export const {setCurrentPageUrl,setCurrentStep} = slice.actions;
+export const {setCurrentPageUrl, setCurrentStep} = slice.actions;
 export const appReducer = slice.reducer;
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -131,7 +130,7 @@ export type InitialAppStateType = {
     isInitialized: boolean
     steps: StepType[]
     currentStep: number
-    currentPageUrl:string
+    currentPageUrl: string
 }
 
 
