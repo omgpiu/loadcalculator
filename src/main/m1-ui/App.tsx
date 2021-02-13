@@ -1,12 +1,22 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Calculator} from '../../test/calculator/Calculator';
-import {Layout, Steps} from 'antd';
+import {Layout, Menu, Steps} from 'antd';
 import {useSelector} from 'react-redux';
 import {getCurrentPageStep, getSteps} from '../m2-bll/app-selector';
-import {useHistory} from 'react-router-dom';
-import {PAGE_FIVE, PAGE_FOUR, PAGE_ONE, PAGE_SEVEN, PAGE_SIX, PAGE_THREE, PAGE_TWO} from '../../test/routes/routes';
+import {Link, useHistory} from 'react-router-dom';
+import {
+    LOGIN,
+    PAGE_FIVE,
+    PAGE_FOUR,
+    PAGE_ONE,
+    PAGE_SEVEN,
+    PAGE_SIX,
+    PAGE_THREE,
+    PAGE_TWO
+} from '../../test/routes/routes';
 import {withPallet} from '../../test/t2-pages/p3-stepThree/pageThree-selector';
+import {UserOutlined} from '@ant-design/icons';
 
 const {Header, Content, Footer, Sider} = Layout;
 const {Step} = Steps;
@@ -22,21 +32,21 @@ const App = () => {
     const stepChange = (value: number) => {
         switch (value) {
             case 0:
-                return history.push(PAGE_ONE)
+                return history.push(PAGE_ONE);
             case 1:
-                return history.push(PAGE_TWO)
+                return history.push(PAGE_TWO);
             case 2:
-                return history.push(PAGE_THREE)
+                return history.push(PAGE_THREE);
             case 3:
-                return history.push(PAGE_FOUR)
+                return history.push(PAGE_FOUR);
             case 4:
-                return history.push(PAGE_FIVE)
+                return history.push(PAGE_FIVE);
             case 5:
-                return history.push(PAGE_SIX)
+                return history.push(PAGE_SIX);
             case 6:
-                return history.push(PAGE_SEVEN)
+                return history.push(PAGE_SEVEN);
         }
-    }
+    };
 
 
     const [collapsed, setCollapsed] = useState(false);
@@ -48,7 +58,14 @@ const App = () => {
     return (
 
         <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
-            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}> </Sider>
+            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+                <Menu mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu.Item key="1" icon={<UserOutlined/>}>
+                        <Link to={LOGIN}>Login</Link>
+                    </Menu.Item>
+
+                </Menu>
+            </Sider>
             <Layout className="site-layout">
                 <Header className="site-layout-background"
                         style={{paddingLeft: '10px', paddingRight: '15px', paddingTop: '10px'}}>
@@ -58,7 +75,7 @@ const App = () => {
                                 const disabledP4_pallet = item.dataStep === 3 && isWithPallet === 'no_pallets';
                                 return <Step key={item.title} title={item.title}
                                              description={item.description}
-                                             disabled={currentPageStep < item.dataStep || disabledP4_pallet}/>
+                                             disabled={currentPageStep < item.dataStep || disabledP4_pallet}/>;
                             }
                         )}
                     </Steps>
