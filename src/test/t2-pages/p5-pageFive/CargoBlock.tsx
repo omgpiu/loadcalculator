@@ -1,16 +1,19 @@
-type PropsType = {
-	description: string
-	imgPath: string
-	imgName: string
-	inputId: string
-	inputName: string
-}
+import React from "react";
+import st from './PageFive.module.css';
 
-export const CargoBlock: React.FC<PropsType> = (props) => {
-	return <div>
+export const CargoBlock = (props: any) => {
+	return <div className={st.cargoBlock}>
 
-		<p>{props.description}</p>
-		<img src={props.imgPath} alt="props.imgName"/>
-		<input id={props.inputId} name={props.inputName} type="checkbox"/>
+		<p className={st.desc}>{props.description}</p>
+
+		<div className={st.block}>
+			<div className={st.blockImage}>
+				<img src={props.img} width='100px' height='100px'/>
+			</div>
+
+			<div className={st.check}>
+				<input type="checkbox"/>
+			</div>
+		</div>
 	</div>
 }
