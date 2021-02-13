@@ -3,6 +3,7 @@ import {page6, TransportType} from '../../../main/m3-dal/api-service';
 import {appActions} from '../../../main/m2-bll/appReducer';
 import {AppRootStateType} from '../../../main/m2-bll/store';
 
+
 const initialState = {
     transports: [] as TransportType[],
     autoChoiceFiltered: [] as TransportType[],
@@ -53,11 +54,17 @@ const slice = createSlice({
         setTransportDataAC(state, action: PayloadAction<{ transports: TransportType[] }>) {
             //устанавливаем в стэйт пришедший  массив с траспортом
             state.transports = action.payload.transports
-
         },
         setFilterAutoChoiceAC(state, action: PayloadAction<{ autoChoiceFiltered: TransportType[] }>) {
             //сетаем отфильтрованный массив в state.autoChoiceFiltered
             state.autoChoiceFiltered = action.payload.autoChoiceFiltered
+        },
+        addSelectTransportAC(state, action: PayloadAction<{ transportId: string }>) {
+            const transport = state.transports.find(el => el.id === action.payload.transportId)
+            transport && state.selectChoice.push(transport)
+        },
+        deleteSelectTransportAC(state, action: PayloadAction<{ transportId: string }>) {
+             state.selectChoice = state.selectChoice.filter( el => el.id !== action.payload.transportId)
         }
 
     },

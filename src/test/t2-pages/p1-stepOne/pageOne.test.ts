@@ -1,4 +1,5 @@
-import {InitialPageOneStateType, pageOneReducer} from './pageOne-reducer';
+import {InitialPageOneStateType} from './pageOne-reducer';
+import {UploadFileStatus} from 'antd/lib/upload/interface';
 
 
 let startState: InitialPageOneStateType;
@@ -6,7 +7,7 @@ let startState: InitialPageOneStateType;
 beforeEach(() => {
     startState = {
         loadPlace: 'Грузовик',
-        isUpload: ''
+        isUpload: '' as UploadFileStatus
     };
 });
 

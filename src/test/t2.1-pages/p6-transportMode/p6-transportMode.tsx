@@ -8,11 +8,12 @@ import {getAutoFilterDataTC} from './p6-reducer';
 import {TransportType} from '../../../main/m3-dal/api-service';
 import {TotalCargoValue} from './totalCargoValue/totalCargoValue';
 import {AutoChoice} from './autoChoice/autoChoice';
+import {SelectChoice} from './selectChoice/selectChoice';
 
 
 export const TransportMode: React.FC<PropsType> = React.memo((props) => {
-// transports добавить в пропсы для selectChoice
-    const {text_description, img, totalCargoValue, setShowBtn,} = props;
+
+    const {text_description, img, totalCargoValue, setShowBtn,transports} = props;
     const dispatch = useDispatch()
     const [mode, setMode] = React.useState(0);
 
@@ -32,12 +33,17 @@ export const TransportMode: React.FC<PropsType> = React.memo((props) => {
             <hr/>
             <div>
                 {
-                    (mode === 1) ? <>
+                    (mode === 1)
+                        ? <>
                             <TotalCargoValue totalCargoValue={totalCargoValue}/>
                             <AutoChoice/>
                         </>
                         : (mode === 2)
-                        ? <div> в разработке </div> : ''
+                        ? <>
+                            <TotalCargoValue totalCargoValue={totalCargoValue}/>
+                            <SelectChoice transports={transports}/>
+                        </>
+                        : null
                 }
             </div>
         </div>

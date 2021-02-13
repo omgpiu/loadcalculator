@@ -15,6 +15,7 @@ import fura_scep from '../../assets/images/transport/auto/fura_scep.jpg';
 import {placeToLoadType, TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
 import {PackagingItemType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
 import {PalletType} from '../../test/t2.1-pages/p4-pallets/p4-reducer';
+import {v1} from 'uuid';
 
 const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') => {
     // имитация асинхронного запроса, задержка ответа 1сек, reject выходит рандомно , примерно 1 из 10 раз
@@ -147,7 +148,7 @@ const pallets: PalletType[] = [
 //page 5 transport mode container
 const containerData = [
     {
-        id: 1,
+        id:v1(),
         car_name: 'Контейнер 10"DC',
         car_char: '(2.83x2.33x2.37) 15m3',
         car_o: 15,
@@ -158,7 +159,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 2,
+        id:v1(),
         car_name: 'Контейнер 20"OT',
         car_char: '(5.41x2.2x2.28) 32m3',
         car_o: 32,
@@ -169,7 +170,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 3,
+        id:v1(),
         car_name: 'Контейнер 20"DC',
         car_char: '(5.9x2.35x2.38) 33.2m3',
         car_o: 33.2,
@@ -180,7 +181,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 4,
+        id:v1(),
         car_name: 'Контейнер 20"PW',
         car_char: '(5.95x2.4x2.38) 34.6m3',
         car_o: 34.6,
@@ -191,7 +192,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 5,
+        id:v1(),
         car_name: 'Контейнер 20"HC',
         car_char: '(5.91x2.35x2.68) 38.5m3',
         car_o: 38.5,
@@ -202,7 +203,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 6,
+        id:v1(),
         car_name: 'Контейнер 40"OT',
         car_char: '(11.54x2.35x2.38) 65.5m3',
         car_o: 65.5,
@@ -213,7 +214,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 7,
+        id:v1(),
         car_name: 'Контейнер 40"DC',
         car_char: '(12.04x2.3x2.37) 67.5m3',
         car_o: 67.5,
@@ -224,7 +225,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 8,
+        id:v1(),
         car_name: 'Контейнер 40"PW',
         car_char: '(12.04x2.43x2.37) 70.5m3',
         car_o: 70.5,
@@ -235,7 +236,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 9,
+        id:v1(),
         car_name: 'Контейнер 40"HC',
         car_char: '(12.05x2.34x2.68) 75.6m3',
         car_o: 75.6,
@@ -246,7 +247,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 10,
+        id: v1(),
         car_name: 'Контейнер 40"HCPW',
         car_char: '(12.1x2.42x2.69) 79.1m3',
         car_o: 79.1,
@@ -257,7 +258,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 11,
+        id: v1(),
         car_name: 'Контейнер 45"HCPW',
         car_char: '(13.55x2.4x2.56) 85.1m3',
         car_o: 85.1,
@@ -268,7 +269,7 @@ const containerData = [
         img: ''
     },
     {
-        id: 12,
+        id: v1(),
         car_name: 'Контейнер 45"HC',
         car_char: '(13.55x2.35x2.69) 86m3',
         car_o: 86,
@@ -283,7 +284,7 @@ const containerData = [
 //page 5 transport mode aut
 const autoData = [
     {
-        id: 1,
+        id: v1(),
         car_name: 'Портер',
         car_char: '(2.65x1.5x1.6) 6м3',
         car_o: 6,
@@ -294,7 +295,7 @@ const autoData = [
         img: porter
     },
     {
-        id: 2,
+        id: v1(),
         car_name: 'Газель',
         car_char: '(3x1.95x1.6) 9м3',
         car_o: 9,
@@ -305,7 +306,7 @@ const autoData = [
         img: gazel
     },
     {
-        id: 3,
+        id: v1(),
         car_name: 'Газель',
         car_char: '(4x2x1.9) 15м3',
         car_o: 15,
@@ -316,7 +317,7 @@ const autoData = [
         img: gazel_
     },
     {
-        id: 4,
+        id: v1(),
         car_name: 'Маз, Камаз',
         car_char: '(6x2.4x2.35) 30м3',
         car_o: 30,
@@ -327,7 +328,7 @@ const autoData = [
         img: maz_kamaz
     },
     {
-        id: 5,
+        id: v1(),
         car_name: 'Маз, Камаз',
         car_char: '(9x2.4x2.35) 45м3',
         car_o: 45,
@@ -338,7 +339,7 @@ const autoData = [
         img: maz_kamaz
     },
     {
-        id: 6,
+        id: v1(),
         car_name: 'Фура',
         car_char: '(13.6x2.45x2.65) 82м3',
         car_o: 82,
@@ -349,7 +350,7 @@ const autoData = [
         img: fura
     },
     {
-        id: 7,
+        id: v1(),
         car_name: 'Фура',
         car_char: '(13.6x2.5x2.7) 90м3',
         car_o: 90,
@@ -360,7 +361,7 @@ const autoData = [
         img: fura2
     },
     {
-        id: 8,
+        id: v1(),
         car_name: 'Фура сцепка',
         car_char: '(7.2x2.45x3) 120м3',
         car_o: 120,
@@ -372,7 +373,7 @@ const autoData = [
     },
 ] as TransportType[];
 export type TransportType = {
-    id: number
+    id: string
     car_name: string
     car_char: string
     car_o: number

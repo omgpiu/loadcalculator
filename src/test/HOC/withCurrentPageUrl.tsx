@@ -13,7 +13,6 @@ function WithCurrentPageUrl<WCP>(Component: React.ComponentType<WCP>) {
 
         useEffect(() => {
             dispatch(setCurrentPageUrl({page: path}))
-            console.log(path)
         }, [dispatch, path])
         return <Component {...props} currentPageUrl={path}/>;
     }
