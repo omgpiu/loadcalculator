@@ -15,6 +15,7 @@ import fura_scep from '../../assets/images/transport/auto/fura_scep.jpg';
 import {placeToLoadType, TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
 import {PackagingItemType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
 import {PalletType} from '../../test/t2.1-pages/p4-pallets/p4-reducer';
+import {PayloadTypeForLoading} from '../../test/t2-pages/p3-stepThree/pageThree-reducer';
 
 const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') => {
     // имитация асинхронного запроса, задержка ответа 1сек, reject выходит рандомно , примерно 1 из 10 раз
@@ -51,6 +52,11 @@ export const pageOne = {
     }
 
 };
+export const page3 = {
+    sendWithPallet(withPallet: PayloadTypeForLoading) {
+        return fakeRequest(withPallet, 'отправка флага с паллетами или нет');
+    }
+}
 export const page5 = {
     getPallets() {
         return fakeRequest(pallets, 'page5 получили виды паллетов и засетали в стэйт');
@@ -60,9 +66,11 @@ export const page5 = {
             'палетов пользователем, и засетали этот обьект с параметрами в стейт');
     },
     sendCargo(cargoParam: PackagingItemType[]) {
-        return fakeRequest(cargoParam, 'page5 submit form - отправили на сервер параметры выбранных  без паллет' +
+        return fakeRequest(cargoParam, 'page5 submit form - отправили на сервер параметры выбранных грузов' +
             'и засетали этот обьект с параметрами в стейт');
-    }
+    },
+
+
 };
 
 export const page6 = {

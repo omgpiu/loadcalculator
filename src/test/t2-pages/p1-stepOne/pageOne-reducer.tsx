@@ -53,6 +53,7 @@ const slice = createSlice({
         extraReducers: (builder) => {
             builder
                 .addCase(determineLoadPlace.fulfilled, (state, action) => {
+                    console.log();
                     state.loadPlace = action.payload;
                 })
                 .addCase(uploadCargoForm.pending, (state, appActions) => {

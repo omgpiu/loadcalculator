@@ -155,7 +155,7 @@ const initialState = {
         weight: 1006,
         amount: 10,
         cargoTitle: 'КОРОБКИ'
-    },] as PackagingItemType[]
+    },] as PackagingItemType[],
 
 };
 
@@ -163,14 +163,17 @@ const initialState = {
 export const setCountedCargoParam = createAsyncThunk('pageTwo/sendCargo',
     async (param: PackagingItemType[], thunkAPI) => {
         try {
-            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}))
-            const res = await page5.sendCargo(param)
-            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
-            return res
+            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}));
+            const res = await page5.sendCargo(param);
+            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+            return res;
         } catch (err) {
-            return thunkAPI.rejectWithValue(err.messages[0])
+            return thunkAPI.rejectWithValue(err.messages[0]);
         }
-    })
+    });
+
+
+
 
 
 const slice = createSlice({
@@ -205,13 +208,13 @@ const slice = createSlice({
         extraReducers: (builder) => {
             builder
                 .addCase(setCountedCargoParam.fulfilled, (state, action) => {
-                    state.packagingCargoBack = action.payload as PackagingItemType[]
-                    console.log(state.packagingCargoBack)
-                })
+                    state.packagingCargoBack = action.payload as PackagingItemType[];
+                    console.log(state.packagingCargoBack);
+                });
 
-            },
+        },
 
-        }
+    }
     )
 ;
 export type ParamType = 'height' | 'width' | 'length' | 'diameter' | 'volume' | 'weight' | 'amount' | 'cargoTitle'

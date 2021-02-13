@@ -36,12 +36,12 @@ export const TableSelect: React.FC = () => {
             bordered={false}
 
         >
-            <Option value="blue" style={{backgroundColor:'blue'}}>Blue</Option>
-            <Option value="red">Red</Option>
-            <Option value="yellow">Yellow</Option>
-            <Option value="orange">Orange</Option>
-            <Option value="black">Black</Option>
-            <Option value="green">Green</Option>
+            <Option value="blue" style={{color: 'blue'}}>Blue</Option>
+            <Option value="red" style={{color: 'red'}}>Red</Option>
+            <Option value="yellow" style={{color: 'purple'}}>Purple</Option>
+            <Option value="orange" style={{color: 'orange'}}>Orange</Option>
+            <Option value="black" style={{color: 'black'}}>Black</Option>
+            <Option value="green" style={{color: 'green'}}>Green</Option>
         </Select>
 
 
