@@ -1,4 +1,4 @@
-import {InitialPageOneStateType, pageOneReducer} from './pageOne-reducer';
+import {InitialPageOneStateType} from './pageOne-reducer';
 
 
 let startState: InitialPageOneStateType;
@@ -6,7 +6,7 @@ let startState: InitialPageOneStateType;
 beforeEach(() => {
     startState = {
         loadPlace: 'Грузовик',
-        isUpload: ''
+        isUpload: 'done'
     };
 });
 

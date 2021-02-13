@@ -1,4 +1,4 @@
-import {Button, Col, message, Row, Upload} from 'antd';
+import {Button, Col, Row, Upload} from 'antd';
 import React from 'react';
 import st from './pageOne.module.css';
 import {UploadOutlined} from '@ant-design/icons';
@@ -6,7 +6,7 @@ import container from '../../../assets/images/container.png';
 import truck from '../../../assets/images/truck.jpg';
 import {useDispatch, useSelector} from 'react-redux';
 import {getLoadPlace, getUploadStatus} from './pageOne-selector';
-import {CONTAINER, determineLoadPlace, TRUCK, uploadCargoForm} from './pageOne-reducer';
+import {CONTAINER, determineLoadPlace, setLoadPlace, TRUCK, uploadCargoForm} from './pageOne-reducer';
 import {PAGE_TWO} from '../../routes/routes';
 import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 import {UploadRequestOption as RcCustomRequestOptions} from 'rc-upload/lib/interface';
@@ -19,17 +19,21 @@ export const PageOne: React.FC = () => {
     const isUploaded = useSelector(getUploadStatus);
 //Выбор загружаемого пространства
     const onClickTruckHandler = () => {
-        dispatch(determineLoadPlace(TRUCK));
+        dispatch(setLoadPlace({loadPlace: TRUCK}));
+        // dispatch(determineLoadPlace(TRUCK));
     };
     const onClickContainerHandler = () => {
-        dispatch(determineLoadPlace(CONTAINER));
+        dispatch(setLoadPlace({loadPlace: CONTAINER}));
+        // dispatch(determineLoadPlace(CONTAINER));
     };
 
     const uploadChangeHandler = (value: RcCustomRequestOptions) => {
         dispatch(uploadCargoForm(value.file));
     };
 
-
+    const loadPlaceOnClickHandler = () => {
+        dispatch(determineLoadPlace());
+    };
     // для отрисовки загрузки файла и сообщения об успешности/или нет
     // const onChange = (info: UploadChangeParam) => {
     //     if (isUploaded !== 'uploading') {
@@ -43,9 +47,9 @@ export const PageOne: React.FC = () => {
     // };
     const prop = {
         onChange(info: UploadChangeParam) {
-            info.file.status = isUploaded
+            info.file.status = isUploaded;
         }
-    }
+    };
 
 
     return (
@@ -72,7 +76,7 @@ export const PageOne: React.FC = () => {
                                 type={load === CONTAINER ? 'primary' : 'default'}
                         >Контейнер</Button>
                     </div>
-                    <ButtonBlock type={'default'} nextPageLink={PAGE_TWO}/>
+                    <ButtonBlock type={'default'} nextPageLink={PAGE_TWO} parentClickHandler={loadPlaceOnClickHandler}/>
                 </Col>
             </Row>
         </div>

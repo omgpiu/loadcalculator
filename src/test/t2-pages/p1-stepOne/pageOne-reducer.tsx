@@ -1,7 +1,8 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import { UploadFileStatus } from 'antd/lib/upload/interface';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {UploadFileStatus} from 'antd/lib/upload/interface';
 import {appActions} from '../../../main/m2-bll/appReducer';
 import {pageOne} from '../../../main/m3-dal/api-service';
+import {AppRootStateType} from '../../../main/m2-bll/store';
 
 
 export const TRUCK = 'Грузовик';
@@ -16,12 +17,13 @@ const initialState = {
 
 
 export const determineLoadPlace = createAsyncThunk('pageOne/loadPlace',
-    async (param: placeToLoadType, {dispatch, rejectWithValue}) => {
+    async (param, {dispatch, rejectWithValue, getState}) => {
+        const state = getState() as AppRootStateType;
+        const cargoLoadPlace = state.pageOne.loadPlace;
         try {
             dispatch(appActions.setAppStatusAC({status: 'loading'}));
-            const res = await pageOne.setLoadPlacePoint(param) as Promise<placeToLoadType>;
+            const res = await pageOne.setLoadPlacePoint(cargoLoadPlace) as Promise<placeToLoadType>;
             dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
-            console.log(res);
             return res;
         } catch (err) {
             return rejectWithValue(err.messages[0]);
@@ -43,7 +45,11 @@ export const uploadCargoForm = createAsyncThunk('pageOne/cargoForm',
 const slice = createSlice({
         name: 'pageOne',
         initialState,
-        reducers: {},
+        reducers: {
+            setLoadPlace(state, action: PayloadAction<{ loadPlace: placeToLoadType }>) {
+                state.loadPlace = action.payload.loadPlace;
+            }
+        },
         extraReducers: (builder) => {
             builder
                 .addCase(determineLoadPlace.fulfilled, (state, action) => {
@@ -51,15 +57,15 @@ const slice = createSlice({
                 })
                 .addCase(uploadCargoForm.pending, (state, appActions) => {
                     state.isUpload = 'uploading';
-                    console.log( state.isUpload);
+                    console.log(state.isUpload);
                 })
                 .addCase(uploadCargoForm.fulfilled, (state, appActions) => {
                     state.isUpload = 'done';
-                    console.log( state.isUpload);
+                    console.log(state.isUpload);
                 })
                 .addCase(uploadCargoForm.rejected, (state, appActions) => {
                     state.isUpload = 'error';
-                    console.log( state.isUpload);
+                    console.log(state.isUpload);
                 });
 
 
@@ -68,5 +74,6 @@ const slice = createSlice({
 ;
 export type InitialPageOneStateType = typeof initialState
 export type placeToLoadType = typeof TRUCK | typeof CONTAINER;
+export const {setLoadPlace} = slice.actions;
 export const pageOneReducer = slice.reducer;
 
