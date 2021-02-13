@@ -3,7 +3,7 @@ import e_box from '../../assets/images/pageFive/e-box.jpg';
 import eur from '../../assets/images/pageFive/eur.jpg';
 import cargo_small from '../../assets/images/pageFive/cargo_small.jpg';
 import cargo_base from '../../assets/images/pageFive/CARGO_BASE.webp';
-import {filterTransports, TotalCargoValueType} from '../../test/t5-common/calculator/calculator';
+import {filterTransports} from '../../test/t5-common/calculator/calculator';
 
 import porter from '../../assets/images/transport/auto/porter.jpg';
 import gazel from '../../assets/images/transport/auto/gazel.png';
@@ -13,7 +13,7 @@ import fura from '../../assets/images/transport/auto/fura.jpg';
 import fura2 from '../../assets/images/transport/auto/fura2.jpg';
 import fura_scep from '../../assets/images/transport/auto/fura_scep.jpg';
 import {placeToLoadType, TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-reducer';
-import {PackagingItemType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
+import {PackagingItemType, TotalCargoValueType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
 import {PalletType} from '../../test/t2.1-pages/p4-pallets/p4-reducer';
 import {PayloadTypeForLoading} from '../../test/t2-pages/p3-stepThree/pageThree-reducer';
 import {v1} from 'uuid';
@@ -22,12 +22,13 @@ const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') 
     // имитация асинхронного запроса, задержка ответа 1сек, reject выходит рандомно , примерно 1 из 10 раз
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (Math.random() > 0.9) {
-                return reject(new Error('ОШИБКА СДЕЛАНА СПЕЦИАЛЬНО !!! ОБНОВИ СТРАНИЦУ ...'));
-            } else {
-                console.log(textLog);
-                resolve(value);
-            }
+            // if (Math.random() > 0.9) {
+            //     return reject(new Error('ОШИБКА СДЕЛАНА СПЕЦИАЛЬНО !!! ОБНОВИ СТРАНИЦУ ...'));
+            // } else {
+            //
+            // }
+            console.log(textLog);
+            resolve(value);
         }, 1000);
     });
 };
@@ -86,6 +87,10 @@ export const page6 = {
         const autoChoiceFiltered = filterTransports(totalCargoValue, transportType === TRUCK ? autoData : containerData);
         return fakeRequest(autoChoiceFiltered,
             `page6 получили массив автоматического выбора Т/С - типа:${transportType}`);
+    },
+    setSelectedTransport(selectedTransport: TransportType[]) {
+        return fakeRequest(selectedTransport,
+            `page6 отправили на сервер массив с выбранным транспортом ${selectedTransport}`);
     },
 
 };
@@ -156,7 +161,7 @@ const pallets: PalletType[] = [
 //page 5 transport mode container
 const containerData = [
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 10"DC',
         car_char: '(2.83x2.33x2.37) 15m3',
         car_o: 15,
@@ -167,7 +172,7 @@ const containerData = [
         img: ''
     },
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 20"OT',
         car_char: '(5.41x2.2x2.28) 32m3',
         car_o: 32,
@@ -178,7 +183,7 @@ const containerData = [
         img: ''
     },
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 20"DC',
         car_char: '(5.9x2.35x2.38) 33.2m3',
         car_o: 33.2,
@@ -189,7 +194,7 @@ const containerData = [
         img: ''
     },
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 20"PW',
         car_char: '(5.95x2.4x2.38) 34.6m3',
         car_o: 34.6,
@@ -200,7 +205,7 @@ const containerData = [
         img: ''
     },
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 20"HC',
         car_char: '(5.91x2.35x2.68) 38.5m3',
         car_o: 38.5,
@@ -211,7 +216,7 @@ const containerData = [
         img: ''
     },
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 40"OT',
         car_char: '(11.54x2.35x2.38) 65.5m3',
         car_o: 65.5,
@@ -222,7 +227,7 @@ const containerData = [
         img: ''
     },
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 40"DC',
         car_char: '(12.04x2.3x2.37) 67.5m3',
         car_o: 67.5,
@@ -233,7 +238,7 @@ const containerData = [
         img: ''
     },
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 40"PW',
         car_char: '(12.04x2.43x2.37) 70.5m3',
         car_o: 70.5,
@@ -244,7 +249,7 @@ const containerData = [
         img: ''
     },
     {
-        id:v1(),
+        id: v1(),
         car_name: 'Контейнер 40"HC',
         car_char: '(12.05x2.34x2.68) 75.6m3',
         car_o: 75.6,

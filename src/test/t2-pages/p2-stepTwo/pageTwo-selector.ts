@@ -1,6 +1,5 @@
 import {AppRootStateType} from '../../../main/m2-bll/store';
-import {PackagingItemType} from './pageTwo-reducer';
-import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
+import {PackagingItemType, TotalCargoValueType} from './pageTwo-reducer';
 
 export const getPackagingItems = (state: AppRootStateType): PackagingItemType[] => {
     return state.pageTwo.packagingItems;
