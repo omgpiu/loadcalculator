@@ -9,7 +9,7 @@ export const TRUCK = 'Грузовик';
 export const CONTAINER = 'Контейнер';
 const initialState = {
     loadPlace: TRUCK as placeToLoadType,
-    isUpload: '' as UploadFileStatus
+    isUpload: 'done' as UploadFileStatus
 };
 
 
