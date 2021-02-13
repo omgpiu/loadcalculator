@@ -41,7 +41,7 @@ export const TransportMode: React.FC<PropsType> = React.memo((props) => {
                         : (mode === 2)
                         ? <>
                             <TotalCargoValue totalCargoValue={totalCargoValue}/>
-                            <SelectChoice transports={transports}/>
+                            <SelectChoice totalCargoValue={totalCargoValue} transports={transports}/>
                         </>
                         : null
                 }

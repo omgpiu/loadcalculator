@@ -29,7 +29,7 @@ export type TotalCargoValueType = {
 // фильтр траспорта по общему объему и массе вместимого груза( без учета штабелирования и кантования),
 // с учетом максимального габаритного размера 1 единицы груза
 export const filterTransports = (totalCargoValue: TotalCargoValueType, arr: TransportType[]) => {
-    return  arr.filter(el => {
+    return arr.filter(el => {
         const {cargoMass, cargoVolume, maxH, maxL, maxW} = totalCargoValue
         return el.car_m >= cargoMass
             && el.car_o >= cargoVolume
@@ -39,3 +39,44 @@ export const filterTransports = (totalCargoValue: TotalCargoValueType, arr: Tran
     })
 }
 
+//Расчет остатка груза при ручном выборе транспорта( если в выбранную машину весь груз не входит)
+export const calcRemainingCargo = (selectChoice: TransportType[], totalCargoValue: TotalCargoValueType) => {
+    let totalCargoValueTransport = {cargoVolume: 0, cargoMass: 0};
+    for (let i = 0; i < selectChoice.length; i++) {
+        const el = selectChoice[i];
+        totalCargoValueTransport.cargoVolume += el.car_o
+        totalCargoValueTransport.cargoMass += el.car_m
+    }
+    debugger
+    const RemainingVolume = totalCargoValue.cargoVolume - totalCargoValueTransport.cargoVolume;
+    const RemainingMass = totalCargoValue.cargoMass - totalCargoValueTransport.cargoMass;
+    const RemainPercent = Math.round(RemainingVolume * 100 / totalCargoValue.cargoVolume);
+    if (RemainingVolume <= 0 && RemainingMass <= 0) {
+        return null
+    } else {
+        return {
+            RemainingVolume,
+            RemainingMass,
+            RemainPercent
+        }
+    }
+}
+// export type TransportType = {
+//     id: string
+//     car_name: string
+//     car_char: string
+//     car_o: number
+//     car_l: number
+//     car_w: number
+//     car_h: number
+//     car_m: number
+//     img: string
+// };
+
+// export type TotalCargoValueType = {
+//     cargoVolume: number
+//     cargoMass: number
+//     maxL: number
+//     maxH: number
+//     maxW: number
+// }
