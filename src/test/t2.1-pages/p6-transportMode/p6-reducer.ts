@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {page6, TransportType} from '../../../main/m3-dal/api-service';
 import {appActions} from '../../../main/m2-bll/appReducer';
 import {AppRootStateType} from '../../../main/m2-bll/store';
+import {v1} from 'uuid';
 
 
 const initialState = {
@@ -61,11 +62,15 @@ const slice = createSlice({
         },
         addSelectTransportAC(state, action: PayloadAction<{ transportId: string }>) {
             const transport = state.transports.find(el => el.id === action.payload.transportId)
-            transport && state.selectChoice.push(transport)
+            transport && state.selectChoice.push({...transport, id: v1()})
+
         },
         deleteSelectTransportAC(state, action: PayloadAction<{ transportId: string }>) {
-             state.selectChoice = state.selectChoice.filter( el => el.id !== action.payload.transportId)
-        }
+            const index = state.selectChoice.findIndex(el => el.id === action.payload.transportId);
+            if (index > -1) {
+                state.selectChoice.splice(index, 1);
+            }
+        },
 
     },
     // extraReducers: (builder) => {

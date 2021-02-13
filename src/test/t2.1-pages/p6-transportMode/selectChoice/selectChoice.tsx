@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Select} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import {TransportType} from '../../../../main/m3-dal/api-service';
@@ -8,27 +8,35 @@ import ButtonBlock from '../../../t5-common/buttonBlock/buttonBlock';
 import {PAGE_FIVE, PAGE_SEVEN} from '../../../routes/routes';
 import {Tr_ModeActions} from '../p6-reducer';
 import {v1} from 'uuid';
+import {calcRemainingCargo, TotalCargoValueType} from '../../../t5-common/calculator/calculator';
 
-export const SelectChoice: React.FC<PropsType> = ({transports}) => {
+export const SelectChoice: React.FC<PropsType> = ({transports, totalCargoValue}) => {
     const dispatch = useDispatch();
     const [selectTransportId, setSelectTransportId] = useState<null | string>(null)
     const selectChoice = useSelector<AppRootStateType, TransportType[]>(s => s.pageSix.selectChoice)
     const {Option} = Select;
+
+    // useEffect(() => {
+    //     console.log(calcRemainingCargo(selectChoice, totalCargoValue))
+    // }, [selectChoice, totalCargoValue])
 
     const selectHandleChange = (value: string) => {
         setSelectTransportId(value)
     }
     const addClickHandler = () => {
         selectTransportId && dispatch(Tr_ModeActions.addSelectTransportAC({transportId: selectTransportId}))
+        console.log(calcRemainingCargo(selectChoice, totalCargoValue))
+
     }
-    const deleteClickHandler = () => {
-        selectTransportId && dispatch(Tr_ModeActions.deleteSelectTransportAC({transportId: selectTransportId}))
+    const deleteClickHandler = (id: string) => {
+        selectTransportId && dispatch(Tr_ModeActions.deleteSelectTransportAC({transportId: id}))
     }
+
 
     const choiceRow = (selectChoice: TransportType[]) => {
         if (selectChoice.length > 0) {
             return selectChoice.map(el => (<div key={el.id} className={st.selectChoice_inner}>
-                    <Button danger onClick={deleteClickHandler}>Удалить</Button>
+                    <Button danger onClick={() => deleteClickHandler(el.id)}>Удалить</Button>
                     <div className={st.selectChoice_description}>
                         <p>{el.car_name}</p>
                         <p>${el.car_char}</p>
@@ -57,15 +65,12 @@ export const SelectChoice: React.FC<PropsType> = ({transports}) => {
         <div className={st.selectChoice}>
             {selectButton(transports)}
             {choiceRow(selectChoice)}
-            <ButtonBlock prevPageLink={PAGE_FIVE} nextPageLink={PAGE_SEVEN} disabled={!selectTransportId}/>
+            <ButtonBlock prevPageLink={PAGE_FIVE} nextPageLink={PAGE_SEVEN} disabled={selectChoice.length === 0}/>
         </div>
     )
 }
 
 type PropsType = {
     transports: TransportType[]
+    totalCargoValue: TotalCargoValueType
 }
-
-// p6  решить проблему с отрисовкой в режиме речного выбора Т/С
-// (при добавлении/ удалении двух одинаковый Т/С)
-// получается 2 обьекта - один и тот же обьект

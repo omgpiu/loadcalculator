@@ -12,8 +12,8 @@ import {page5} from '../../../main/m3-dal/api-service';
 
 const initialState = {
     totalCargoValue: {
-        cargoMass: 0.5,
-        cargoVolume: 0.84,
+        cargoMass: 3.5,
+        cargoVolume: 12.84,
         maxH: 1.4,
         maxL: 0.3,
         maxW: 0.4,
