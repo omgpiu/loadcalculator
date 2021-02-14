@@ -13,8 +13,9 @@ import {UploadRequestOption as RcCustomRequestOptions} from 'rc-upload/lib/inter
 import {UploadChangeParam} from 'antd/lib/upload';
 import {Redirect} from 'react-router-dom';
 import {getIsAuth} from '../../t1-login/login-selectors';
+import WithAuthRedirect from '../../HOC/withAuthRedirect';
 
-export const PageOne: React.FC = () => {
+ const PageOne: React.FC = () => {
     const isAuth = useSelector(getIsAuth)
     const dispatch = useDispatch();
     const load = useSelector(getLoadPlace);
@@ -87,6 +88,6 @@ export const PageOne: React.FC = () => {
     );
 };
 
-
+export default WithAuthRedirect(PageOne)
 
 

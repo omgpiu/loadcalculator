@@ -5,8 +5,9 @@ import {NO_PALLETS} from '../../t2-pages/p3-stepThree/pageThree-reducer';
 import {useSelector} from 'react-redux';
 import {withPallet} from '../../t2-pages/p3-stepThree/pageThree-selector';
 import {getPackagingCargoForCounting} from '../../t2-pages/p2-stepTwo/pageTwo-selector';
+import WithAuthRedirect from '../../HOC/withAuthRedirect';
 
-export const Stuffing = () => {
+const Stuffing = () => {
     const isWithPallet = useSelector(withPallet);
     const countedCargo = useSelector(getPackagingCargoForCounting)
     const onClickHandler = () => {
@@ -29,3 +30,5 @@ export const Stuffing = () => {
         </>
     )
 }
+
+export default WithAuthRedirect(Stuffing)

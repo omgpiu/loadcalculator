@@ -7,6 +7,7 @@ import {getTotalCargoValue} from '../../t2-pages/p2-stepTwo/pageTwo-selector';
 import {getLoadPlace} from '../../t2-pages/p1-stepOne/pageOne-selector';
 import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 import {PAGE_FIVE} from '../../routes/routes';
+import WithAuthRedirect from '../../HOC/withAuthRedirect';
 
 
 export const TransportModeContainer = React.memo(() => {
@@ -52,3 +53,5 @@ export const TransportModeContainer = React.memo(() => {
 
     </>
 })
+
+export default WithAuthRedirect(TransportModeContainer)

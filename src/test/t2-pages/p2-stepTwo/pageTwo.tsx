@@ -9,9 +9,10 @@ import {CargoTable} from './CargoTable';
 import '../../../main/m1-ui/App.css';
 import {PageTwoInputsComponent} from './pageTwoInputsComponent';
 import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
+import WithAuthRedirect from '../../HOC/withAuthRedirect';
 
 
-export const PageTwo: React.FC = () => {
+const PageTwo: React.FC = () => {
     const dispatch = useDispatch();
     const packagingItems = useSelector(getPackagingItems);
 
@@ -51,7 +52,7 @@ export const PageTwo: React.FC = () => {
     </div>;
 };
 
-
+export default WithAuthRedirect(PageTwo)
 
 
 

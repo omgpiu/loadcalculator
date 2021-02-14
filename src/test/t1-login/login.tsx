@@ -6,20 +6,19 @@ import {EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined} from '@ant
 import {Link, Redirect} from 'react-router-dom';
 import {getCaptcha, getError, getIsAuth} from './login-selectors';
 import {PAGE_ONE} from '../routes/routes';
-import ButtonBlock from '../t5-common/buttonBlock/buttonBlock';
 import {login, setError} from './loginReducer';
 
 export const Login = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const error = useSelector(getError);
     const isAuth = useSelector(getIsAuth);
     const captchaUrl = useSelector(getCaptcha);
 
 //для разработки
-    debugger
+
     if (isAuth) {
-        debugger
+
         return <Redirect to={PAGE_ONE}/>;
 
     }
@@ -27,13 +26,13 @@ export const Login = () => {
         email: string,
         password: string,
         captcha: string,
-        rememberMe:boolean
+        rememberMe: boolean
     }) => {
         await dispatch(login(values));
 
     };
     const resetError = () => {
-        dispatch(setError({error:''}));
+        dispatch(setError({error: ''}));
     };
     return (
         <>
@@ -92,7 +91,7 @@ export const Login = () => {
                         <Checkbox>Remember me</Checkbox>
                     </Form.Item>
                     <Link target={'_blank'} className={st.loginFormForgot}
-                          to="https://social-network.samuraijs.com/login">
+                          to="https://google.com">
                         Forgot password
                     </Link>
                 </Form.Item>
@@ -113,9 +112,8 @@ export const Login = () => {
                         style={{width: '100px'}}
                     />
                 </Form.Item>}
-             </Form>
-            {/*Для теста*/}
-            {/*<ButtonBlock type={'default'} prevPageLink={PAGE_ONE}/>*/}
+            </Form>
+
         </>
     );
 };

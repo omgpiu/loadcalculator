@@ -10,9 +10,10 @@ import st from './pageThree.module.css';
 import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 import {getPackagingCargo} from '../p2-stepTwo/pageTwo-selector';
 import {setCountedCargoParam} from '../p2-stepTwo/pageTwo-reducer';
+import WithAuthRedirect from '../../HOC/withAuthRedirect';
 
 
-export const PageThree: React.FC = () => {
+const PageThree: React.FC = () => {
     const dispatch = useDispatch();
     const isWithPallet = useSelector(withPallet);
     const cargoToSend = useSelector(getPackagingCargo);
@@ -65,6 +66,6 @@ export const PageThree: React.FC = () => {
 };
 
 
-
+export default WithAuthRedirect(PageThree)
 
 

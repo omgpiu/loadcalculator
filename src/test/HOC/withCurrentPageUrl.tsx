@@ -3,10 +3,13 @@ import {setCurrentPageUrl} from '../../main/m2-bll/appReducer';
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 
+type DispatchPropsType = {
+
+}
 
 function WithCurrentPageUrl<WCP>(Component: React.ComponentType<WCP>) {
 
-    const NewComp = (props: any) => {
+    const NewComp= (props:any) => {
         const dispatch = useDispatch();
         const history = useHistory();
         const path = history.location.pathname

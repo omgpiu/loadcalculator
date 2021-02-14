@@ -9,9 +9,10 @@ import {PalletForm} from './palletForm/palletForm';
 
 import {RequestStatusType} from '../../../main/m2-bll/appReducer';
 import {PalletSelected} from './palletSelected/p4-selected';
+import WithAuthRedirect from '../../HOC/withAuthRedirect';
 
 
-export const Page4Pallets = React.memo(() => {
+const Page4Pallets = React.memo(() => {
 
     const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
     const {pallets, palletType} = useSelector<AppRootStateType, P4_State>(state => state.pageFour)
@@ -47,4 +48,7 @@ export const Page4Pallets = React.memo(() => {
         </Spin>
     )
 });
+
+export default WithAuthRedirect(Page4Pallets)
+
 

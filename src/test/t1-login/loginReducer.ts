@@ -13,24 +13,24 @@ const initialState = {
 
 
 export const login = createAsyncThunk<undefined, LoginParamsType,
-    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<any> } }>('auth/login', async (param, thunkAPI) => {
-    thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}));
+    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<any> } }>('auth/login', async (param, {dispatch,rejectWithValue}) => {
+   dispatch(appActions.setAppStatusAC({status: 'loading'}));
     try {
         await authAPI.login(param);
-        thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+        dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
         return;
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.messages[0]);
+        return rejectWithValue(error.messages[0]);
     }
 });
-export const logout = createAsyncThunk('auth/logout', async (param, thunkAPI) => {
-    thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}));
+export const logout = createAsyncThunk('auth/logout', async (param, {dispatch,rejectWithValue}) => {
+    dispatch(appActions.setAppStatusAC({status: 'loading'}));
     try {
         await authAPI.logout();
-        thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+       dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
         return;
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.messages[0]);
+        return rejectWithValue(error.messages[0]);
     }
 });
 
@@ -39,9 +39,7 @@ const slice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-        // setIsLoggedIn(state, action: PayloadAction<{ value: boolean }>) {
-        //     state.isAuth = action.payload.value;
-        // },
+
         setError(state, action: PayloadAction<{ error: string }>) {
             state.error = action.payload.error;
         }
@@ -50,11 +48,9 @@ const slice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(login.fulfilled, (state) => {
-                debugger
                 state.isAuth = true;
             })
             .addCase(logout.fulfilled, (state) => {
-                debugger
                 state.isAuth = false;
             });
     }
