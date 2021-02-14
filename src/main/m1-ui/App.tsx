@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import './App.css';
 import {Calculator} from '../../test/calculator/Calculator';
 import {Layout, Menu, Steps} from 'antd';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getCurrentPageStep, getSteps} from '../m2-bll/app-selector';
-import {Link, Redirect, useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {
     LOGIN,
     PAGE_FIVE,
@@ -16,19 +16,18 @@ import {
     PAGE_TWO
 } from '../../test/routes/routes';
 import {withPallet} from '../../test/t2-pages/p3-stepThree/pageThree-selector';
-import {UserOutlined} from '@ant-design/icons';
-import {getIsAuth} from '../../test/t1-login/login-selectors';
+import {LogoutOutlined, UserOutlined} from '@ant-design/icons';
+import {logout} from '../../test/t1-login/loginReducer';
 
 const {Header, Content, Footer, Sider} = Layout;
 const {Step} = Steps;
 
 const App = () => {
-
+    const dispatch = useDispatch();
     const steps = useSelector(getSteps);
     const currentPageStep = useSelector(getCurrentPageStep);
     const isWithPallet = useSelector(withPallet);
     const history = useHistory();
-
 
 
     const stepChange = (value: number) => {
@@ -55,6 +54,9 @@ const App = () => {
     const onCollapse = () => {
         setCollapsed(!collapsed);
     };
+    const logoutOnClickHandler = () => {
+        dispatch(logout());
+    };
 
 
     return (
@@ -65,6 +67,10 @@ const App = () => {
                     <Menu.Item key="1" icon={<UserOutlined/>}>
                         <Link to={LOGIN}>Login</Link>
                     </Menu.Item>
+                    <Menu.Item key="2" icon={<LogoutOutlined/>} onClick={logoutOnClickHandler}>
+                        Logout
+                    </Menu.Item>
+
 
                 </Menu>
             </Sider>
