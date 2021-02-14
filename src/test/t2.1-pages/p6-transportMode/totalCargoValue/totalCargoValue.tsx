@@ -1,6 +1,7 @@
 import React from 'react';
-import {TotalCargoValueType} from '../../../t5-common/calculator/calculator';
 import st from './totalCargoValue.module.scss'
+import {TotalCargoValueType} from '../../../t2-pages/p2-stepTwo/pageTwo-reducer';
+
 export const TotalCargoValue: React.FC<{ totalCargoValue: TotalCargoValueType }> = ({totalCargoValue}) => {
     return (
         <>

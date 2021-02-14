@@ -1,21 +1,26 @@
 import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../../main/m2-bll/store';
-import {TransportType} from '../../../../main/m3-dal/api-service';
-import {RequestStatusType} from '../../../../main/m2-bll/appReducer';
+import {useDispatch, useSelector} from 'react-redux';
 import {Radio, RadioChangeEvent, Spin} from 'antd';
 import {PAGE_FIVE, PAGE_SEVEN} from '../../../routes/routes';
 import st from './autoChoice.module.scss'
 import ButtonBlock from '../../../t5-common/buttonBlock/buttonBlock';
+import {setSelectedTransportTC} from '../p6-reducer';
+import {getAutoChoiceFiltered, getStatus} from '../p6-selector';
 
 export const AutoChoice: React.FC = () => {
-    const [error, setError] = useState<boolean>(true)
+    const dispatch = useDispatch();
+    const [error, setError] = useState<boolean>(true);
     const [radioValue, setMode] = React.useState(null);
-    const autoChoiceFiltered = useSelector<AppRootStateType, TransportType[]>(s => s.pageSix.autoChoiceFiltered)
-    const status = useSelector<AppRootStateType, RequestStatusType>(s => s.app.status)
+    const autoChoiceFiltered = useSelector(getAutoChoiceFiltered)
+    const status = useSelector(getStatus)
+
+
     const onChangeHand = (e: RadioChangeEvent) => {
         setMode(e.target.value)
         setError(false)
+    }
+    const onHandleClick = () => {
+        dispatch(setSelectedTransportTC())
     }
 
     return (
@@ -34,7 +39,8 @@ export const AutoChoice: React.FC = () => {
                     )
                 }
                 <ButtonBlock type={'default'} prevPageLink={PAGE_FIVE}
-                             nextPageLink={PAGE_SEVEN} disabled={error}/>
+                             nextPageLink={PAGE_SEVEN} disabled={error}
+                             parentClickHandler={onHandleClick}/>
             </Spin>
         </div>
     )

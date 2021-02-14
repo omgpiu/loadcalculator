@@ -3,12 +3,16 @@ import {page6, TransportType} from '../../../main/m3-dal/api-service';
 import {appActions} from '../../../main/m2-bll/appReducer';
 import {AppRootStateType} from '../../../main/m2-bll/store';
 import {v1} from 'uuid';
+import {calcRemainingCargo} from '../../t5-common/calculator/calculator';
+import {TotalCargoValueType} from '../../t2-pages/p2-stepTwo/pageTwo-reducer';
 
 
 const initialState = {
     transports: [] as TransportType[],
     autoChoiceFiltered: [] as TransportType[],
-    selectChoice: [] as TransportType[]
+    selectChoice: [] as TransportType[],
+    selectedTransport: [] as TransportType[],
+    remainderCargo: {} as remainderCargoType
 
 }
 
@@ -46,6 +50,21 @@ export const getAutoFilterDataTC = createAsyncThunk('pageSix/getAutoFilterData',
             return rejectWithValue(err)
         }
     })
+    // отправляем на сервер массив с выбранным транспортом, вмещающим весь груз
+export const setSelectedTransportTC = createAsyncThunk('pageSix/setSelectedTransport',
+    async (param, {dispatch, rejectWithValue, getState}) => {
+        const state = getState() as AppRootStateType
+        const selectedTransport = state.pageSix.selectedTransport
+        try {
+            dispatch(appActions.setAppStatusAC({status: 'loading'}))
+            const res = await page6.setSelectedTransport(selectedTransport)
+            dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
+            return res
+        } catch (err) {
+            dispatch(appActions.setAppStatusAC({status: 'failed'}))
+            return rejectWithValue(err)
+        }
+    })
 
 
 const slice = createSlice({
@@ -60,16 +79,19 @@ const slice = createSlice({
             //сетаем отфильтрованный массив в state.autoChoiceFiltered
             state.autoChoiceFiltered = action.payload.autoChoiceFiltered
         },
-        addSelectTransportAC(state, action: PayloadAction<{ transportId: string }>) {
+        addSelectTransportAC(state, action: PayloadAction<{ transportId: string, totalCargoValue: TotalCargoValueType }>) {
             const transport = state.transports.find(el => el.id === action.payload.transportId)
-            transport && state.selectChoice.push({...transport, id: v1()})
-
+            transport && state.selectChoice.push({...transport, id: v1()});
         },
         deleteSelectTransportAC(state, action: PayloadAction<{ transportId: string }>) {
             const index = state.selectChoice.findIndex(el => el.id === action.payload.transportId);
             if (index > -1) {
                 state.selectChoice.splice(index, 1);
             }
+        },
+        calcRemainingCargoAC(state, action: PayloadAction<{ totalCargoValue: TotalCargoValueType }>) {
+            state.remainderCargo = calcRemainingCargo(state.selectChoice, action.payload.totalCargoValue);
+
         },
 
     },
@@ -79,5 +101,9 @@ const slice = createSlice({
 });
 export const pageSixReducer = slice.reducer;
 export const Tr_ModeActions = slice.actions;
-
+export type remainderCargoType = {
+    remainingVolume: number
+    remainingMass: number
+    remainPercent: number
+}
 

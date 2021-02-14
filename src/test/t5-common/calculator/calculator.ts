@@ -1,5 +1,5 @@
 import {TransportType} from '../../../main/m3-dal/api-service';
-import {PackagingItemType} from '../../t2-pages/p2-stepTwo/pageTwo-reducer';
+import {PackagingItemType, TotalCargoValueType} from '../../t2-pages/p2-stepTwo/pageTwo-reducer';
 
 export const calcTotalValueCargo = ((arr: PackagingItemType[]) => {
     //считает общий объем и массу груза введенного на странице 2 ,
@@ -18,13 +18,6 @@ export const calcTotalValueCargo = ((arr: PackagingItemType[]) => {
     return totalCargoValue
 })
 
-export type TotalCargoValueType = {
-    cargoVolume: number
-    cargoMass: number
-    maxL: number
-    maxH: number
-    maxW: number
-}
 
 // фильтр траспорта по общему объему и массе вместимого груза( без учета штабелирования и кантования),
 // с учетом максимального габаритного размера 1 единицы груза
@@ -47,36 +40,22 @@ export const calcRemainingCargo = (selectChoice: TransportType[], totalCargoValu
         totalCargoValueTransport.cargoVolume += el.car_o
         totalCargoValueTransport.cargoMass += el.car_m
     }
-    debugger
-    const RemainingVolume = totalCargoValue.cargoVolume - totalCargoValueTransport.cargoVolume;
-    const RemainingMass = totalCargoValue.cargoMass - totalCargoValueTransport.cargoMass;
-    const RemainPercent = Math.round(RemainingVolume * 100 / totalCargoValue.cargoVolume);
-    if (RemainingVolume <= 0 && RemainingMass <= 0) {
-        return null
+    const remainingVolume = Math.floor((totalCargoValue.cargoVolume - totalCargoValueTransport.cargoVolume) * 100) / 100;
+    const remainingMass = Math.floor((totalCargoValue.cargoMass - totalCargoValueTransport.cargoMass) * 100) / 100;
+    const percentMass = remainingMass > 0 ? Math.round(remainingMass * 100 / totalCargoValue.cargoMass) : 0;
+    const percentVolume = remainingVolume > 0 ? Math.round(remainingVolume * 100 / totalCargoValue.cargoVolume) : 0;
+    const remainPercent = percentMass > percentVolume ? percentMass : percentVolume;
+    if (remainingVolume <= 0 && remainingMass <= 0) {
+        return {
+            remainingVolume: -10000,
+            remainingMass: -10000,
+            remainPercent: -10000
+        }
     } else {
         return {
-            RemainingVolume,
-            RemainingMass,
-            RemainPercent
+            remainingVolume,
+            remainingMass,
+            remainPercent: Math.abs(remainPercent)
         }
     }
 }
-// export type TransportType = {
-//     id: string
-//     car_name: string
-//     car_char: string
-//     car_o: number
-//     car_l: number
-//     car_w: number
-//     car_h: number
-//     car_m: number
-//     img: string
-// };
-
-// export type TotalCargoValueType = {
-//     cargoVolume: number
-//     cargoMass: number
-//     maxL: number
-//     maxH: number
-//     maxW: number
-// }

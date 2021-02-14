@@ -2,13 +2,13 @@ import {RadioChangeEvent} from 'antd';
 import React from 'react';
 import {ContentTransportMode} from './contentTransportMode/contentTransportMode';
 import st from './transportMode.module.scss'
-import {TotalCargoValueType} from '../../t5-common/calculator/calculator';
 import {useDispatch} from 'react-redux';
 import {getAutoFilterDataTC} from './p6-reducer';
 import {TransportType} from '../../../main/m3-dal/api-service';
 import {TotalCargoValue} from './totalCargoValue/totalCargoValue';
 import {AutoChoice} from './autoChoice/autoChoice';
 import {SelectChoice} from './selectChoice/selectChoice';
+import {TotalCargoValueType} from '../../t2-pages/p2-stepTwo/pageTwo-reducer';
 
 
 export const TransportMode: React.FC<PropsType> = React.memo((props) => {
