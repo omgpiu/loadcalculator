@@ -18,9 +18,11 @@ export const SelectChoice: React.FC<PropsType> = React.memo(({transports, totalC
     const {Option} = Select;
 
     const selectHandleChange = (value: string) => {
+        // Change селекта , в value - id выбранного транспорта
         setSelectTransportId(value)
     }
     const addClickHandler = () => {
+        //добавляем выбранный транспорт в selectChoice
         selectTransportId &&
         dispatch(Tr_ModeActions.addSelectTransportAC(
             {transportId: selectTransportId, totalCargoValue: totalCargoValue}
@@ -28,14 +30,17 @@ export const SelectChoice: React.FC<PropsType> = React.memo(({transports, totalC
         dispatch(Tr_ModeActions.calcRemainingCargoAC({totalCargoValue}))
     }
     const deleteClickHandler = (id: string) => {
+        // удаляем выбранный вид транспорта из selectChoice, calcRemainingCargoAC: делаем пересчет остатка загрузки
         dispatch(Tr_ModeActions.deleteSelectTransportAC({transportId: id}))
         dispatch(Tr_ModeActions.calcRemainingCargoAC({totalCargoValue}))
     }
     const onHandleClick = () => {
+        // отправляем на сервер массив с выбранными машинами/контейнерами
         dispatch(setSelectedTransportTC())
     }
 
     const choiceRow = (selectChoice: TransportType[]) => {
+        //selectChoice - массив с выбранным транспортом
         if (selectChoice.length > 0) {
             return selectChoice.map(el => (<div key={el.id} className={st.selectChoice_inner}>
                     <Button danger onClick={() => deleteClickHandler(el.id)}>Удалить</Button>
@@ -81,6 +86,7 @@ export const SelectChoice: React.FC<PropsType> = React.memo(({transports, totalC
             }
         </div>
     }
+    // disabled кнопки продолжить( усли не добавлен ни один транспорт или груз не помещается в выбранный транспорт
     const disabledBtn = selectChoice.length === 0 || remainingCargo.remainPercent > 0;
 
     return (
