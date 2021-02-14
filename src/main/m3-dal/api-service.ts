@@ -16,6 +16,12 @@ import {placeToLoadType, TRUCK} from '../../test/t2-pages/p1-stepOne/pageOne-red
 import {PackagingItemType, TotalCargoValueType} from '../../test/t2-pages/p2-stepTwo/pageTwo-reducer';
 import {PalletType} from '../../test/t2.1-pages/p4-pallets/p4-reducer';
 import {PayloadTypeForLoading} from '../../test/t2-pages/p3-stepThree/pageThree-reducer';
+
+import ten_foot from '../../assets/images/transport/containers/10foot.jpg';
+import twenty_foot from '../../assets/images/transport/containers/20foot.jpg';
+import forty_foot from '../../assets/images/transport/containers/40foot.png';
+import forty_foot_OT from '../../assets/images/transport/containers/40OT.jpg';
+import fortyFive_foot from '../../assets/images/transport/containers/45foot.jpg';
 import {v1} from 'uuid';
 
 const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') => {
@@ -169,7 +175,7 @@ const containerData = [
         car_w: 2.33,
         car_h: 2.37,
         car_m: 11,
-        img: ''
+        img: ten_foot
     },
     {
         id: v1(),
@@ -180,7 +186,7 @@ const containerData = [
         car_w: 2.2,
         car_h: 2.28,
         car_m: 22,
-        img: ''
+        img: twenty_foot
     },
     {
         id: v1(),
@@ -191,7 +197,7 @@ const containerData = [
         car_w: 2.35,
         car_h: 2.38,
         car_m: 22,
-        img: ''
+        img: twenty_foot
     },
     {
         id: v1(),
@@ -202,7 +208,7 @@ const containerData = [
         car_w: 2.4,
         car_h: 2.38,
         car_m: 22,
-        img: ''
+        img: twenty_foot
     },
     {
         id: v1(),
@@ -213,7 +219,7 @@ const containerData = [
         car_w: 2.35,
         car_h: 2.68,
         car_m: 22,
-        img: ''
+        img: twenty_foot
     },
     {
         id: v1(),
@@ -224,7 +230,7 @@ const containerData = [
         car_w: 2.35,
         car_h: 2.38,
         car_m: 27,
-        img: ''
+        img: forty_foot_OT
     },
     {
         id: v1(),
@@ -235,7 +241,7 @@ const containerData = [
         car_w: 2.3,
         car_h: 2.37,
         car_m: 27,
-        img: ''
+        img: forty_foot
     },
     {
         id: v1(),
@@ -246,7 +252,7 @@ const containerData = [
         car_w: 2.43,
         car_h: 2.37,
         car_m: 27,
-        img: ''
+        img: forty_foot
     },
     {
         id: v1(),
@@ -257,7 +263,7 @@ const containerData = [
         car_w: 2.34,
         car_h: 2.68,
         car_m: 27,
-        img: ''
+        img: forty_foot
     },
     {
         id: v1(),
@@ -268,7 +274,7 @@ const containerData = [
         car_w: 2.42,
         car_h: 2.69,
         car_m: 27,
-        img: ''
+        img: forty_foot
     },
     {
         id: v1(),
@@ -279,7 +285,7 @@ const containerData = [
         car_w: 2.4,
         car_h: 2.56,
         car_m: 29,
-        img: ''
+        img: fortyFive_foot
     },
     {
         id: 12,
@@ -290,7 +296,7 @@ const containerData = [
         car_w: 2.35,
         car_h: 2.69,
         car_m: 29,
-        img: ''
+        img: fortyFive_foot
     }
 ] as TransportType[];
 
