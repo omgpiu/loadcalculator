@@ -17,6 +17,7 @@ import {PackagingItemType, TotalCargoValueType} from '../../test/t2-pages/p2-ste
 import {PalletType} from '../../test/t2.1-pages/p4-pallets/p4-reducer';
 import {PayloadTypeForLoading} from '../../test/t2-pages/p3-stepThree/pageThree-reducer';
 import {v1} from 'uuid';
+import {LoginParamsType} from '../../test/t1-login/loginReducer';
 
 const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') => {
     // имитация асинхронного запроса, задержка ответа 1сек, reject выходит рандомно , примерно 1 из 10 раз
@@ -38,11 +39,11 @@ export const authAPI = {
     authMe() {
         return fakeRequest();
     },
-    login() {
-        return fakeRequest();
+    login(param:LoginParamsType) {
+        return fakeRequest(param,'login succeed');
     },
     logout() {
-        return fakeRequest();
+        return fakeRequest('login succeed');
     },
 };
 export const pageOne = {
@@ -58,7 +59,7 @@ export const page3 = {
     sendWithPallet(withPallet: PayloadTypeForLoading) {
         return fakeRequest(withPallet, 'отправка флага с паллетами или нет');
     }
-}
+};
 export const page5 = {
     getPallets() {
         return fakeRequest(pallets, 'page5 получили виды паллетов и засетали в стэйт');
@@ -396,3 +397,10 @@ export type TransportType = {
     car_m: number
     img: string
 };
+export type ResponseType<D = {}> = {
+    resultCode: number
+    messages: Array<string>
+    fieldsErrors?: Array<FieldErrorType>
+    data: D
+}
+export type FieldErrorType = { field: string; error: string }

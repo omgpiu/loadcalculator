@@ -162,8 +162,8 @@ const initialState = {
 
 export const setCountedCargoParam = createAsyncThunk('pageTwo/sendCargo',
     async (param: PackagingItemType[], thunkAPI) => {
+        thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}));
         try {
-            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}));
             const res = await page5.sendCargo(param);
             thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
             return res;
@@ -171,9 +171,6 @@ export const setCountedCargoParam = createAsyncThunk('pageTwo/sendCargo',
             return thunkAPI.rejectWithValue(err.messages[0]);
         }
     });
-
-
-
 
 
 const slice = createSlice({

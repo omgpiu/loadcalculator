@@ -7,13 +7,15 @@ import truck from '../../../assets/images/truck.jpg';
 import {useDispatch, useSelector} from 'react-redux';
 import {getLoadPlace, getUploadStatus} from './pageOne-selector';
 import {CONTAINER, determineLoadPlace, setLoadPlace, TRUCK, uploadCargoForm} from './pageOne-reducer';
-import {PAGE_TWO} from '../../routes/routes';
+import {LOGIN, PAGE_TWO} from '../../routes/routes';
 import ButtonBlock from '../../t5-common/buttonBlock/buttonBlock';
 import {UploadRequestOption as RcCustomRequestOptions} from 'rc-upload/lib/interface';
 import {UploadChangeParam} from 'antd/lib/upload';
+import {Redirect} from 'react-router-dom';
+import {getIsAuth} from '../../t1-login/login-selectors';
 
 export const PageOne: React.FC = () => {
-
+    const isAuth = useSelector(getIsAuth)
     const dispatch = useDispatch();
     const load = useSelector(getLoadPlace);
     const isUploaded = useSelector(getUploadStatus);
@@ -50,7 +52,9 @@ export const PageOne: React.FC = () => {
             info.file.status = isUploaded;
         }
     };
-
+    if (!isAuth) {
+        return <Redirect to={LOGIN}/>;
+    }
 
     return (
         <div className={st.pageOneMain}>

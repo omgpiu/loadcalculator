@@ -9,8 +9,6 @@ type PropsType = {
     handleCancel: (e: React.MouseEvent<HTMLElement>) => void
     item: PackagingItemType
     onChangeHandler: (id: string, param: ParamType, paramQuantity: number) => void
-
-
 }
 export const ModalPageTwo: React.FC<PropsType> = ({isModalVisible, handleOk, handleCancel, item, onChangeHandler}) => {
 

@@ -2,7 +2,6 @@ import React from 'react';
 import st from './PageFive.module.css'
 import {PAGE_SIX} from '../../routes/routes';
 import {CargoPage} from './CargoPage';
-import {ButtonBlock} from "../../t5-common/buttonBlock/buttonBlock";
 
 
 export const PageFive: React.FC = () => {

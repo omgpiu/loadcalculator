@@ -14,7 +14,6 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
                                                             }) => {
     const onChange = (id: string, param: ParamType, paramQuantity: number | string) => {
         onChangeHandler(id, param, paramQuantity);
-        debugger
     };
 
     return (

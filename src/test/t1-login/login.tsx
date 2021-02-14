@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button, Checkbox, Form, Input} from 'antd';
 import st from './Login.module.css';
 import {EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined} from '@ant-design/icons/lib/icons';
@@ -7,28 +7,33 @@ import {Link, Redirect} from 'react-router-dom';
 import {getCaptcha, getError, getIsAuth} from './login-selectors';
 import {PAGE_ONE} from '../routes/routes';
 import ButtonBlock from '../t5-common/buttonBlock/buttonBlock';
+import {login, setError} from './loginReducer';
 
 export const Login = () => {
 
-
+    const dispatch = useDispatch()
     const error = useSelector(getError);
     const isAuth = useSelector(getIsAuth);
     const captchaUrl = useSelector(getCaptcha);
 
 //для разработки
+    debugger
     if (isAuth) {
+        debugger
         return <Redirect to={PAGE_ONE}/>;
+
     }
     const onSubmit = async (values: {
         email: string,
         password: string,
-        captcha: string
+        captcha: string,
+        rememberMe:boolean
     }) => {
-        // await dispatch(loginTC(values));
+        await dispatch(login(values));
 
     };
     const resetError = () => {
-        // dispatch(authActions.setError(''));
+        dispatch(setError({error:''}));
     };
     return (
         <>
@@ -97,10 +102,7 @@ export const Login = () => {
                         Log in
                     </Button>
                     Or <Link target={'_blank'} to="https://social-network.samuraijs.com/signUp">register now!</Link>
-
-
                 </Form.Item>
-
                 <img src={captchaUrl ? captchaUrl : undefined} alt=""/>
                 {captchaUrl && <Form.Item
                     name="captcha"
@@ -113,7 +115,7 @@ export const Login = () => {
                 </Form.Item>}
              </Form>
             {/*Для теста*/}
-            <ButtonBlock type={'default'} prevPageLink={PAGE_ONE}/>
+            {/*<ButtonBlock type={'default'} prevPageLink={PAGE_ONE}/>*/}
         </>
     );
 };

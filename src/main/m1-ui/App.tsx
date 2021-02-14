@@ -4,7 +4,7 @@ import {Calculator} from '../../test/calculator/Calculator';
 import {Layout, Menu, Steps} from 'antd';
 import {useSelector} from 'react-redux';
 import {getCurrentPageStep, getSteps} from '../m2-bll/app-selector';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, Redirect, useHistory} from 'react-router-dom';
 import {
     LOGIN,
     PAGE_FIVE,
@@ -17,6 +17,7 @@ import {
 } from '../../test/routes/routes';
 import {withPallet} from '../../test/t2-pages/p3-stepThree/pageThree-selector';
 import {UserOutlined} from '@ant-design/icons';
+import {getIsAuth} from '../../test/t1-login/login-selectors';
 
 const {Header, Content, Footer, Sider} = Layout;
 const {Step} = Steps;
@@ -27,6 +28,7 @@ const App = () => {
     const currentPageStep = useSelector(getCurrentPageStep);
     const isWithPallet = useSelector(withPallet);
     const history = useHistory();
+
 
 
     const stepChange = (value: number) => {
