@@ -102,7 +102,7 @@ export const Login = () => {
                 </Form.Item>
 
                 <img src={captchaUrl ? captchaUrl : undefined} alt=""/>
-                {captchaUrl &&<Form.Item
+                {captchaUrl && <Form.Item
                     name="captcha"
                 >
                     <Input

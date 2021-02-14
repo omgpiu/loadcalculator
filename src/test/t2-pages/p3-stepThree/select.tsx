@@ -4,21 +4,6 @@ import {Select} from 'antd';
 const {Option} = Select;
 
 export const TableSelect: React.FC = () => {
-    function onChange(value: string) {
-        console.log(`selected ${value}`);
-    }
-
-    function onBlur() {
-        console.log('blur');
-    }
-
-    function onFocus() {
-        console.log('focus');
-    }
-
-    function onSearch(value: string) {
-        console.log('search:', value);
-    }
 
     return (
         <Select
@@ -26,10 +11,6 @@ export const TableSelect: React.FC = () => {
             style={{width: 120}}
             placeholder="Color"
             optionFilterProp="children"
-            onChange={onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            onSearch={onSearch}
             filterOption={(input, option) =>
                 !!option && option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }

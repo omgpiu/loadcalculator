@@ -64,7 +64,6 @@ const initializeApp = createAsyncThunk('app/initializeApp', async (param, thunkA
     try {
         const res = await authAPI.authMe();
         if (res) {
-            console.log('auth Ok!');
             thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
         }
         // thunkAPI.dispatch(authActions.setIsLoggedIn({value: true}))  если будет логинизация....

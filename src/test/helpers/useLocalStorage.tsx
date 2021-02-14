@@ -6,7 +6,6 @@ export const useLocalStorage = (key: any, initialValue: any) => {
             const item = window.sessionStorage.getItem(key) ; //
             return item ? JSON.parse(item) : initialValue; //
         } catch (err) {
-            console.error(err);
             return initialValue;
         }
     });
@@ -18,7 +17,6 @@ export const useLocalStorage = (key: any, initialValue: any) => {
             setStoredValue(valueToStore);
             window.sessionStorage.setItem(key, JSON.stringify(valueToStore)); //
         } catch (err) {
-            console.error(err);
         }
     };
 
