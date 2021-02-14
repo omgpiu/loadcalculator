@@ -26,7 +26,7 @@ export const AutoChoice: React.FC = () => {
     return (
         <div>
             <Spin spinning={status === 'loading'} delay={0}>
-                <h4 className={st.autoChoice_title}>Подходящий тип автомобиля: </h4>
+                <h4 className={st.autoChoice_title}>Подходящий тип транспорта: </h4>
                 {
                     autoChoiceFiltered.map(el => <div key={el.id} className={st.autoChoice_inner}>
                             <div> {el.car_name}

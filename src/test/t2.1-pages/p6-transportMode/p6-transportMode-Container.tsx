@@ -50,7 +50,6 @@ export const TransportModeContainer = React.memo(() => {
         {
             showBtn && <ButtonBlock type={'default'} prevPageLink={PAGE_FIVE}/>
         }
-
     </>
 })
 
