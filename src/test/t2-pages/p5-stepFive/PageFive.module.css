@@ -1,18 +1,28 @@
 .pageFiveMain {
     max-width: 1223px;
     min-width: 360px;
-    max-height: 500px;
     min-height: 200px;
-    text-align-last: center;
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    flex-direction: column
+}
+
+.noticeTitle {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.noticeDesc {
+    text-align: left;
+    line-height: 30%;
 }
 
 .cargoPage {
     display: flex;
     flex-direction: column;
-
+    padding-top: 20px;
 }
 
 .cargoModule {
@@ -21,7 +31,6 @@
     justify-content: space-between;
     max-width: 900px;
     min-width: 360px;
-    max-height: 400px;
     min-height: 200px;
 
 }
@@ -38,18 +47,13 @@
     line-height: 50%;
 }
 
+.notice {
+    padding-bottom: 20px;
+}
 
 .cargoBlock {
     display: flex;
     padding-left: 30px;
-}
-
-.block {
-
-}
-
-.desc {
-    vertical-align: top;
 }
 
 .blockImage {
