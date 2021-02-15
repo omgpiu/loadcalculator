@@ -16,7 +16,8 @@ const initialState = {
 //thunks
 
 
-export const determineLoadPlace = createAsyncThunk('pageOne/loadPlace',
+export const determineLoadPlace = createAsyncThunk<placeToLoadType, undefined,
+    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<any> } }>('pageOne/loadPlace',
     async (param, {dispatch, rejectWithValue, getState}) => {
         const state = getState() as AppRootStateType;
         const cargoLoadPlace = state.pageOne.loadPlace;
@@ -33,7 +34,7 @@ export const uploadCargoForm = createAsyncThunk('pageOne/cargoForm',
     async (File: File, {dispatch, rejectWithValue}) => {
         try {
             dispatch(appActions.setAppStatusAC({status: 'loading'}));
-            const res = await pageOne.uploadFile(File);
+            await pageOne.uploadFile(File);
             dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
 
         } catch (err) {

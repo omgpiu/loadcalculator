@@ -15,12 +15,10 @@ export const Login = () => {
     const isAuth = useSelector(getIsAuth);
     const captchaUrl = useSelector(getCaptcha);
 
-//для разработки
+
 
     if (isAuth) {
-
         return <Redirect to={PAGE_ONE}/>;
-
     }
     const onSubmit = async (values: {
         email: string,
@@ -100,7 +98,7 @@ export const Login = () => {
                     >
                         Log in
                     </Button>
-                    Or <Link target={'_blank'} to="https://social-network.samuraijs.com/signUp">register now!</Link>
+                    Or <Link target={'_blank'} to="google.com">register now!</Link>
                 </Form.Item>
                 <img src={captchaUrl ? captchaUrl : undefined} alt=""/>
                 {captchaUrl && <Form.Item

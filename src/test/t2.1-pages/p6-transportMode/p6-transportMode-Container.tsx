@@ -10,7 +10,7 @@ import {PAGE_FIVE} from '../../routes/routes';
 import WithAuthRedirect from '../../HOC/withAuthRedirect';
 
 
-export const TransportModeContainer = React.memo(() => {
+const TransportModeContainer = React.memo(() => {
     const dispatch = useDispatch();
     const transports = useSelector(getTransports)
     const totalCargoValue = useSelector(getTotalCargoValue)

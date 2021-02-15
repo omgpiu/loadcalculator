@@ -9,6 +9,7 @@ import barrel from './../../../assets/images/i2-pagetwo/steel-barrel.jpg';
 import {v1} from 'uuid';
 import {appActions} from '../../../main/m2-bll/appReducer';
 import {page5} from '../../../main/m3-dal/api-service';
+import {LoginParamsType} from '../../t1-login/loginReducer';
 
 const initialState = {
     totalCargoValue: {
@@ -160,15 +161,16 @@ const initialState = {
 };
 
 
-export const setCountedCargoParam = createAsyncThunk('pageTwo/sendCargo',
-    async (param: PackagingItemType[], thunkAPI) => {
-        thunkAPI.dispatch(appActions.setAppStatusAC({status: 'loading'}));
+export const setCountedCargoParam = createAsyncThunk<PackagingItemType[], PackagingItemType[],
+    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<any> } }>('pageTwo/sendCargo',
+    async (param, {dispatch,rejectWithValue}) => {
+       dispatch(appActions.setAppStatusAC({status: 'loading'}));
         try {
-            const res = await page5.sendCargo(param);
-            thunkAPI.dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+            const res = await page5.sendCargo(param) as Promise<PackagingItemType[]>;
+            dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
             return res;
         } catch (err) {
-            return thunkAPI.rejectWithValue(err.messages[0]);
+            return rejectWithValue(err.messages[0]);
         }
     });
 

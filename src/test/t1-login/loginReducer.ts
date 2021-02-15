@@ -23,7 +23,8 @@ export const login = createAsyncThunk<undefined, LoginParamsType,
         return rejectWithValue(error.messages[0]);
     }
 });
-export const logout = createAsyncThunk('auth/logout', async (param, {dispatch,rejectWithValue}) => {
+export const logout = createAsyncThunk<undefined, undefined,
+    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<any> } }>('auth/logout', async (param, {dispatch,rejectWithValue}) => {
     dispatch(appActions.setAppStatusAC({status: 'loading'}));
     try {
         await authAPI.logout();
