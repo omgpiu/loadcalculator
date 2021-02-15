@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import {Login} from '../t1-login/login';
 import {Page404} from '../t5-common/page404/page404';
 import PageOne from '../t2-pages/p1-stepOne/pageOne';
-import {PageFive} from '../t2-pages/p5-pageFive/PageFive';
+import {PageFive} from '../t2-pages/p5-stepFive/PageFive';
 import {TransportModeContainer} from '../t2.1-pages/p6-transportMode/p6-transportMode-Container';
 import PageTwo from '../t2-pages/p2-stepTwo/pageTwo';
 import PageThree from '../t2-pages/p3-stepThree/pageThree';
