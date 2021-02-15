@@ -21,18 +21,18 @@ export const CargoModule = (props: any) => {
 			title: 'В ширину',
 			image: cargoWidth
 		}
-	]
-
-	console.log(props.packagingItem)
+	];
 
 	return <div className={st.cargoModule}>
 
 		<div className={st.cargoDesc}>
-			{/*{
-				props.packagingItem.map((el: any) => {
-					return <p>'el'</p>
-				})
-			}*/}
+			<p>Груз: Груз 2</p>
+			<p>Количество: {props.packagingItem.amount} штук</p>
+			<p>Вес: {props.packagingItem.weight} кг.</p>
+			<p>Длина: {props.packagingItem.length} мм.</p>
+			<p>Ширина: {props.packagingItem.width} мм.</p>
+			<p>Высота: {props.packagingItem.height} мм.</p>
+
 		</div>
 
 		<div className={st.cargoBlocks}>
