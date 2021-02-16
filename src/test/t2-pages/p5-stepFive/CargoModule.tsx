@@ -4,9 +4,13 @@ import st from './PageFive.module.css';
 import cargoHeight from "../../../assets/images/page7/cargoHeight.png";
 import cargoLength from "../../../assets/images/page7/cargoLength.png";
 import cargoWidth from "../../../assets/images/page7/cargoWidth.png";
+import { PackagingItemType } from "../p2-stepTwo/pageTwo-reducer";
 
+type PropsType = {
+	packagingItem: PackagingItemType
+}
 
-export const CargoModule = (props: any) => {
+export const CargoModule: React.FC<PropsType> = (props) => {
 
 	const blockInfo = [
 		{
