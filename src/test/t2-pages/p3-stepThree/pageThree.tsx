@@ -26,7 +26,7 @@ const PageThree: React.FC = () => {
         dispatch(setPayloadType({payloadTypeLoad: NO_PALLETS}));
     };
 //отправляем санку с паллетами или без  и груз на рассчет
-    const noPalletsSendOnClickHandler = () => {
+    const palletsSendOnClickHandler = () => {
         dispatch(setCountedCargoParam(cargoToSend));
         dispatch(setIsWithPallet());
     };
@@ -60,7 +60,7 @@ const PageThree: React.FC = () => {
                 //пропуск 5 страницы если без паллеты+ noPalletsSendOnClickHandler на отправку payload на сервер
                          nextPageLink={isWithPallet === NO_PALLETS ? PAGE_FIVE : PAGE_FOUR}
                 //пропуск 5 страницы если без паллеты+ noPalletsSendOnClickHandler на отправку payload на сервер
-                         parentClickHandler={noPalletsSendOnClickHandler}/>
+                         parentClickHandler={palletsSendOnClickHandler}/>
         </div>
     );
 };

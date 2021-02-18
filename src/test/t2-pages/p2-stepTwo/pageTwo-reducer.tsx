@@ -6,9 +6,9 @@ import pipe from './../../../assets/images/i2-pagetwo/pipes.jpg';
 import tire from './../../../assets/images/i2-pagetwo/tire.jpg';
 import woodenBox from './../../../assets/images/i2-pagetwo/woodenBox.jpg';
 import barrel from './../../../assets/images/i2-pagetwo/steel-barrel.jpg';
-import {v1} from 'uuid';
 import {appActions} from '../../../main/m2-bll/appReducer';
-import {page5} from '../../../main/m3-dal/api-service';
+import {page2, page5} from '../../../main/m3-dal/api-service';
+import {v1} from 'uuid';
 
 const initialState = {
     totalCargoValue: {
@@ -145,9 +145,34 @@ export const setCountedCargoParam = createAsyncThunk<PackagingItemType[], Packag
         }
     });
 
+export const setPackagingCargoTC = createAsyncThunk<PackagingItemType, PackagingItemType,
+    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<any> } }>('pageTwo/setPackagingCargoTC',
+    async (param: PackagingItemType, {dispatch, rejectWithValue}) => {
+        dispatch(appActions.setAppStatusAC({status: 'loading'}));
+        try {
+            const res = await page2.addCargoToTable(param) as PackagingItemType;
+            dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+            return res;
+        } catch (err) {
+            return rejectWithValue(err.messages[0]);
+        }
+    });
+export const deleteItemFromCargoTable = createAsyncThunk<PackagingItemType, PackagingItemType,
+    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<any> } }>('pageTwo/deleteItemFromCargoTable',
+    async (param: PackagingItemType, {dispatch, rejectWithValue}) => {
+        dispatch(appActions.setAppStatusAC({status: 'loading'}));
+        try {
+            const res = await page2.addCargoToTable(param) as PackagingItemType;
+            dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+            return res;
+        } catch (err) {
+            return rejectWithValue(err.messages[0]);
+        }
+    });
+
 
 const slice = createSlice({
-        name: 'pageTwo',
+        name: 'pageTwo/pageTwo',
         initialState,
         reducers: {
             //сетаем значения в стейт(с инпутов), перед добавлением в таблицу с выбранным грузом
@@ -158,14 +183,6 @@ const slice = createSlice({
                         }
                     }
                 );
-            },
-            //заполняем массив грузом(таблица), для отправки на север и переприсваеваем id
-            setPackagingCargo(state, action: PayloadAction<{ id: string }>) {
-                const cargo = state.packagingItems.find(item => item.id === action.payload.id);
-
-                cargo && state.packagingCargo.push({...cargo, id: v1()});
-
-
             },
             //удаляем не нужный груз из массива(таблица с грузом)
             deletePackagingCargo(state, action: PayloadAction<{ id: string }>) {
@@ -180,8 +197,17 @@ const slice = createSlice({
                 .addCase(setCountedCargoParam.fulfilled, (state, action) => {
                     state.packagingCargoBack = action.payload as PackagingItemType[];
                     console.log(state.packagingCargoBack);
-                });
-
+                })
+                //заполняем массив грузом(таблица) полученные с бэка(переприсваиваем id для тестирования)
+                .addCase(setPackagingCargoTC.fulfilled, (state, action) => {
+                    const item = state.packagingCargo.find(item => item.id === action.payload.id)
+                    if (item) {
+                        //имитация бэка
+                        item && state.packagingCargo.push({...item, id: v1()})
+                    } else {
+                        state.packagingCargo.push(action.payload);
+                    }
+                })
         },
 
     }
@@ -217,6 +243,6 @@ export type TotalCargoValueType = {
 }
 
 
-export const {setPackagingParams, setPackagingCargo, deletePackagingCargo} = slice.actions;
+export const {setPackagingParams, deletePackagingCargo} = slice.actions;
 export const pageTwoReducer = slice.reducer;
 
