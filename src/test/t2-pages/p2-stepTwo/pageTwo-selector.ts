@@ -13,3 +13,6 @@ export const getTotalCargoValue = (state: AppRootStateType): TotalCargoValueType
 export const getPackagingCargoForCounting = (state: AppRootStateType): PackagingItemType[] => {
     return state.pageTwo.packagingCargoBack;
 };
+export const setPackagingPosition = (state: any) => {
+    return state.pageTwo.setPackagingPosition;
+};
