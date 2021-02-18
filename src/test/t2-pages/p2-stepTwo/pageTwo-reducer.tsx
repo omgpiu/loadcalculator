@@ -48,9 +48,9 @@ const initialState = {
 			weight: 1006,
 			amount: 10,
 			cargoTitle: 'БИГ БЭГИ',
-            inHeight: false,
-            inLength: false,
-            inWidth: false
+			inHeight: false,
+			inLength: false,
+			inWidth: false
 
 		},
 		{
@@ -65,9 +65,9 @@ const initialState = {
 			weight: 106,
 			amount: 10,
 			cargoTitle: 'ПАЛЛЕТЫ',
-            inHeight: false,
-            inLength: false,
-            inWidth: false
+			inHeight: false,
+			inLength: false,
+			inWidth: false
 		},
 		{
 			id: '14',
@@ -81,9 +81,9 @@ const initialState = {
 			weight: 1006,
 			amount: 10,
 			cargoTitle: 'ТРУБЫ',
-            inHeight: false,
-            inLength: false,
-            inWidth: false
+			inHeight: false,
+			inLength: false,
+			inWidth: false
 		},
 		{
 			id: '15',
@@ -97,9 +97,9 @@ const initialState = {
 			weight: 1006,
 			amount: 10,
 			cargoTitle: 'ШИНЫ',
-            inHeight: false,
-            inLength: false,
-            inWidth: false
+			inHeight: false,
+			inLength: false,
+			inWidth: false
 
 		},
 		{
@@ -114,11 +114,11 @@ const initialState = {
 			weight: 106,
 			amount: 10,
 			cargoTitle: 'ЯЩИКИ',
-            inHeight: false,
-            inLength: false,
-            inWidth: false
+			inHeight: false,
+			inLength: false,
+			inWidth: false
 		},
-        {
+		{
 			id: '17',
 			img: barrel,
 			title: 'БОЧКИ',
@@ -130,9 +130,9 @@ const initialState = {
 			weight: 1006,
 			amount: 10,
 			cargoTitle: 'БОЧКИ',
-            inHeight: false,
-            inLength: false,
-            inWidth: false
+			inHeight: false,
+			inLength: false,
+			inWidth: false
 		},
 
 	] as PackagingItemType[],
@@ -189,6 +189,25 @@ const slice = createSlice({
 
 
 			},
+
+			// выбор варианта размещения груза
+			setPackagingPosition(state, action: PayloadAction<{ id: string, name: string, position: boolean }>) {
+				state.packagingItems.map(item => {
+					if (item.id === action.payload.id) {
+							if (action.payload.name === 'inHeight') {
+								 item.inHeight = action.payload.position
+							} else if(action.payload.name === 'inLength') {
+								 item.inLength = action.payload.position
+							} else if(action.payload.name === 'inWidth') {
+								 item.inWidth = action.payload.position ;
+							};
+
+						}
+					}
+				);
+			},
+
+
 			//удаляем не нужный груз из массива(таблица с грузом)
 			deletePackagingCargo(state, action: PayloadAction<{ id: string }>) {
 				const index = state.packagingCargo.findIndex(c => c.id === action.payload.id);
@@ -229,9 +248,9 @@ export type PackagingItemType = {
 	weight: number
 	amount: number
 	cargoTitle: string | number
-    inHeight: boolean
-    inLength: boolean
-    inWidth: boolean
+	inHeight: boolean
+	inLength: boolean
+	inWidth: boolean
 }
 export type TotalCargoValueType = {
 	cargoVolume: number
@@ -242,6 +261,6 @@ export type TotalCargoValueType = {
 }
 
 
-export const {setPackagingParams, setPackagingCargo, deletePackagingCargo} = slice.actions;
+export const {setPackagingParams, setPackagingCargo, deletePackagingCargo, setPackagingPosition} = slice.actions;
 export const pageTwoReducer = slice.reducer;
 

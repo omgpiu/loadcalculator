@@ -30,7 +30,7 @@ export const Routes = () => {
             <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
             <Route path={PAGE_FOUR} render={() => <Page4Pallets/>}/>
-            <Route path={PAGE_FIVE} render={() => <Stuffing/>}/>
+            <Route path={PAGE_FIVE} render={() => <PageFive/>}/>
             <Route path={PAGE_SIX} render={() => <TransportModeContainer/>}/>
             <Route path={PAGE_SEVEN} render={() => <PageFive/>}/>
 
