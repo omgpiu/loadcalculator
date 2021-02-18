@@ -5,14 +5,14 @@ import App from './main/m1-ui/App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import {store} from './main/m2-bll/store';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 // import 'antd/dist/antd.css'
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
             <App/>
-        </BrowserRouter>
+        </HashRouter>
 
     </Provider>
     ,

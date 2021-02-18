@@ -8,7 +8,7 @@ import TransportModeContainer from '../t2.1-pages/p6-transportMode/p6-transportM
 import PageTwo from '../t2-pages/p2-stepTwo/pageTwo';
 import PageThree from '../t2-pages/p3-stepThree/pageThree';
 import Page4Pallets from '../t2.1-pages/p4-pallets/p4-pallets';
-import Stuffing from '../t2.1-pages/p5-stuffing/p5-stuffing';
+import {InProgress} from '../t5-common/page404/inprogress';
 
 
 export const LOGIN = '/login';
@@ -30,9 +30,9 @@ export const Routes = () => {
             <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
             <Route path={PAGE_FOUR} render={() => <Page4Pallets/>}/>
-            <Route path={PAGE_FIVE} render={() => <Stuffing/>}/>
+            <Route path={PAGE_FIVE} render={() => <PageFive/>}/>
             <Route path={PAGE_SIX} render={() => <TransportModeContainer/>}/>
-            <Route path={PAGE_SEVEN} render={() => <PageFive/>}/>
+            <Route path={PAGE_SEVEN} render={() => <InProgress/>}/>
 
             <Route path={PAGE_NOT_FOUND}
                    render={() => <Page404/>}
