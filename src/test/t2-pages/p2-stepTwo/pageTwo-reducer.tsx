@@ -191,23 +191,15 @@ const slice = createSlice({
 			},
 
 			// выбор варианта размещения груза
-			setPackagingPosition(state, action: PayloadAction<{ id: string, name: string, position: boolean }>) {
-				state.packagingItems.map(item => {
-					if (item.id === action.payload.id) {
-							if (action.payload.name === 'inHeight') {
-								 item.inHeight = action.payload.position
-							} else if(action.payload.name === 'inLength') {
-								 item.inLength = action.payload.position
-							} else if(action.payload.name === 'inWidth') {
-								 item.inWidth = action.payload.position ;
-							};
-
+			setPackagingPosition: function (state, action: PayloadAction<{ id: string, name: string, position: boolean }>) {
+				state.packagingCargo.map(item => {
+						if (item.id === action.payload.id) {
+							// @ts-ignore
+							item[action.payload.name] = action.payload.position;
 						}
 					}
-				);
+				)
 			},
-
-
 			//удаляем не нужный груз из массива(таблица с грузом)
 			deletePackagingCargo(state, action: PayloadAction<{ id: string }>) {
 				const index = state.packagingCargo.findIndex(c => c.id === action.payload.id);
