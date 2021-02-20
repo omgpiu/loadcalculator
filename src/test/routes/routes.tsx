@@ -10,6 +10,10 @@ import PageThree from '../t2-pages/p3-stepThree/pageThree';
 import Page4Pallets from '../t2.1-pages/p4-pallets/p4-pallets';
 import {InProgress} from '../t5-common/page404/inprogress';
 
+export  const routes =  {
+    LOGIN: '/login',
+    PAGE_ONE: 'packing'
+}
 
 export const LOGIN = '/login';
 export const PAGE_ONE = '/';
