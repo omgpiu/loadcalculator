@@ -5,7 +5,7 @@ import {getPackagingCargo} from "../p2-stepTwo/pageTwo-selector";
 import {useSelector} from "react-redux";
 
 
-export const CargoPage = () => {
+export const CargoPage: React.FC = () => {
 
 	const packagingCargo = useSelector(getPackagingCargo)
 

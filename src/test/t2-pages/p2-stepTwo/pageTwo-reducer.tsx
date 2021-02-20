@@ -9,43 +9,44 @@ import barrel from './../../../assets/images/i2-pagetwo/steel-barrel.jpg';
 import {v1} from 'uuid';
 import {appActions} from '../../../main/m2-bll/appReducer';
 import {page5} from '../../../main/m3-dal/api-service';
+import {LoginParamsType} from '../../t1-login/loginReducer';
 
 const initialState = {
     totalCargoValue: {
-        // cargoMass: 3.5,
-        // cargoVolume: 12.84,
-        // maxH: 1.4,
-        // maxL: 0.3,
-        // maxW: 0.4,
+        cargoMass: 3.5,
+        cargoVolume: 12.84,
+        maxH: 1.4,
+        maxL: 0.3,
+        maxW: 0.4,
     } as TotalCargoValueType,
     packagingCargo: [
-        // {
-        //     id: '11',
-        //     img: box,
-        //     title: 'КОРОБКИ',
-        //     width: 1001,
-        //     height: 1400,
-        //     length: 1003,
-        //     diameter: 0,
-        //     volume: 0,
-        //     weight: 1006,
-        //     amount: 10,
-        //     cargoTitle: 'КОРОБКИ'
-        //
-        // },
-        // {
-        //     id: '12',
-        //     img: bigBag,
-        //     title: 'Б ИГ БЭГИ',
-        //     width: 1001,
-        //     height: 1002,
-        //     length: 1003,
-        //     diameter: 0,
-        //     volume: 0,
-        //     weight: 1006,
-        //     amount: 10,
-        //     cargoTitle: 'БИГ БЭГИ'
-        // },
+        {
+            id: '11',
+            img: box,
+            title: 'КОРОБКИ',
+            width: 1001,
+            height: 1400,
+            length: 1003,
+            diameter: 0,
+            volume: 0,
+            weight: 1006,
+            amount: 10,
+            cargoTitle: 'КОРОБКИ'
+
+        },
+        {
+            id: '12',
+            img: bigBag,
+            title: 'Б ИГ БЭГИ',
+            width: 1001,
+            height: 1002,
+            length: 1003,
+            diameter: 0,
+            volume: 0,
+            weight: 1006,
+            amount: 10,
+            cargoTitle: 'БИГ БЭГИ'
+        },
     ] as PackagingItemType[],
     packagingItems: [
         {
@@ -143,21 +144,19 @@ const initialState = {
 
     ] as PackagingItemType[],
     //тестовый массив , в дальнейшем будет возвращать в  totalCargoValue
-    packagingCargoBack: [
-    //     {
-    //     id: '11',
-    //     img: box,
-    //     title: 'КОРОБКИ',
-    //     width: 1001,
-    //     height: 1002,
-    //     length: 1003,
-    //     diameter: 0,
-    //     volume: 0,
-    //     weight: 1006,
-    //     amount: 10,
-    //     cargoTitle: 'КОРОБКИ'
-    // },
-    ] as PackagingItemType[],
+    packagingCargoBack: [{
+        id: '11',
+        img: box,
+        title: 'КОРОБКИ',
+        width: 1001,
+        height: 1002,
+        length: 1003,
+        diameter: 0,
+        volume: 0,
+        weight: 1006,
+        amount: 10,
+        cargoTitle: 'КОРОБКИ'
+    },] as PackagingItemType[],
 
 };
 

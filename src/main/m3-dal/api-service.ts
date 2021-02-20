@@ -61,6 +61,13 @@ export const pageOne = {
     }
 
 };
+export const page2 = {
+   addCargoToTable(param: PackagingItemType) {
+        return fakeRequest(param, 'cargo was added from back');
+    },
+
+
+};
 export const page3 = {
     sendWithPallet(withPallet: PayloadTypeForLoading) {
         return fakeRequest(withPallet, 'отправка флага с паллетами или нет');
