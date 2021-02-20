@@ -1,40 +1,41 @@
-import React from "react";
+import React, {ChangeEvent} from 'react';
 import st from './PageFive.module.css';
-import {useDispatch, useSelector} from "react-redux";
-import {setPackagingPosition} from '../p2-stepTwo/pageTwo-reducer';
+import {useDispatch} from 'react-redux';
+import {NameType, setPackagingPosition} from '../p2-stepTwo/pageTwo-reducer';
 
 type PropsType = {
-	img: string
-	description: string
-	cargoId: string
-	position: boolean
-	checkName: string
+    img: string
+    description: string
+    cargoId: string
+    position: boolean
+    checkName: string
 }
 
 export const CargoBlock: React.FC<PropsType> = (props) => {
 
-	const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-const positionSelect = (e: any) => {
-	let position = e.currentTarget.checked
-	dispatch(setPackagingPosition({id: e.currentTarget.id, name: e.currentTarget.name, position}))
-}
+    const positionSelect = (e: ChangeEvent<HTMLInputElement>) => {
+        let position = e.currentTarget.checked;
+        dispatch(setPackagingPosition({id: e.currentTarget.id, name: e.currentTarget.name as NameType, position}));
+    };
 
-	return <div className={st.cargoBlock}>
+    return <div className={st.cargoBlock}>
 
-		<p className={st.desc}>{props.description}</p>
+        <p className={st.desc}>{props.description}</p>
 
-		<div className={st.block}>
+        <div className={st.block}>
 
-			<div className={st.blockImage}>
-				<img src={props.img} width='100px' height='100px' alt='cargoPosition'/>
-			</div>
+            <div className={st.blockImage}>
+                <img src={props.img} width='100px' height='100px' alt='cargoPosition'/>
+            </div>
 
-			<div className={st.check}>
-				<input type="checkbox" id={props.cargoId} checked={props.position}
-					    name={props.checkName} onChange={positionSelect}/>
-			</div>
+            <div className={st.check}>
+                <input type="checkbox" id={props.cargoId} checked={props.position}
+                       name={props.checkName} onChange={positionSelect}/>
 
-		</div>
-	</div>
-}
+            </div>
+
+        </div>
+    </div>;
+};

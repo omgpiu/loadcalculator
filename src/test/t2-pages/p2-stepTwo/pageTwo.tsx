@@ -3,7 +3,7 @@ import {Button, Col, Row} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import st from './pageTwo.module.css';
 import {getPackagingItems} from './pageTwo-selector';
-import {PackagingItemType, ParamType, setPackagingCargoTC, setPackagingParams} from './pageTwo-reducer';
+import {PackagingItemType, ParamType, setPackagingCargo, setPackagingParams} from './pageTwo-reducer';
 import {PAGE_ONE, PAGE_THREE} from '../../routes/routes';
 import {CargoTable} from './CargoTable';
 import '../../../main/m1-ui/App.css';
@@ -17,7 +17,7 @@ const PageTwo: React.FC = () => {
     const packagingItems = useSelector(getPackagingItems);
 
     const onClickHandler = (item: PackagingItemType) => {
-        dispatch(setPackagingCargoTC(item));
+        dispatch(setPackagingCargo(item));
     };
 
     const onChangeHandler = (id: string, param: ParamType, paramQuantity: number | string) => {
