@@ -1,13 +1,14 @@
 import {CargoModule} from "./CargoModule";
-import React from "react";
+import React, {useEffect} from "react";
 import st from './PageFive.module.css'
 import {getPackagingCargo} from "../p2-stepTwo/pageTwo-selector";
 import {useSelector} from "react-redux";
+import { useDidUpdate } from "../../helpers/useDidUpdate";
 
 
 export const CargoPage: React.FC = () => {
 
-	const packagingCargo = useSelector(getPackagingCargo)
+	const packagingCargo = useSelector(getPackagingCargo);
 
 	return <div className={st.cargoPage}>
 

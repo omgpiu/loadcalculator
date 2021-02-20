@@ -1,12 +1,25 @@
 import React from "react";
 import st from './PageFive.module.css';
+import {useDispatch, useSelector} from "react-redux";
+import {setPackagingPosition} from '../p2-stepTwo/pageTwo-reducer';
 
 type PropsType = {
 	img: string
 	description: string
+	cargoId: string
+	position: boolean
+	checkName: string
 }
 
 export const CargoBlock: React.FC<PropsType> = (props) => {
+
+	const dispatch = useDispatch();
+
+const positionSelect = (e: any) => {
+	let position = e.currentTarget.checked
+	dispatch(setPackagingPosition({id: e.currentTarget.id, name: e.currentTarget.name, position}))
+}
+
 	return <div className={st.cargoBlock}>
 
 		<p className={st.desc}>{props.description}</p>
@@ -18,7 +31,8 @@ export const CargoBlock: React.FC<PropsType> = (props) => {
 			</div>
 
 			<div className={st.check}>
-				<input type="checkbox"/>
+				<input type="checkbox" id={props.cargoId} checked={props.position}
+					    name={props.checkName} onChange={positionSelect}/>
 			</div>
 
 		</div>

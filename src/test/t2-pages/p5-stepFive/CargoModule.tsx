@@ -15,15 +15,21 @@ export const CargoModule: React.FC<PropsType> = (props) => {
 	const blockInfo = [
 		{
 			title: 'В высоту',
-			image: cargoHeight
+			image: cargoHeight,
+			cargoPosition: props.packagingItem.inHeight,
+			checkName: 'inHeight'
 		},
 		{
 			title: 'В длину',
-			image: cargoLength
+			image: cargoLength,
+			cargoPosition: props.packagingItem.inLength,
+			checkName: 'inLength'
 		},
 		{
 			title: 'В ширину',
-			image: cargoWidth
+			image: cargoWidth,
+			cargoPosition: props.packagingItem.inWidth,
+			checkName: 'inWidth'
 		}
 	];
 
@@ -42,7 +48,9 @@ export const CargoModule: React.FC<PropsType> = (props) => {
 		<div className={st.cargoBlocks}>
 			{
 				blockInfo.map(item => {
-					return <CargoBlock description={item.title} img={item.image}/>
+					return <CargoBlock description={item.title} img={item.image}
+					cargoId={props.packagingItem.id} position={item.cargoPosition}
+									   checkName={item.checkName}/>
 				})
 			}
 		</div>
