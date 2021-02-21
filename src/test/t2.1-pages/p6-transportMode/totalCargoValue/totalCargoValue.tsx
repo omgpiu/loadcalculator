@@ -2,7 +2,7 @@ import React from 'react';
 import st from './totalCargoValue.module.scss'
 import {TotalCargoValueType} from '../../../t2-pages/p2-stepTwo/pageTwo-reducer';
 
-export const TotalCargoValue: React.FC<{ totalCargoValue: TotalCargoValueType }> = ({totalCargoValue}) => {
+export const TotalCargoValue: React.FC<{ totalCargoValue: TotalCargoValueType }> = React.memo(({totalCargoValue}) => {
     return (
         <>
             <h4 className={st.TotalCargoValue_title}> Общие параметры груза:</h4>
@@ -22,4 +22,4 @@ export const TotalCargoValue: React.FC<{ totalCargoValue: TotalCargoValueType }>
             </div>
         </>
     )
-}
+})

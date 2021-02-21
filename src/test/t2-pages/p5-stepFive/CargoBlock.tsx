@@ -11,7 +11,7 @@ type PropsType = {
     checkName: string
 }
 
-export const CargoBlock: React.FC<PropsType> = (props) => {
+export const CargoBlock: React.FC<PropsType> = React.memo((props) => {
 
     const dispatch = useDispatch();
 
@@ -38,4 +38,4 @@ export const CargoBlock: React.FC<PropsType> = (props) => {
 
         </div>
     </div>;
-};
+});

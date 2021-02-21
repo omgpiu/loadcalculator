@@ -7,7 +7,7 @@ import {setCurrentPageUrl} from '../../../main/m2-bll/appReducer';
 import st from './buttonBlock.module.scss';
 import WithCurrentPageUrl from '../../HOC/withCurrentPageUrl';
 
-const ButtonBlock: React.FC<PropsType> = ({
+const ButtonBlock: React.FC<PropsType> = React.memo(({
                                               nextPageLink, prevPageLink, htmlType,
                                               type, parentClickHandler,
                                               currentPageUrl, disabled
@@ -33,7 +33,7 @@ const ButtonBlock: React.FC<PropsType> = ({
             </div>}
         </div>
     )
-}
+})
 
 type PropsType = {
     nextPageLink?: string

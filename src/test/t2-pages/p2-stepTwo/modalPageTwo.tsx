@@ -10,7 +10,7 @@ type PropsType = {
     item: PackagingItemType
     onChangeHandler: (id: string, param: ParamType, paramQuantity: number) => void
 }
-export const ModalPageTwo: React.FC<PropsType> = ({isModalVisible, handleOk, handleCancel, item, onChangeHandler}) => {
+export const ModalPageTwo: React.FC<PropsType> = React.memo(({isModalVisible, handleOk, handleCancel, item, onChangeHandler}) => {
 
     return (
         <>
@@ -21,4 +21,4 @@ export const ModalPageTwo: React.FC<PropsType> = ({isModalVisible, handleOk, han
             </Modal>
         </>
     );
-};
+});

@@ -8,7 +8,7 @@ type PropsType = {
     item: PackagingItemType
 }
 //компонента для отрисовки импутов товара
-export const PageTwoInputsComponent: React.FC<PropsType> = ({
+export const PageTwoInputsComponent: React.FC<PropsType> = React.memo(({
                                                                 item,
                                                                 onChangeHandler
                                                             }) => {
@@ -72,4 +72,4 @@ export const PageTwoInputsComponent: React.FC<PropsType> = ({
 
         </div>
     );
-};
+});

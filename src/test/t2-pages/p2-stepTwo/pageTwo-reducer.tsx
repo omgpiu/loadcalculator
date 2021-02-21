@@ -190,7 +190,7 @@ const slice = createSlice({
 
             // выбор варианта размещения груза
             setPackagingPosition: function (state, action: PayloadAction<{ id: string, name: NameType, position: boolean }>) {
-                debugger
+
                 state.packagingCargo.map(item => {
                         if (item.id === action.payload.id) {
                             item[action.payload.name] = action.payload.position;

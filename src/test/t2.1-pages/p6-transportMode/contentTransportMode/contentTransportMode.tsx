@@ -2,7 +2,7 @@ import React, {CSSProperties} from 'react';
 import st from '../transportMode.module.scss';
 import {Radio, RadioChangeEvent} from 'antd';
 
-export const ContentTransportMode: React.FC<PropsType> = ({mode, text_description, onChange, img: containerImg}) => {
+export const ContentTransportMode: React.FC<PropsType> = React.memo(({mode, text_description, onChange, img: containerImg}) => {
     const style: CSSProperties = {
         display: 'flex',
         justifyContent: 'space-around',
@@ -31,7 +31,7 @@ export const ContentTransportMode: React.FC<PropsType> = ({mode, text_descriptio
             </div>
         </>
     )
-}
+})
 type PropsType = {
     mode: number
     text_description: { autoModeText: string, selectModeText: string }

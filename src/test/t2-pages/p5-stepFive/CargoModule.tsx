@@ -11,7 +11,7 @@ type PropsType = {
     packagingItem: PackagingItemType
 }
 
-export const CargoModule: React.FC<PropsType> = (props) => {
+export const CargoModule: React.FC<PropsType> = React.memo((props) => {
 
     const blockInfo = [
         {
@@ -60,4 +60,4 @@ export const CargoModule: React.FC<PropsType> = (props) => {
         </div>
 
     </div>;
-};
+});
