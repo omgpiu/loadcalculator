@@ -34,6 +34,13 @@ export const CargoModule: React.FC<PropsType> = React.memo((props) => {
             image: cargoWidth,
             cargoPosition: props.packagingItem.inWidth,
             checkName: 'inWidth'
+        },
+        {
+            id: v1(),
+            title: 'Укладка',
+            image: cargoWidth,
+            cargoPosition: props.packagingItem.isStack,
+            checkName: 'isStack'
         }
     ];
 

@@ -34,7 +34,8 @@ const initialState = {
             cargoTitle: 'КОРОБКИ',
             inHeight: false,
             inLength: false,
-            inWidth: false
+            inWidth: false,
+            isStack: false
         },
         {
             id: '12',
@@ -50,7 +51,8 @@ const initialState = {
             cargoTitle: 'БИГ БЭГИ',
             inHeight: false,
             inLength: false,
-            inWidth: false
+            inWidth: false,
+            isStack: false
 
         },
         {
@@ -67,7 +69,8 @@ const initialState = {
             cargoTitle: 'ПАЛЛЕТЫ',
             inHeight: false,
             inLength: false,
-            inWidth: false
+            inWidth: false,
+            isStack: false
         },
         {
             id: '14',
@@ -83,7 +86,8 @@ const initialState = {
             cargoTitle: 'ТРУБЫ',
             inHeight: false,
             inLength: false,
-            inWidth: false
+            inWidth: false,
+            isStack: false
         },
         {
             id: '15',
@@ -99,8 +103,8 @@ const initialState = {
             cargoTitle: 'ШИНЫ',
             inHeight: false,
             inLength: false,
-            inWidth: false
-
+            inWidth: false,
+            isStack: false
         },
         {
             id: '16',
@@ -116,7 +120,8 @@ const initialState = {
             cargoTitle: 'ЯЩИКИ',
             inHeight: false,
             inLength: false,
-            inWidth: false
+            inWidth: false,
+            isStack: false
         },
         {
             id: '17',
@@ -132,7 +137,8 @@ const initialState = {
             cargoTitle: 'БОЧКИ',
             inHeight: false,
             inLength: false,
-            inWidth: false
+            inWidth: false,
+            isStack: false
         },
 
     ] as PackagingItemType[],
@@ -242,6 +248,7 @@ export type PackagingItemType = {
     inHeight: boolean
     inLength: boolean
     inWidth: boolean
+    isStack: boolean
 }
 export type TotalCargoValueType = {
     cargoVolume: number
