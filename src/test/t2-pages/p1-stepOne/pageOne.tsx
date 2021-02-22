@@ -37,17 +37,7 @@ import WithAuthRedirect from '../../HOC/withAuthRedirect';
     const loadPlaceOnClickHandler = () => {
         dispatch(determineLoadPlace());
     };
-    // для отрисовки загрузки файла и сообщения об успешности/или нет
-    // const onChange = (info: UploadChangeParam) => {
-    //     if (isUploaded !== 'uploading') {
-    //         console.log(isUploaded + 'asdasd');
-    //     }
-    //     if (isUploaded === 'done') {
-    //         message.info(isUploaded + 'file uploaded successfully', 2);
-    //     } else if (isUploaded === 'error') {
-    //         message.error(isUploaded + ` file upload failed.`, 2);
-    //     }
-    // };
+
     const prop = {
         onChange(info: UploadChangeParam) {
             info.file.status = isUploaded;
@@ -56,7 +46,6 @@ import WithAuthRedirect from '../../HOC/withAuthRedirect';
     if (!isAuth) {
         return <Redirect to={LOGIN}/>;
     }
-
     return (
         <div className={st.pageOneMain}>
             <p>Выбор загружаемого пространства</p>
