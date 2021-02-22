@@ -13,7 +13,7 @@ export const CargoPage: React.FC = () => {
 
 		{
 			packagingCargo.map((el, index) => {
-				return <CargoModule packagingItem={el} key={index}/>
+				return <CargoModule packagingItem={el} cargoNumber={index + 1} key={index}/>
 			})
 		}
 

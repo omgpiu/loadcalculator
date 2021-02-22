@@ -26,7 +26,7 @@ export const PageTwoInputsComponent: React.FC<PropsType> = React.memo(({
                        }}/>
             </div>
             <div >
-                {!!item.length && 'Длинна'} {item.length && item.length !== 0 ?
+                {!!item.length && 'Длина'} {item.length && item.length !== 0 ?
                 <InputNumber  type="number" min={1} value={item.length} onChange={(e) => {
                     onChange(item.id, 'length', e as number);
                 }}/> : null}
