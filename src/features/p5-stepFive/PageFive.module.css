@@ -1,0 +1,62 @@
+.pageFiveMain {
+    max-width: 1223px;
+
+    min-height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column
+}
+
+.noticeTitle {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.noticeDesc {
+    text-align: left;
+    line-height: 30%;
+}
+
+.cargoPage {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.cargoModule {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    min-width: 360px;
+    min-height: 200px;
+
+}
+
+.cargoBlocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-left: 150px;
+}
+
+.cargoDesc {
+    max-width: 150px;
+    line-height: 50%;
+}
+
+.notice {
+    padding-bottom: 20px;
+}
+
+.cargoBlock {
+    display: flex;
+    padding-left: 30px;
+}
+
+.blockImage {
+    max-width: 150px;
+    max-height: 150px;
+}
