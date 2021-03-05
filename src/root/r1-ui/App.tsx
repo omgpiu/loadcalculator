@@ -2,47 +2,44 @@ import React, {useEffect} from 'react';
 import './App.css';
 import {Layout} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
-import {HeaderSteps} from './headerSteps';
 import {LeftSideBar} from './leftSideBar';
 import {authMe} from '../../features/authorization/a-2-bll/auth-Reducer';
+import {getAppStatus} from '../r2-bll/app-selector';
 import {getIsAuth} from '../../features/authorization/a-2-bll/auth-selectors';
-import {Routes} from '../routes/routes';
+import {Spinner} from '../../common/utils/spiner';
+import {CalcContent} from '../../features/calculator/calcContent';
+import {Login} from '../../features/authorization/a-1-ui/login/login';
 
 
-const {Header, Content, Footer} = Layout;
+const {Footer} = Layout;
 
 
 const App = () => {
     const dispatch = useDispatch();
-    const isAuth = useSelector(getIsAuth);
-    // const status = useSelector(getAppStatus);
 
+    const status = useSelector(getAppStatus);
+    const isAuth = useSelector(getIsAuth)
     useEffect(() => {
         dispatch(authMe())
     }, [dispatch])
 
-
-    // const loading: boolean = status === 'loading'
-    // if (loading) return <Spin style={styleSpin} size='large'/>
-
+// полностью блочит приложение, но нет прыжков
+    if (status === 'loading') return <Spinner/>
     return (
-        <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
-            {isAuth && <LeftSideBar/>}
-            <Layout className="site-layout">
-                <Header className="site-layout-background"
-                        style={{paddingLeft: '10px', paddingRight: '15px', paddingTop: '10px'}}>
-                    {isAuth && <HeaderSteps/>}
-                </Header>
-                <Content style={{margin: '80px 80px'}}>
-                    <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
-                        <Routes/>
-                    </div>
-                </Content>
-                <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
-            </Layout>
-        </Layout>
-    );
-};
+        <>
+            {isAuth
+                ? <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
+                    <LeftSideBar/>
+                    <Layout className="site-layout">
+                        <CalcContent/>
+                        <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
+                    </Layout>
+                </Layout>
+                : <Login/>
+            }
+        </>
+    )
+}
 export default App;
 
 

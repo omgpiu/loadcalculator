@@ -1,5 +1,5 @@
-import {TransportType} from '../../../root/r3-dal/api-service';
-import {PackagingItemType, TotalCargoValueType} from '../../../features/p2-stepTwo/pageTwo-reducer';
+import {PackagingItemType, TotalCargoValueType, TransportType} from '../../types';
+
 
 export const calcTotalValueCargo = ((arr: PackagingItemType[]) => {
     //считает общий объем и массу груза введенного на странице 2 ,

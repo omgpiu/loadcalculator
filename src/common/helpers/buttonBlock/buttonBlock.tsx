@@ -5,9 +5,9 @@ import Button from 'antd/es/button';
 import {useDispatch} from 'react-redux';
 import {setCurrentPageUrl} from '../../../root/r2-bll/appReducer';
 import st from './buttonBlock.module.scss';
-import WithCurrentPageUrl from '../withCurrentPageUrl';
+import WithCurrentPageUrl from '../hook_HOC/withCurrentPageUrl';
 
-const ButtonBlock: React.FC<PropsType> = ({
+const ButtonBlock: React.FC<PropsType> = React.memo(({
                                               nextPageLink, prevPageLink, htmlType,
                                               type, parentClickHandler,
                                               currentPageUrl, disabled
@@ -33,7 +33,7 @@ const ButtonBlock: React.FC<PropsType> = ({
             </div>}
         </div>
     )
-}
+})
 
 type PropsType = {
     nextPageLink?: string

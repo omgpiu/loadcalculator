@@ -1,7 +1,7 @@
 import {Result} from 'antd';
 import React from 'react';
 import ButtonBlock from '../../common/helpers/buttonBlock/buttonBlock';
-import {PAGE_SIX} from '../../root/routes/routes';
+import {PAGE_SIX} from '../../root/routes/routesCalc';
 
 
 export const InProgress: React.FC = () => {

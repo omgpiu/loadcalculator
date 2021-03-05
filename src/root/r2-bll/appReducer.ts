@@ -88,12 +88,14 @@ const slice = createSlice({
     initialState,
     reducers: {
         setCurrentPageUrl(state, action: PayloadAction<{ page: string }>) {
+            debugger
             state.currentPageUrl = action.payload.page;
             state.currentStep = setCurrentStepWithCurrentUrl(action.payload.page, state.steps)
         },
-        setCurrentStep(state, action: PayloadAction<{ page: number }>) {
-            state.currentStep = action.payload.page;
-        },
+        // setCurrentStep(state, action: PayloadAction<{ page: number }>) {
+        //     debugger
+        //     state.currentStep = action.payload.page;
+        // },
 
     },
     extraReducers: builder => {
@@ -107,7 +109,7 @@ const slice = createSlice({
             });
     }
 });
-export const {setCurrentPageUrl, setCurrentStep} = slice.actions;
+export const {setCurrentPageUrl, /*setCurrentStep*/} = slice.actions;
 export const appReducer = slice.reducer;
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'

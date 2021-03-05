@@ -1,7 +1,7 @@
 import {Button, Result} from 'antd';
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {PAGE_ONE} from '../../root/routes/routes';
+import {PAGE_ONE} from '../../root/routes/routesCalc';
 
 export const Page404: React.FC = () => {
     return (

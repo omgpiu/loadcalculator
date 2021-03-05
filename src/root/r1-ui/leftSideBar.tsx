@@ -3,18 +3,23 @@ import {useDispatch} from 'react-redux';
 import React, {useState} from 'react';
 import {logout} from '../../features/authorization/a-2-bll/auth-Reducer';
 import {LogoutOutlined, UserOutlined} from '@ant-design/icons';
-import {Link} from 'react-router-dom';
-import {LOGIN} from '../routes/routes';
+import {Link, useHistory} from 'react-router-dom';
+import {LOGIN} from '../routes/routesCalc';
+
+
+
 
 export const LeftSideBar = () => {
     const {Sider} = Layout
     const dispatch = useDispatch();
+    const history = useHistory();
     const [collapsed, setCollapsed] = useState(false);
     const onCollapse = () => {
         setCollapsed(!collapsed);
     };
     const logoutOnClickHandler = () => {
         dispatch(logout());
+        history.push('/')
     };
 
 

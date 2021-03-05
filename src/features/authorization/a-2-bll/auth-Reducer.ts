@@ -14,10 +14,12 @@ export const authMe = createAsyncThunk('app/authMe', async (param, {dispatch, re
     dispatch(appActions.setAppStatusAC({status: 'loading'}));
     try {
         await authAPI.authMe();
-        dispatch(authActions.setIsAuth({isAuth:true}))
+        dispatch(authActions.setIsAuth({isAuth: true}))
         dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
         return
     } catch (err) {
+        dispatch(authActions.setIsAuth({isAuth: false}))
+        dispatch(appActions.setAppStatusAC({status: 'failed'}))
         return rejectWithValue(err.message)
     }
 });
@@ -28,7 +30,7 @@ export const login = createAsyncThunk('auth/login', async (param: LoginParamsTyp
     dispatch(appActions.setAppStatusAC({status: 'loading'}));
     try {
         const res = await authAPI.login(param);
-        dispatch(authActions.setIsAuth({isAuth:true}))
+        dispatch(authActions.setIsAuth({isAuth: true}))
         dispatch(profileActions.setProfileAC({profile: res}))
         dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
         return
@@ -38,13 +40,14 @@ export const login = createAsyncThunk('auth/login', async (param: LoginParamsTyp
     }
 });
 export const logout = createAsyncThunk<undefined, undefined,
-    { rejectValue: { error: string, fieldsErrors?: Array<any> } }>('auth/logout', async (param, {dispatch,
+    { rejectValue: { error: string, fieldsErrors?: Array<any> } }>('auth/logout', async (param, {
+    dispatch,
     rejectWithValue
 }) => {
     dispatch(appActions.setAppStatusAC({status: 'loading'}));
     try {
         await authAPI.logout();
-        dispatch(authActions.setIsAuth({isAuth:false}))
+        dispatch(authActions.setIsAuth({isAuth: false}))
         dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
         return;
     } catch (error) {
