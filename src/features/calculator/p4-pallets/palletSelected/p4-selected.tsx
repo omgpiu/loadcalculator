@@ -13,7 +13,7 @@ export const PalletSelected: React.FC<PropsType> = React.memo(({pallet, choicePa
 
     return (
         <div style={{paddingTop: '25px'}}>
-            <img src={pallet.img} alt='palletImg' className={st.pallets_img}> </img>
+            <img src={pallet.img} alt='palletImg' className={st.pallets_img}></img>
             <Select defaultValue={pallet.typePallet} style={{width: 190}} onChange={handleChange}>
                 <Option value='FIN'>FIN</Option>
                 <Option value='EUR'>EUR</Option>

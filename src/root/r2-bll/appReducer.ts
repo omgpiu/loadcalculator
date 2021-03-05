@@ -88,7 +88,6 @@ const slice = createSlice({
     initialState,
     reducers: {
         setCurrentPageUrl(state, action: PayloadAction<{ page: string }>) {
-            debugger
             state.currentPageUrl = action.payload.page;
             state.currentStep = setCurrentStepWithCurrentUrl(action.payload.page, state.steps)
         },

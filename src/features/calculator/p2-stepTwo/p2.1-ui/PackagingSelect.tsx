@@ -13,7 +13,7 @@ const {onHandleChange,bagType,img } = props
 
     return (
         <div>
-            <img src={img} alt='Img' className={st.p2_img}> </img>
+            <img src={img} alt='Img' className={st.p2_img}></img>
             <Select defaultValue={bagType} style={{width: 190}} onChange={handleChange}>
                 <Option value='КОРОБКИ'>КОРОБКИ</Option>
                 <Option value='БИГ БЭГИ'>БИГ БЭГИ</Option>
