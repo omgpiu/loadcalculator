@@ -1,0 +1,24 @@
+.p2 {
+   &_wrapper {
+      min-height: 400px;
+      margin: 0 auto;
+      max-width: 650px;
+      position: relative;
+
+      p {
+         font-size: 20px;
+         text-align: center;
+      }
+   }
+   &_inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: flex-start;
+   }
+   &_img{
+      margin-bottom: 20px;
+      display: block;
+      max-width: 190px
+   }
+}
