@@ -8,7 +8,6 @@ import {getAppStatus} from '../r2-bll/app-selector';
 import {getIsAuth} from '../../features/authorization/a-2-bll/auth-selectors';
 import {Spinner} from '../../common/utils/spiner';
 import {CalcContent} from '../../features/calculator/calcContent';
-import {Login} from '../../features/authorization/a-1-ui/login/login';
 
 
 const {Footer} = Layout;
@@ -18,28 +17,38 @@ const App = () => {
     const dispatch = useDispatch();
 
     const status = useSelector(getAppStatus);
-    const isAuth = useSelector(getIsAuth)
+    const isAuth = useSelector(getIsAuth);
     useEffect(() => {
-        dispatch(authMe())
-    }, [dispatch])
+        dispatch(authMe());
+    }, [dispatch]);
 
 // полностью блочит приложение, но нет прыжков
-    if (status === 'loading') return <Spinner/>
+    if (status === 'loading') return <Spinner/>;
     return (
         <>
-            {isAuth
-                ? <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
-                    <LeftSideBar/>
-                    <Layout className="site-layout">
-                        <CalcContent/>
-                        <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
-                    </Layout>
+            {/*{isAuth*/}
+            {/*    ? <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>*/}
+            {/*        <LeftSideBar/>*/}
+            {/*        <Layout className="site-layout">*/}
+            {/*            <CalcContent/>*/}
+            {/*            <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>*/}
+            {/*        </Layout>*/}
+            {/*    </Layout>*/}
+            {/*    : <Login/>*/}
+            {/*}*/}
+
+            <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
+                <LeftSideBar/>
+                <Layout className="site-layout">
+                    <CalcContent/>
+                    <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>
-                : <Login/>
-            }
+            </Layout>
+
+
         </>
-    )
-}
+    );
+};
 export default App;
 
 

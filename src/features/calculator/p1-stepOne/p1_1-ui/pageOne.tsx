@@ -43,9 +43,7 @@ const PageOne: React.FC = () => {
             info.file.status = isUploaded;
         }
     };
-    if (!isAuth) {
-        return <Redirect to={LOGIN}/>;
-    }
+
     return (
         <div className={st.pageOneMain}>
             <p>Выбор загружаемого пространства</p>
