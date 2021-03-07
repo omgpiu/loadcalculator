@@ -6,18 +6,17 @@ import PageTwo from '../../features/calculator/p2-stepTwo/p2.1-ui/pageTwo';
 import PageThree from '../../features/calculator/p3-stepThree/p3_1-ui/pageThree';
 import Page4Pallets from '../../features/calculator/p4-pallets/p4-pallets';
 import TransportModeContainer from '../../features/calculator/p6-transportMode/p6-transportMode-Container';
-import {PageFive} from '../../features/calculator/p5-stepFive/PageFive';
+
 import {Login} from '../../features/authorization/a-1-ui/login/login';
 import {Forgot} from '../../features/authorization/a-1-ui/forgot/forgot';
-import {Result} from '../../features/calculator/p7-result/result';
+import Result from '../../features/calculator/p7-result/result';
+import PageFive from '../../features/calculator/p5-stepFive/PageFive';
 
 
-
-
-
-export const FORGOT = '/forgot'
 export const LOGIN = '/login';
-export const PAGE_ONE = '/';
+export const FORGOT = '/forgot'
+
+export const PAGE_ONE = '/loadcalculator';
 export const PAGE_TWO = '/packing';
 export const PAGE_THREE = '/cargo';
 export const PAGE_FOUR = '/pallets';
@@ -31,6 +30,9 @@ export const RoutesCalc = () => {
     return <>
         <Switch>
 
+            <Route path={LOGIN} render={() => <Login/>}/>
+            <Route path={FORGOT} render={() => <Forgot/>}/>
+
             <Route exact path={PAGE_ONE} render={() => <PageOne/>}/>
             <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
@@ -38,8 +40,7 @@ export const RoutesCalc = () => {
             <Route path={PAGE_FIVE} render={() => <PageFive/>}/>
             <Route path={PAGE_SIX} render={() => <TransportModeContainer/>}/>
             <Route path={PAGE_SEVEN} render={() => <Result/>}/>
-            <Route path={LOGIN} render={() => <Login/>}/>
-            <Route path={FORGOT} render={() => <Forgot/>}/>
+
 
             <Route path={PAGE_NOT_FOUND}
                    render={() => <Page404/>}

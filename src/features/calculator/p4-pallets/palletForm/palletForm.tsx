@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import ButtonBlock from '../../../../common/helpers/buttonBlock/buttonBlock';
 import {PAGE_FIVE, PAGE_THREE} from '../../../../root/routes/routesCalc';
 import {PalletType} from '../../../../common/types';
-import {setPalletParametersTC} from '../../payment/p2-bll/payment-thunk';
+import {setPalletParametersTC} from '../../p10-calc-bll/payment-thunk';
 
 
 export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}) => {
@@ -45,8 +45,7 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
         number: {range: '${min} - ${max}'}
     };
     const onFinish = () => {
-        console.log('finish form choice pallet')
-        dispatch(setPalletParametersTC(pallet));
+       return dispatch(setPalletParametersTC(pallet));
     };
 
     return (

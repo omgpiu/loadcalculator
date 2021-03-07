@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {TransportMode} from './p6-transportMode';
-import {getTotalCargoValue} from '../p2-stepTwo/p2.1-ui/pageTwo-selector';
+import {getTotalCargoValue} from '../p2-stepTwo/p2.2-bll/pageTwo-selector';
 import ButtonBlock from '../../../common/helpers/buttonBlock/buttonBlock';
 import {PAGE_FIVE} from '../../../root/routes/routesCalc';
-import {getLoadPlace} from '../payment/p2-bll/payment-selectors';
+import {getLoadPlace} from '../p10-calc-bll/payment-selectors';
 import {autoData, containerData} from '../../../common/staticData';
+import WithAuthRedirect from '../../../common/helpers/hook_HOC/withAuthRedirect';
 
 
 const TransportModeContainer = React.memo(() => {
@@ -47,4 +48,4 @@ const TransportModeContainer = React.memo(() => {
     </>
 })
 
-export default TransportModeContainer
+export default WithAuthRedirect(TransportModeContainer)

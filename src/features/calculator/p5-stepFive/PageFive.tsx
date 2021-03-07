@@ -1,16 +1,17 @@
 import React from 'react';
 import st from './PageFive.module.css';
-import {CargoPage} from './CargoPage';
+import CargoPage from './CargoPage';
 import ButtonBlock from '../../../common/helpers/buttonBlock/buttonBlock';
 import {PAGE_FOUR, PAGE_SIX, PAGE_THREE} from '../../../root/routes/routesCalc';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../root/r2-bll/store';
 import {PayloadTypeForLoading} from '../../../common/types';
+import WithAuthRedirect from '../../../common/helpers/hook_HOC/withAuthRedirect';
 
 
-export const PageFive: React.FC = () => {
+const PageFive: React.FC = () => {
 
-    const withPallet = useSelector<AppRootStateType, PayloadTypeForLoading>(s => s.payment.withPallet)
+    const withPallet = useSelector<AppRootStateType, PayloadTypeForLoading>(s => s.payments.withPallet)
 
     return <div className={st.pageFiveMain}>
 
@@ -32,4 +33,4 @@ export const PageFive: React.FC = () => {
     </div>;
 };
 
-export default PageFive
+export default WithAuthRedirect(PageFive)

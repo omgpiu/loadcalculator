@@ -9,18 +9,19 @@ import {FormValueType, PackagingForm} from './pageTwoForm';
 import {PackagingSelect} from './PackagingSelect';
 import {Spin} from 'antd';
 import {AppRootStateType} from '../../../../root/r2-bll/store';
-import {RequestStatusType} from '../../../../root/r2-bll/appReducer';
 import {packagingBags} from '../../../../common/staticData';
-import {setPackagingCargo} from '../../payment/p2-bll/payment-reducer';
-import {setCountedCargoParam} from '../../payment/p2-bll/payment-thunk';
+import {setPackagingCargo} from '../../p10-calc-bll/payment-reducer';
+import {setCountedCargoParamTC} from '../../p10-calc-bll/payment-thunk';
 import st from './pageTwo.module.scss';
+import WithAuthRedirect from '../../../../common/helpers/hook_HOC/withAuthRedirect';
+import {getAppStatus} from '../../../../root/r2-bll/app-selector';
 
 const PageTwo: React.FC = () => {
     const dispatch = useDispatch()
     //для лоадера
-    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
+    const status = useSelector(getAppStatus);
     // если в стейте есть инфор. берем для рендера данные из стейта( избежать потери при обновлении) иначе дефолт
-    const packagingCargo = useSelector<AppRootStateType, PackagingItemType[]>(state => state.payment.packagingCargo)
+    const packagingCargo = useSelector<AppRootStateType, PackagingItemType[]>(state => state.payments.packagingCargo)
     const [localBagType, setLocalBagType] = useState<string>(packagingCargo[0] ? packagingCargo[0].bagType : 'КОРОБКИ')
     // актуальный вид упаковки [ {} ]
     const currentBagType = packagingBags.filter(el => el.bagType === localBagType)
@@ -42,7 +43,7 @@ const PageTwo: React.FC = () => {
     }, [localBagType, dispatch]);
 
     const setRootClick = () => {
-        dispatch(setCountedCargoParam())
+      return dispatch(setCountedCargoParamTC())
     }
 
 
@@ -70,6 +71,6 @@ const PageTwo: React.FC = () => {
     </Spin>
 };
 
-export default PageTwo
+export default WithAuthRedirect(PageTwo)
 
 

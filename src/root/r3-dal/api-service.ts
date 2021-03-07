@@ -1,13 +1,14 @@
 import {filterTransports} from '../../common/helpers/calculator/calculator';
 import {autoData, containerData, palletsData} from '../../common/staticData';
 import {
+    loadPlaceType,
     PackagingItemType,
     PalletType,
     PayloadTypeForLoading,
     TotalCargoValueType,
     TransportType
 } from '../../common/types';
-import {placeToLoadType, TRUCK} from '../../features/calculator/payment/p2-bll/payment-reducer';
+import { TRUCK} from '../../features/calculator/p10-calc-bll/payment-reducer';
 
 
 const fakeRequest = (value?: any, textLog: any = 'resolve / response fake API') => {
@@ -38,7 +39,7 @@ export const authAPI = {
     // },
 };
 export const pageOne = {
-    setLoadPlacePoint(param: placeToLoadType) {
+    setLoadPlacePoint(param: loadPlaceType) {
         return fakeRequest(param, 'pageOne отправка флага места загрузки');
     },
     uploadFile(File: File) {

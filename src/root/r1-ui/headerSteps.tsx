@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {getCurrentPageStep, getSteps} from '../r2-bll/app-selector';
 import {PAGE_FIVE, PAGE_FOUR, PAGE_ONE, PAGE_SEVEN, PAGE_SIX, PAGE_THREE, PAGE_TWO} from '../routes/routesCalc';
-import {withPallet} from '../../features/calculator/payment/p2-bll/payment-selectors';
+import {withPallet} from '../../features/calculator/p10-calc-bll/payment-selectors';
 import {Header} from 'antd/lib/layout/layout';
 
 export const CalcHeaderSteps: React.FC = () => {
@@ -14,7 +14,6 @@ export const CalcHeaderSteps: React.FC = () => {
     const currentPageStep = useSelector(getCurrentPageStep);
     const isWithPallet = useSelector(withPallet);
     const stepChange = (value: number) => {
-        debugger
         switch (value) {
             case 0:
                 return history.push(PAGE_ONE);

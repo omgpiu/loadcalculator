@@ -1,16 +1,17 @@
 import {createAction, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {RequestStatusType} from '../../common/types';
 
 
 const initialState = {
     status: 'idle',
-    error: null,
+    error: '',
 
     steps: [
         {
             title: 'Шаг 1',
             description: 'Тип контейнера.',
             dataStep: 0,
-            url: '/'
+            url: '/loadcalculator'
         },
         {
             title: 'Шаг 2',
@@ -47,16 +48,9 @@ const initialState = {
             url: '/results'
         },],
     currentStep: 0,
-    currentPageUrl: '/'
+    currentPageUrl: '/loadcalculator'
 } as InitialAppStateType;
 
-
-const setAppStatusAC = createAction<{ status: RequestStatusType }>('appActions/setAppStatus');
-const setAppErrorAC = createAction<{ error: string | null }>('appActions/setAppError');
-export const appActions = {
-    setAppStatusAC,
-    setAppErrorAC
-};
 
 // const initialize = createAsyncThunk('app/initializeApp', async (param, {dispatch, rejectWithValue}) => {
 //     dispatch(appActions.setAppStatusAC({status: 'loading'}));
@@ -83,6 +77,13 @@ const setCurrentStepWithCurrentUrl = (currentUrl: string, steps: StepType[]): nu
     return currentStep
 }
 
+const setAppStatusAC = createAction<{ status: RequestStatusType }>('appActions/setAppStatus');
+const setAppErrorAC = createAction<{ error: string }>('appActions/setAppError');
+export const appActions = {
+    setAppStatusAC,
+    setAppErrorAC
+};
+
 const slice = createSlice({
     name: 'app',
     initialState,
@@ -104,6 +105,7 @@ const slice = createSlice({
                 state.status = action.payload.status;
             })
             .addCase(appActions.setAppErrorAC, (state, action) => {
+                debugger
                 state.error = action.payload.error;
             });
     }
@@ -111,7 +113,7 @@ const slice = createSlice({
 export const {setCurrentPageUrl, /*setCurrentStep*/} = slice.actions;
 export const appReducer = slice.reducer;
 
-export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+
 export type StepType = {
     title: string
     description: string

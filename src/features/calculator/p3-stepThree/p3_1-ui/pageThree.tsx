@@ -6,10 +6,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import st from './pageThree.module.css';
 import ButtonBlock from '../../../../common/helpers/buttonBlock/buttonBlock';
 import {PAGE_FIVE, PAGE_FOUR, PAGE_TWO} from '../../../../root/routes/routesCalc';
-import {withPallet} from '../../payment/p2-bll/payment-selectors';
-import {setCountedCargoParam, setIsWithPallet} from '../../payment/p2-bll/payment-thunk';
-import {setPayloadType} from '../../payment/p2-bll/payment-reducer';
+import {withPallet} from '../../p10-calc-bll/payment-selectors';
+import {setIsWithPallet} from '../../p10-calc-bll/payment-thunk';
+import {setPayloadType} from '../../p10-calc-bll/payment-reducer';
 import {PayloadTypeForLoading} from '../../../../common/types';
+import WithAuthRedirect from '../../../../common/helpers/hook_HOC/withAuthRedirect';
 
 
 const PageThree: React.FC = () => {
@@ -24,7 +25,7 @@ const PageThree: React.FC = () => {
     };
 //отправляем санку с паллетами или без  и груз на рассчет
     const palletsSendOnClickHandler = () => {
-        dispatch(setCountedCargoParam());
+        // dispatch(setCountedCargoParamTC());
         dispatch(setIsWithPallet());
     };
 
@@ -32,8 +33,7 @@ const PageThree: React.FC = () => {
         <div className={st.wrapper}>
             <Col>
                 <img src={withOutPallets} alt="" onClick={onClickHandler} data-name={'no_pallets'}/>
-                <p>Загрузка груза непосредственно в транспортное средство
-                </p>
+                <p>Загрузка груза непосредственно в транспортное средство</p>
                 <div>
                     <Button type={isWithPallet === 'no_pallets' ? 'primary' : 'default'}
                             onClick={onClickHandler} data-name={'no_pallets'}
@@ -62,6 +62,6 @@ const PageThree: React.FC = () => {
 };
 
 
-export default PageThree
+export default WithAuthRedirect(PageThree)
 
 

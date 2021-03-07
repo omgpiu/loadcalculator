@@ -13,16 +13,17 @@ import {Spinner} from '../../../../common/utils/spiner';
 
 
 export const Login = () => {
-    const history = useHistory()
-    useEffect(() => {
-        //при едиректе на логин / превом посещении url-/login, проверка чтобы при входе не перебивал
-       if(!isAuth) history.push(LOGIN)
-    }, [])
     const dispatch = useDispatch();
     const error = useSelector(getError);
     const isAuth = useSelector(getIsAuth);
     const captchaUrl = useSelector(getCaptcha);
     const status = useSelector(getAppStatus);
+    const history = useHistory()
+    useEffect(() => {
+        //при редиректе на логин / превом посещении url-/login, проверка чтобы при входе не перебивал
+       if(!isAuth) history.push(LOGIN)
+    }, [history, isAuth])
+   
 
     const onSubmit = async (values: {
         email: string,

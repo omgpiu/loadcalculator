@@ -8,7 +8,7 @@ import {v1} from 'uuid';
 import ButtonBlock from '../../../../common/helpers/buttonBlock/buttonBlock';
 import {PAGE_FIVE, PAGE_SEVEN} from '../../../../root/routes/routesCalc';
 import {TotalCargoValueType, TransportType} from '../../../../common/types';
-import {setSelectedTransportTC} from '../../payment/p2-bll/payment-thunk';
+import {setSelectedTransportTC} from '../../p10-calc-bll/payment-thunk';
 
 export const SelectChoice: React.FC<PropsType> = React.memo(({transports, totalCargoValue}) => {
     const dispatch = useDispatch();

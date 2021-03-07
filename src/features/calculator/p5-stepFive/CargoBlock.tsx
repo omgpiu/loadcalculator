@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import st from './PageFive.module.css';
 import {useDispatch} from 'react-redux';
-import {setPackagingPosition} from '../payment/p2-bll/payment-reducer';
+import {setPackagingPosition} from '../p10-calc-bll/payment-reducer';
 import {NameType} from '../../../common/types';
 
 type PropsType = {

@@ -8,14 +8,15 @@ import st from './buttonBlock.module.scss';
 import WithCurrentPageUrl from '../hook_HOC/withCurrentPageUrl';
 
 const ButtonBlock: React.FC<PropsType> = React.memo(({
-                                              nextPageLink, prevPageLink, htmlType,
-                                              type, parentClickHandler,
-                                              currentPageUrl, disabled
-                                          }) => {
+                                                         nextPageLink, prevPageLink, htmlType,
+                                                         type, parentClickHandler,
+                                                         currentPageUrl, disabled
+                                                     }) => {
     const dispatch = useDispatch();
     const nextPage = () => {
-        dispatch(setCurrentPageUrl({page: currentPageUrl}));
-        parentClickHandler && parentClickHandler();
+        parentClickHandler && parentClickHandler()
+        dispatch(setCurrentPageUrl({page: currentPageUrl}))
+
     };
     const prevPage = () => dispatch(setCurrentPageUrl({page: currentPageUrl}));
 
@@ -40,7 +41,7 @@ type PropsType = {
     prevPageLink?: string
     htmlType?: ButtonHTMLType
     type?: ButtonType
-    parentClickHandler?: (values?: any) => void
+    parentClickHandler?: (values?: any) => Promise<any>
     currentPageUrl: string
     disabled?: boolean
 }

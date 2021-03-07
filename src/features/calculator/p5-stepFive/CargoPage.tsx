@@ -1,11 +1,11 @@
-import {CargoModule} from "./CargoModule";
-import React from "react";
+import {CargoModule} from './CargoModule';
+import React from 'react';
 import st from './PageFive.module.css'
-import {getPackagingCargo} from "../p2-stepTwo/p2.1-ui/pageTwo-selector";
-import {useSelector} from "react-redux";
+import {getPackagingCargo} from '../p2-stepTwo/p2.2-bll/pageTwo-selector';
+import {useSelector} from 'react-redux';
 
 
-export const CargoPage: React.FC = () => {
+const CargoPage: React.FC = () => {
 
 	const packagingCargo = useSelector(getPackagingCargo);
 
@@ -17,3 +17,5 @@ export const CargoPage: React.FC = () => {
 		}
 	</div>
 }
+
+export default CargoPage

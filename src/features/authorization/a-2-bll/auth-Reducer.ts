@@ -2,11 +2,12 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {appActions} from '../../../root/r2-bll/appReducer';
 import {profileActions,} from '../../../root/r2-bll/profile-reducer';
 import {authAPI, LoginParamsType} from '../a-3-dal/authAPI';
+import {handleAsyncServerNetworkError} from '../../../common/utils/error-utils';
 
 
 const initialState = {
     error: '',
-    isAuth: false,
+    isAuth: true,
     captchaUrl: ''
 };
 
@@ -19,8 +20,7 @@ export const authMe = createAsyncThunk('app/authMe', async (param, {dispatch, re
         return
     } catch (err) {
         dispatch(authActions.setIsAuth({isAuth: false}))
-        dispatch(appActions.setAppStatusAC({status: 'failed'}))
-        return rejectWithValue(err.message)
+        return handleAsyncServerNetworkError(err, dispatch, rejectWithValue, true)
     }
 });
 
@@ -34,9 +34,8 @@ export const login = createAsyncThunk('auth/login', async (param: LoginParamsTyp
         dispatch(profileActions.setProfileAC({profile: res}))
         dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
         return
-    } catch (error) {
-        dispatch(appActions.setAppStatusAC({status: 'failed'}));
-        return rejectWithValue(error.message);
+    } catch (err) {
+        return handleAsyncServerNetworkError(err, dispatch, rejectWithValue, true)
     }
 });
 export const logout = createAsyncThunk<undefined, undefined,
@@ -50,9 +49,8 @@ export const logout = createAsyncThunk<undefined, undefined,
         dispatch(authActions.setIsAuth({isAuth: false}))
         dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
         return;
-    } catch (error) {
-        dispatch(appActions.setAppStatusAC({status: 'failed'}));
-        return rejectWithValue(error.message);
+    } catch (err) {
+        return handleAsyncServerNetworkError(err, dispatch, rejectWithValue, true)
     }
 });
 

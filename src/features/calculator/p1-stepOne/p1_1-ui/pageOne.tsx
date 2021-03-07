@@ -7,18 +7,21 @@ import truck from '../../../../assets/images/truck.jpg';
 import {useDispatch, useSelector} from 'react-redux';
 import {UploadRequestOption as RcCustomRequestOptions} from 'rc-upload/lib/interface';
 import {UploadChangeParam} from 'antd/lib/upload';
-import {Redirect} from 'react-router-dom';
-import {getIsAuth} from '../../../authorization/a-2-bll/auth-selectors';
 import {LOGIN, PAGE_TWO} from '../../../../root/routes/routesCalc';
 import ButtonBlock from '../../../../common/helpers/buttonBlock/buttonBlock';
-import {getLoadPlace, getUploadStatus} from '../../payment/p2-bll/payment-selectors';
-import {CONTAINER, setLoadPlace, TRUCK,} from '../../payment/p2-bll/payment-reducer';
-import {determineLoadPlace, uploadCargoForm} from '../../payment/p2-bll/payment-thunk';
+import {getLoadPlace, getUploadStatus} from '../../p10-calc-bll/payment-selectors';
+import {CONTAINER, setLoadPlace, TRUCK,} from '../../p10-calc-bll/payment-reducer';
+import {determineLoadPlace, uploadCargoForm} from '../../p10-calc-bll/payment-thunk';
+import {Redirect} from 'react-router-dom';
+import {getIsAuth} from '../../../authorization/a-2-bll/auth-selectors';
+import {getAppStatus} from '../../../../root/r2-bll/app-selector';
 
 
 const PageOne: React.FC = () => {
-    const isAuth = useSelector(getIsAuth)
+
     const dispatch = useDispatch();
+    const isAuth = useSelector(getIsAuth);
+    const status = useSelector(getAppStatus);
     const load = useSelector(getLoadPlace);
     const isUploaded = useSelector(getUploadStatus);
     const [disBtn, unDisBtn] = useState<boolean>(true)
@@ -53,8 +56,9 @@ const PageOne: React.FC = () => {
             info.file.status = isUploaded;
         }
     };
-    if (!isAuth) {
-        return <Redirect to={LOGIN}/>;
+    // HOC withAuthRedirect здесь не подойдет предположительно из-за циклической зависимости
+    if (!isAuth && status !== 'loading') {
+        return <Redirect to={LOGIN}/>
     }
 
     return (
