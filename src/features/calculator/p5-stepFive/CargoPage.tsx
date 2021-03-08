@@ -11,8 +11,8 @@ const CargoPage: React.FC = () => {
 
 	return <div className={st.cargoPage}>
 		{
-			packagingCargo.map((el, index) => {
-				return <CargoModule key={el.id} packagingItem={el} cargoNumber={index + 1}/>
+			packagingCargo.map((el) => {
+				return <CargoModule key={el.id} packagingItem={el}/>
 			})
 		}
 	</div>

@@ -11,7 +11,7 @@ import {Spin} from 'antd';
 import {AppRootStateType} from '../../../../root/r2-bll/store';
 import {packagingBags} from '../../../../common/staticData';
 import {setPackagingCargo} from '../../p10-calc-bll/payment-reducer';
-import {setCountedCargoParamTC} from '../../p10-calc-bll/payment-thunk';
+import {setPackagingCargoTC} from '../../p10-calc-bll/payment-thunk';
 import st from './pageTwo.module.scss';
 import WithAuthRedirect from '../../../../common/helpers/hook_HOC/withAuthRedirect';
 import {getAppStatus} from '../../../../root/r2-bll/app-selector';
@@ -43,7 +43,7 @@ const PageTwo: React.FC = () => {
     }, [localBagType, dispatch]);
 
     const setRootClick = () => {
-      return dispatch(setCountedCargoParamTC())
+      return dispatch(setPackagingCargoTC())
     }
 
 

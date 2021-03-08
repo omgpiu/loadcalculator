@@ -3,15 +3,21 @@ import st from './PageFive.module.css';
 import CargoPage from './CargoPage';
 import ButtonBlock from '../../../common/helpers/buttonBlock/buttonBlock';
 import {PAGE_FOUR, PAGE_SIX, PAGE_THREE} from '../../../root/routes/routesCalc';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../root/r2-bll/store';
 import {PayloadTypeForLoading} from '../../../common/types';
 import WithAuthRedirect from '../../../common/helpers/hook_HOC/withAuthRedirect';
+import {setPackagingCargoTC} from '../p10-calc-bll/payment-thunk';
 
 
 const PageFive: React.FC = () => {
 
     const withPallet = useSelector<AppRootStateType, PayloadTypeForLoading>(s => s.payments.withPallet)
+    const dispatch = useDispatch()
+    const setRootClick = () => {
+        return dispatch(setPackagingCargoTC())
+    }
+
 
     return <div className={st.pageFiveMain}>
 
@@ -28,7 +34,7 @@ const PageFive: React.FC = () => {
         <CargoPage/>
 
         <ButtonBlock type={'default'} prevPageLink={withPallet === 'pallets' ? PAGE_FOUR : PAGE_THREE}
-                     nextPageLink={PAGE_SIX}/>
+                     nextPageLink={PAGE_SIX} parentClickHandler={setRootClick}/>
 
     </div>;
 };

@@ -11,11 +11,9 @@ import WithAuthRedirect from '../../../common/helpers/hook_HOC/withAuthRedirect'
 
 const TransportModeContainer = React.memo(() => {
 
-
     const totalCargoValue = useSelector(getTotalCargoValue)
     const typeTransport = useSelector(getLoadPlace)
     const [showBtn, setShowBtn] = useState(true)
-
 
 
     const text_description = {

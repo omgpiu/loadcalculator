@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import st from './PageFive.module.css';
 import {useDispatch} from 'react-redux';
-import {setPackagingPosition} from '../p10-calc-bll/payment-reducer';
+import {setPackagingPosition, setTotalCargoValue} from '../p10-calc-bll/payment-reducer';
 import {NameType} from '../../../common/types';
 
 type PropsType = {
@@ -19,6 +19,7 @@ export const CargoBlock: React.FC<PropsType> = React.memo((props) => {
     const positionSelect = (e: ChangeEvent<HTMLInputElement>) => {
         let position = e.currentTarget.checked;
         dispatch(setPackagingPosition({id: e.currentTarget.id, name: e.currentTarget.name as NameType, position}));
+        dispatch(setTotalCargoValue())
     };
 
     return <div className={st.cargoBlock}>

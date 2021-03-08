@@ -8,7 +8,7 @@ export const calcTotalValueCargo = ((arr: PackagingItemType[]) => {
     for (let i = 0; i < arr.length; i++) {
         const el = arr[i];
         totalCargoValue.cargoMass += +((el.weight * el.amount) / 1000).toFixed(3);
-        totalCargoValue.cargoVolume += +((el.height * el.length * el.width / 1e9) * el.amount).toFixed(3);
+        totalCargoValue.cargoVolume += +((el.height * el.length * el.width / 1e9) * el.amount).toFixed(1);
         //вычисление наибольшего габаритного размера 1 единицы груза (наприм. по обьему и весу груз проходит,
         // но один показатель высота или ширина не проходит по габаритам кузова транспорта)
         if (totalCargoValue.maxH < el.height / 1000) totalCargoValue.maxH = el.height / 1000

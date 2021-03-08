@@ -38,7 +38,7 @@ export const uploadCargoForm = createAsyncThunk('pageOne/cargoForm',
         }
     });
 //p2
-export const setCountedCargoParamTC = createAsyncThunk('pageTwo/sendCargo',
+export const setPackagingCargoTC = createAsyncThunk('pageTwo/sendCargo',
     async (param, {dispatch, rejectWithValue, getState}) => {
         dispatch(appActions.setAppStatusAC({status: 'loading'}));
         const state = getState() as AppRootStateType;

@@ -11,11 +11,11 @@ import {
 } from '../../../common/types';
 import {
     determineLoadPlace,
-    setCountedCargoParamTC,
-    setIsWithPallet,
+    setIsWithPallet, setPackagingCargoTC,
     setPalletParametersTC, setSelectedTransportTC,
     uploadCargoForm
 } from './payment-thunk';
+import {calcTotalValueCargo} from '../../../common/helpers/calculator/calculator';
 
 
 export const TRUCK = 'Грузовик';
@@ -82,13 +82,17 @@ const slice = createSlice({
         },
         //p5
         // выбор варианта размещения груза
-        setPackagingPosition: function (state, action: PayloadAction<{ id: string, name: NameType, position: boolean }>) {
+        setPackagingPosition(state, action: PayloadAction<{ id: string, name: NameType, position: boolean }>) {
 
             state.packagingCargo.map(item => {
                     return item.id === action.payload.id ? item[action.payload.name] = action.payload.position : null;
                 }
             );
         },
+        // считаем общие характеристики груза для подбора транспорта
+        setTotalCargoValue(state) {
+            state.totalCargoValue = calcTotalValueCargo(state.packagingCargo)
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -107,7 +111,7 @@ const slice = createSlice({
                 console.log(state.isUpload);
             })
             //p2
-            .addCase(setCountedCargoParamTC.fulfilled, (state, action) => {
+            .addCase(setPackagingCargoTC.fulfilled, (state, action) => {
                 state.packagingCargo = action.payload as PackagingItemType[];
             })
 
@@ -131,9 +135,9 @@ const slice = createSlice({
 
 export type paymentStateType = typeof initialState
 export const {
-    setLoadPlace, setPackagingCargo,removePackagingCargo,
+    setLoadPlace, setPackagingCargo, removePackagingCargo,
     deletePackagingCargo, setPayloadType,
-    setPalletParamFromBack,
+    setPalletParamFromBack, setTotalCargoValue,
     setPackagingPosition
 } = slice.actions;
 export const paymentReducer = slice.reducer;
