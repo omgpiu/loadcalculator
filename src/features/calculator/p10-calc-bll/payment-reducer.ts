@@ -110,6 +110,7 @@ const slice = createSlice({
             .addCase(setCountedCargoParamTC.fulfilled, (state, action) => {
                 state.packagingCargo = action.payload as PackagingItemType[];
             })
+
             //p3
             .addCase(setIsWithPallet.fulfilled, (state, action) => {
                 state.withPallet = action.payload;

@@ -1,5 +1,5 @@
 import {instance} from '../../../root/r3-dal/baseAPI';
-import {loadPlaceType, PackagingItemType, PayloadTypeForLoading} from '../../../common/types';
+import {loadPlaceType, PackagingItemType, PalletType, PayloadTypeForLoading} from '../../../common/types';
 
 const currentPaymentId = sessionStorage.getItem('currentPaymentId')
 
@@ -17,6 +17,9 @@ export const paymentAPI = {
         return instance.put('payment/withPallet', {currentPaymentId, withPallet})
             .then(res => res.data.input_data)
     },
-
+    palletParameters(palletParameters:PalletType) {
+        return instance.put('payment/palletParam', {currentPaymentId, palletParameters})
+            .then(res => res.data.input_data)
+    },
 
 }

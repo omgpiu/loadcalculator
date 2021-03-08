@@ -17,7 +17,6 @@ export const handleAsyncServerNetworkError = (error: AxiosError,
                                               showError = true) => {
     const e = error.response ? error.response.data.error : 'some error occurred'
     if (showError) {
-        debugger
         dispatch(appActions.setAppErrorAC({error: e}))
     }
     dispatch(appActions.setAppStatusAC({status: 'failed'}))

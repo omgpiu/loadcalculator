@@ -48,7 +48,7 @@ export const CargoModule: React.FC<PropsType> = React.memo((props) => {
     return <div className={st.cargoModule}>
 
         <div className={st.cargoDesc}>
-            <p>Груз: {props.cargoNumber}</p>
+            <p> {props.packagingItem.cargoTitle}</p>
             <p>Количество: {props.packagingItem.amount} штук</p>
             <p>Вес: {props.packagingItem.weight} кг.</p>
             <p>Длина: {props.packagingItem.length} мм.</p>

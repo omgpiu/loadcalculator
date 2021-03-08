@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppRootStateType} from '../../../root/r2-bll/store';
 import {appActions} from '../../../root/r2-bll/appReducer';
-import {page5, page6, pageOne} from '../../../root/r3-dal/api-service';
+import {page6, pageOne} from '../../../root/r3-dal/api-service';
 import {paymentStateType, removePackagingCargo, setPalletParamFromBack} from './payment-reducer';
 import {PackagingItemType, PalletType, PayloadTypeForLoading} from '../../../common/types';
 import {paymentAPI} from '../p11-calc-dal/paymentAPI';
@@ -40,9 +40,9 @@ export const uploadCargoForm = createAsyncThunk('pageOne/cargoForm',
 //p2
 export const setCountedCargoParamTC = createAsyncThunk('pageTwo/sendCargo',
     async (param, {dispatch, rejectWithValue, getState}) => {
+        dispatch(appActions.setAppStatusAC({status: 'loading'}));
         const state = getState() as AppRootStateType;
         const packagingCargo = state.payments.packagingCargo
-        dispatch(appActions.setAppStatusAC({status: 'loading'}));
         try {
             const res = await paymentAPI.countedCargoParam(packagingCargo) as PackagingItemType[];
             dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
@@ -56,10 +56,10 @@ export const setCountedCargoParamTC = createAsyncThunk('pageTwo/sendCargo',
 export const setIsWithPallet = createAsyncThunk<PayloadTypeForLoading, undefined,
     { rejectValue: { errors: Array<string>, fieldsErrors?: Array<any> } }>('pageThree/isWithPallet',
     async (param, {dispatch, getState, rejectWithValue}) => {
+        dispatch(appActions.setAppStatusAC({status: 'loading'}));
         const state = getState() as AppRootStateType;
         const isWithPalletParam = state.payments.withPallet;
         try {
-            dispatch(appActions.setAppStatusAC({status: 'loading'}));
             const res = await paymentAPI.isWithPallet(isWithPalletParam) as PayloadTypeForLoading;
             dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
             return res
@@ -70,11 +70,10 @@ export const setIsWithPallet = createAsyncThunk<PayloadTypeForLoading, undefined
 //p4
 export const setPalletParametersTC = createAsyncThunk('pageFive/setPalletParam',
     async (param: PalletType, {dispatch, rejectWithValue}) => {
-
+        dispatch(appActions.setAppStatusAC({status: 'loading'}))
         try {
-            dispatch(appActions.setAppStatusAC({status: 'loading'}))
             const palletParameters: PalletType = {...param}
-            const res = await page5.setPalletParam(palletParameters)
+            const res = await paymentAPI.palletParameters(palletParameters)
             dispatch(setPalletParamFromBack({palletParam: res as PalletType}))
             dispatch(appActions.setAppStatusAC({status: 'succeeded'}))
             return res

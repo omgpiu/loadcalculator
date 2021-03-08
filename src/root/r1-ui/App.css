@@ -1,13 +1,21 @@
 @import '~antd/dist/antd.css';
 
+
+.ant-layout{
+    background: #ffffff
+}
+.ant-layout-content{
+    padding-top: 70px;
+}
 /*высота headerStep блока*/
 .ant-layout-header {
     height: 48px;
     background: #fff;
+
 }
 /*  left sideBar */
 .ant-layout-sider {
-    border-right: 1px solid #1890ff;
+    border-right: 1px solid #d1e9ff;
     max-width: 150px;
     min-width: 150px;
     width: 150px;
@@ -17,4 +25,7 @@
 .ant-layout-sider-trigger {
     width: 150px;
     background: #1890ff;
+}
+.ant-layout-footer{
+    background-color: #fff;
 }

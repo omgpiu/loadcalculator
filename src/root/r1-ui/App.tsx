@@ -30,10 +30,10 @@ const App = () => {
         <>
             <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
                 {isAuth && <LeftSideBar/>}
-                <Layout className="site-layout">
+                <Layout>
                     {isAuth && <CalcHeaderSteps/>}
                     <Content >
-                        <div className="site-layout-background">
+                        <div>
                             <RoutesCalc/>
                         </div>
                     </Content>

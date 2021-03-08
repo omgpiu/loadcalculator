@@ -105,7 +105,6 @@ const slice = createSlice({
                 state.status = action.payload.status;
             })
             .addCase(appActions.setAppErrorAC, (state, action) => {
-                debugger
                 state.error = action.payload.error;
             });
     }
