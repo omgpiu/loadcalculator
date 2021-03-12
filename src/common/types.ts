@@ -47,6 +47,8 @@ export type PackagingItemType = {
     isStack: boolean
     img: string
 }
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+export type loadPlaceType = 'Грузовик' | 'Контейнер';
 export type TotalCargoValueType = {
     cargoVolume: number
     cargoMass: number

@@ -1,9 +1,10 @@
 import React from 'react';
 import ButtonBlock from '../../../common/helpers/buttonBlock/buttonBlock';
 import {PAGE_SIX} from '../../../root/routes/routesCalc';
+import WithAuthRedirect from '../../../common/helpers/hook_HOC/withAuthRedirect';
 
 
-export const Result = () => {
+const Result = () => {
 
     return (
         <div> Result
@@ -11,3 +12,5 @@ export const Result = () => {
         </div>
     )
 }
+
+export default WithAuthRedirect(Result)

@@ -3,9 +3,9 @@ import {Table} from 'antd';
 import React from 'react';
 import {TableSelect} from '../../p3-stepThree/p3_1-ui/select';
 import {useDispatch, useSelector} from 'react-redux';
-import {getPackagingCargo} from './pageTwo-selector';
+import {getPackagingCargo} from '../p2.2-bll/pageTwo-selector';
 import {ColumnsType} from 'antd/es/table';
-import { deletePackagingCargo } from '../../payment/p2-bll/payment-reducer';
+import { deletePackagingCargo } from '../../p10-calc-bll/payment-reducer';
 import {BagType, PackagingItemType} from '../../../../common/types';
 
 

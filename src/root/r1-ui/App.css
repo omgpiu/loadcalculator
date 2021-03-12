@@ -1,31 +1,61 @@
 @import '~antd/dist/antd.css';
 
-.ant-modal-mask {
-    background-color: rgba(0, 0, 0, 0.10)
+
+.ant-layout {
+    background: #ffffff
 }
 
-#components-layout-demo-custom-trigger .trigger {
-    font-size: 18px;
-    line-height: 64px;
-    padding: 0 24px;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-#components-layout-demo-custom-trigger .trigger:hover {
-    color: #1890ff;
-}
-
-#components-layout-demo-custom-trigger .logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.3);
-    margin: 16px;
-}
-
-.site-layout .site-layout-background {
+/*высота headerStep блока*/
+.ant-layout-header {
+    height: 48px;
     background: #fff;
+    margin-bottom: 70px;
 }
 
-.ant-layout-sider-children {
-    background-color: #c7dbff;
+/*  left sideBar */
+.ant-layout-sider  {
+    border-right: 1px solid #d1e9ff;
+    background-color: #fff;
+}
+.ant-menu-inline-collapsed{
+    width: 40px;
+}
+
+/*  left sideBar кнопка открытия */
+.ant-layout-sider-trigger  {
+    background: #1890ff;
+}
+
+.ant-layout-footer {
+    background-color: #fff;
+}
+
+/*стилизация блока content*/
+.ant-row {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* для форм на 2 и 4 странице*/
+.ant-form-item {
+    width: 300px;
+    justify-content: space-between;
+}
+
+.ant-form-horizontal .ant-form-item-control {
+    flex: inherit;
+}
+
+.ant-input,
+.ant-input-number {
+    min-width: 120px;
+}
+
+.ant-form-item-label {
+    text-align: left;
+}
+.ant-form-item-required{
+    max-width: 180px;
+    white-space: normal;
 }

@@ -1,16 +1,17 @@
 import {createAction, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {RequestStatusType} from '../../common/types';
 
 
 const initialState = {
     status: 'idle',
-    error: null,
+    error: '',
 
     steps: [
         {
             title: 'Шаг 1',
             description: 'Тип контейнера.',
             dataStep: 0,
-            url: '/'
+            url: '/loadcalculator'
         },
         {
             title: 'Шаг 2',
@@ -47,32 +48,8 @@ const initialState = {
             url: '/results'
         },],
     currentStep: 0,
-    currentPageUrl: '/'
+    currentPageUrl: '/loadcalculator'
 } as InitialAppStateType;
-
-
-const setAppStatusAC = createAction<{ status: RequestStatusType }>('appActions/setAppStatus');
-const setAppErrorAC = createAction<{ error: string | null }>('appActions/setAppError');
-export const appActions = {
-    setAppStatusAC,
-    setAppErrorAC
-};
-
-// const initialize = createAsyncThunk('app/initializeApp', async (param, {dispatch, rejectWithValue}) => {
-//     dispatch(appActions.setAppStatusAC({status: 'loading'}));
-//     try {
-//         const res = await authAPI.authMe();
-//         if (res) {
-//             dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
-//         }
-//         return
-//     } catch (err) {
-//         dispatch(appActions.setAppErrorAC(err.message));
-//         dispatch(appActions.setAppStatusAC({status: 'failed'}));
-//         return rejectWithValue(err.message)
-//     }
-// });
-
 
 const setCurrentStepWithCurrentUrl = (currentUrl: string, steps: StepType[]): number => {
     const index = steps.findIndex(el => el.url === currentUrl)
@@ -83,6 +60,13 @@ const setCurrentStepWithCurrentUrl = (currentUrl: string, steps: StepType[]): nu
     return currentStep
 }
 
+const setAppStatusAC = createAction<{ status: RequestStatusType }>('appActions/setAppStatus');
+const setAppErrorAC = createAction<{ error: string }>('appActions/setAppError');
+export const appActions = {
+    setAppStatusAC,
+    setAppErrorAC
+};
+
 const slice = createSlice({
     name: 'app',
     initialState,
@@ -91,11 +75,6 @@ const slice = createSlice({
             state.currentPageUrl = action.payload.page;
             state.currentStep = setCurrentStepWithCurrentUrl(action.payload.page, state.steps)
         },
-        // setCurrentStep(state, action: PayloadAction<{ page: number }>) {
-        //     debugger
-        //     state.currentStep = action.payload.page;
-        // },
-
     },
     extraReducers: builder => {
         builder
@@ -108,10 +87,10 @@ const slice = createSlice({
             });
     }
 });
-export const {setCurrentPageUrl, /*setCurrentStep*/} = slice.actions;
+export const {setCurrentPageUrl} = slice.actions;
 export const appReducer = slice.reducer;
 
-export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+
 export type StepType = {
     title: string
     description: string

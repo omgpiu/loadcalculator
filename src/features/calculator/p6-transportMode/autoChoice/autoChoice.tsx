@@ -6,7 +6,7 @@ import st from './autoChoice.module.scss'
 import {getAutoChoiceFiltered, getStatus} from '../p6-selector';
 import ButtonBlock from '../../../../common/helpers/buttonBlock/buttonBlock';
 import {PAGE_FIVE, PAGE_SEVEN} from '../../../../root/routes/routesCalc';
-import {setSelectedTransportTC} from '../../payment/p2-bll/payment-thunk';
+import {setSelectedTransportTC} from '../../p10-calc-bll/payment-thunk';
 
 export const AutoChoice: React.FC = () => {
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export const AutoChoice: React.FC = () => {
         setError(false)
     }
     const onHandleClick = () => {
-        dispatch(setSelectedTransportTC())
+        dispatch(setSelectedTransportTC({path:'autoChoiceFiltered'}))
     }
 
     return (

@@ -4,14 +4,14 @@ import thunkMiddleware from 'redux-thunk';
 import {pageSixReducer} from '../../features/calculator/p6-transportMode/p6-reducer';
 import {profileReducer} from './profile-reducer';
 import {authReducer} from '../../features/authorization/a-2-bll/auth-Reducer';
-import {paymentReducer} from '../../features/calculator/payment/p2-bll/payment-reducer';
+import {paymentReducer} from '../../features/calculator/p10-calc-bll/payment-reducer';
 
 
 export const rootReducer = combineReducers({
     app: appReducer,
     profile: profileReducer,
     auth: authReducer,
-    payment:paymentReducer,
+    payments:paymentReducer,
     pageSix: pageSixReducer,
 });
 export const store = configureStore({

@@ -1,7 +1,6 @@
 import {AppRootStateType} from '../../../root/r2-bll/store';
 
-import {RequestStatusType} from '../../../root/r2-bll/appReducer';
-import {TransportType} from '../../../common/types';
+import {RequestStatusType, TransportType} from '../../../common/types';
 
 
 

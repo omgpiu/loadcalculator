@@ -9,6 +9,9 @@ export const getError = (state: AppRootStateType): string => {
 export const getIsAuth = (state: AppRootStateType): boolean => {
     return state.auth.isAuth;
 };
+export const getRegisterSuccess = (state: AppRootStateType): boolean => {
+    return state.auth.registerSuccess;
+};
 export const getCaptcha = (state: AppRootStateType): string => {
     return state.auth.captchaUrl;
 };
