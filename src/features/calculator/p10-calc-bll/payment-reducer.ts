@@ -10,12 +10,13 @@ import {
     TransportType
 } from '../../../common/types';
 import {
-    determineLoadPlace,
-    setIsWithPallet, setPackagingCargoTC,
-    setPalletParametersTC, setSelectedTransportTC,
-    uploadCargoForm
+    determineLoadPlace, getResultPaymentTC,
+    setIsWithPallet,
+    setPackagingCargoTC,
+    setPalletParametersTC,
+    setPlacementCargo_totalValueTC,
+    setSelectedTransportTC,
 } from './payment-thunk';
-import {calcTotalValueCargo} from '../../../common/helpers/calculator/calculator';
 
 
 export const TRUCK = 'Грузовик';
@@ -47,13 +48,6 @@ const slice = createSlice({
             state.loadPlace = action.payload.loadPlace;
         },
         //p2
-        // //сетаем значения в стейт(с инпутов), перед добавлением в таблицу с выбранным грузом
-        // setPackagingParams(state, action: PayloadAction<{ id: string, param: CargoParamType, paramQuantity: string | number }>) {
-        //     state.packagingItems.map(item => {
-        //             return item.id === action.payload.id ? item[action.payload.param] = action.payload.paramQuantity as number : null
-        //         }
-        //     );
-        // },
         //заполняем массив грузом(таблица), для отправки на сервер и переприсваеваем id
         setPackagingCargo(state, action: PayloadAction<{ packagingItem: PackagingItemType }>) {
             state.packagingCargo.push(action.payload.packagingItem)
@@ -61,7 +55,6 @@ const slice = createSlice({
         removePackagingCargo(state) {
             state.packagingCargo = []
         },
-
         //удаляем не нужный груз из массива(таблица с грузом)
         deletePackagingCargo(state, action: PayloadAction<{ id: string }>) {
             const index = state.packagingCargo.findIndex(c => c.id === action.payload.id);
@@ -89,27 +82,25 @@ const slice = createSlice({
                 }
             );
         },
-        // считаем общие характеристики груза для подбора транспорта
-        setTotalCargoValue(state) {
-            state.totalCargoValue = calcTotalValueCargo(state.packagingCargo)
-        }
+
     },
     extraReducers: (builder) => {
         builder
             //p1
             .addCase(determineLoadPlace.fulfilled, (state, action) => action.payload)
-            .addCase(uploadCargoForm.pending, (state) => {
-                state.isUpload = 'uploading';
-                console.log(state.isUpload);
-            })
-            .addCase(uploadCargoForm.fulfilled, (state) => {
-                state.isUpload = 'done';
-                console.log(state.isUpload);
-            })
-            .addCase(uploadCargoForm.rejected, (state) => {
-                state.isUpload = 'error';
-                console.log(state.isUpload);
-            })
+            //todo
+            // .addCase(uploadCargoForm.pending, (state) => {
+            //     state.isUpload = 'uploading';
+            //     console.log(state.isUpload);
+            // })
+            // .addCase(uploadCargoForm.fulfilled, (state) => {
+            //     state.isUpload = 'done';
+            //     console.log(state.isUpload);
+            // })
+            // .addCase(uploadCargoForm.rejected, (state) => {
+            //     state.isUpload = 'error';
+            //     console.log(state.isUpload);
+            // })
             //p2
             .addCase(setPackagingCargoTC.fulfilled, (state, action) => {
                 state.packagingCargo = action.payload as PackagingItemType[];
@@ -123,21 +114,26 @@ const slice = createSlice({
             .addCase(setPalletParametersTC.fulfilled, (state, action) => {
                 state.palletParam = action.payload as PalletType;
             })
+            // считаем общие характеристики груза для подбора транспорта
+            .addCase(setPlacementCargo_totalValueTC.fulfilled, (state, action) => {
+                state.totalCargoValue = action.payload.totalCargoValue
+            })
+
             //p6
             .addCase(setSelectedTransportTC.fulfilled, (state, action) => {
                 state.transports = action.payload as TransportType[];
             })
+            //p7
+            .addCase(getResultPaymentTC.fulfilled, (state, action) => action.payload)
     },
 })
 
-
-//p1
 
 export type paymentStateType = typeof initialState
 export const {
     setLoadPlace, setPackagingCargo, removePackagingCargo,
     deletePackagingCargo, setPayloadType,
-    setPalletParamFromBack, setTotalCargoValue,
+    setPalletParamFromBack,
     setPackagingPosition
 } = slice.actions;
 export const paymentReducer = slice.reducer;

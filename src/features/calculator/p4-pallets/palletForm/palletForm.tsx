@@ -26,14 +26,14 @@ export const PalletForm: React.FC<{ pallet: PalletType }> = React.memo(({pallet}
         {
             id: 5,
             name: 'maxLoadingHeight',
-            label: 'Максимальная высота загрузки (мм):',
+            label: 'Высота загрузки (мм):',
             value: pallet.maxLoadingHeight,
             disabled: true
         },
         {
             id: 6,
             name: 'separatorSheetHeight',
-            label: 'Высота разделительного листа (мм):',
+            label: 'Высота разделителя (мм):',
             value: pallet.separatorSheetHeight,
             disabled: true
         }

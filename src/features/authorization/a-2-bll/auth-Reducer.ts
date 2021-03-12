@@ -1,13 +1,16 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {appActions} from '../../../root/r2-bll/appReducer';
 import {profileActions,} from '../../../root/r2-bll/profile-reducer';
-import {authAPI, LoginParamsType} from '../a-3-dal/authAPI';
+import {authAPI, LoginParamsType, RegisterType} from '../a-3-dal/authAPI';
 import {handleAsyncServerNetworkError} from '../../../common/utils/error-utils';
 
 
 const initialState = {
     error: '',
     isAuth: true,
+    registerSuccess: false,
+    recoveryPassSuccess: false,
+    newPassSuccess: false,
     captchaUrl: ''
 };
 
@@ -53,6 +56,20 @@ export const logout = createAsyncThunk<undefined, undefined,
         return handleAsyncServerNetworkError(err, dispatch, rejectWithValue, true)
     }
 });
+export const registerTC = createAsyncThunk('auth/register',
+    async (param: { registerObj: RegisterType }, {dispatch, rejectWithValue}) => {
+        dispatch(appActions.setAppStatusAC({status: 'loading'}));
+        try {
+            await authAPI.register(param.registerObj);
+            dispatch(authActions.setRegisterSuccess({registerSuccess: true}));
+            dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
+            return;
+        } catch (err) {
+            dispatch(authActions.setAuthError({error: err.response.data.error}))
+            dispatch(appActions.setAppStatusAC({status: 'failed'}))
+            return rejectWithValue(err)
+        }
+    });
 
 
 const slice = createSlice({
@@ -64,7 +81,13 @@ const slice = createSlice({
         },
         setIsAuth(state, action: PayloadAction<{ isAuth: boolean }>) {
             state.isAuth = action.payload.isAuth;
-        }
+        },
+        setAuthError(state, action: PayloadAction<{ error: string }>) {
+            state.error = action.payload.error;
+        },
+        setRegisterSuccess(state, action: PayloadAction<{ registerSuccess: boolean }>) {
+            state.registerSuccess = action.payload.registerSuccess;
+        },
     },
     extraReducers: builder => {
         builder

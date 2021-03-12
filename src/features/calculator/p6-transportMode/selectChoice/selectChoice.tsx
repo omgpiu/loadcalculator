@@ -37,7 +37,7 @@ export const SelectChoice: React.FC<PropsType> = React.memo(({transports, totalC
     }
     const onHandleClick = () => {
         // отправляем на сервер массив с выбранными машинами/контейнерами
-        dispatch(setSelectedTransportTC())
+        dispatch(setSelectedTransportTC({path:'selectChoice'}))
     }
 
     const choiceRow = (selectChoice: TransportType[]) => {

@@ -7,16 +7,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../root/r2-bll/store';
 import {PayloadTypeForLoading} from '../../../common/types';
 import WithAuthRedirect from '../../../common/helpers/hook_HOC/withAuthRedirect';
-import {setPackagingCargoTC} from '../p10-calc-bll/payment-thunk';
+import {setPlacementCargo_totalValueTC} from '../p10-calc-bll/payment-thunk';
 
 
 const PageFive: React.FC = () => {
 
     const withPallet = useSelector<AppRootStateType, PayloadTypeForLoading>(s => s.payments.withPallet)
     const dispatch = useDispatch()
-    const setRootClick = () => {
-        return dispatch(setPackagingCargoTC())
-    }
+    const setRootClick = () => dispatch(setPlacementCargo_totalValueTC())
+
 
 
     return <div className={st.pageFiveMain}>

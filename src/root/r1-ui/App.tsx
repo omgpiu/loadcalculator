@@ -10,6 +10,8 @@ import {Spinner} from '../../common/utils/spiner';
 import {CalcHeaderSteps} from './headerSteps';
 import {Content} from 'antd/lib/layout/layout';
 import {RoutesCalc} from '../routes/routesCalc';
+import {getResultPaymentTC} from '../../features/calculator/p10-calc-bll/payment-thunk';
+import {getCurrentPaymentId} from '../../features/calculator/p11-calc-dal/paymentAPI';
 
 
 const {Footer} = Layout;
@@ -22,9 +24,13 @@ const App = () => {
     const isAuth = useSelector(getIsAuth)
     useEffect(() => {
         dispatch(authMe())
+        //чтобы засетать актуальный обьект расчета в стейт, если уже начать расчет( в случае перезагрузки приложения,
+        // во время ввода данных стр 2-6)
+        const currentPaymentId= getCurrentPaymentId()
+        if(currentPaymentId)dispatch(getResultPaymentTC())
     }, [dispatch])
 
-// полностью блочит приложение, но нет прыжков
+
     if (status === 'loading') return <Spinner/>
     return (
         <>
@@ -37,7 +43,7 @@ const App = () => {
                             <RoutesCalc/>
                         </div>
                     </Content>
-                    {isAuth && <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>}
+                    {isAuth && <Footer style={{textAlign: 'center'}}>Created by It-Incubator alumni.</Footer>}
                 </Layout>
             </Layout>
         </>

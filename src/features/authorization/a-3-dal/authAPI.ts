@@ -14,10 +14,10 @@ export const authAPI = {
         return instance.delete('auth/me')
             .then(r => r.data)
     },
-    // register(email: string, password: string) {
-    //     return instance.post<ResponseReg>('auth/register', {email, password})
-    //         .then(res => res.data)
-    // },
+    register(registerObj:RegisterType) {
+        return instance.post('auth/register', {...registerObj})
+            .then(res => res.data)
+    },
 
 
     // recoveryPass(recoveryPassObj:RecoveryPassObjType ){
@@ -27,7 +27,12 @@ export const authAPI = {
     //     return instance.post('auth/set-new-password', {...setNewPassData})
     // }
 }
-
+export type RegisterType = {
+    email: string
+    password: string
+    userName: string
+    organization: string
+}
 export type LoginParamsType = {
     email: string
     password: string

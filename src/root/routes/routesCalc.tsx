@@ -11,10 +11,12 @@ import {Login} from '../../features/authorization/a-1-ui/login/login';
 import {Forgot} from '../../features/authorization/a-1-ui/forgot/forgot';
 import Result from '../../features/calculator/p7-result/result';
 import PageFive from '../../features/calculator/p5-stepFive/PageFive';
+import {Register} from '../../features/authorization/a-1-ui/Register';
 
 
-export const LOGIN = '/login';
+export const LOGIN = '/';
 export const FORGOT = '/forgot'
+export const REGISTER = '/register'
 
 export const PAGE_ONE = '/loadcalculator';
 export const PAGE_TWO = '/packing';
@@ -30,10 +32,11 @@ export const RoutesCalc = () => {
     return <>
         <Switch>
 
-            <Route path={LOGIN} render={() => <Login/>}/>
+            <Route exact path={LOGIN} render={() => <Login/>}/>
             <Route path={FORGOT} render={() => <Forgot/>}/>
+            <Route path={REGISTER} render={() => <Register/>}/>
 
-            <Route exact path={PAGE_ONE} render={() => <PageOne/>}/>
+            <Route path={PAGE_ONE} render={() => <PageOne/>}/>
             <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
             <Route path={PAGE_FOUR} render={() => <Page4Pallets/>}/>

@@ -51,23 +51,6 @@ const initialState = {
     currentPageUrl: '/loadcalculator'
 } as InitialAppStateType;
 
-
-// const initialize = createAsyncThunk('app/initializeApp', async (param, {dispatch, rejectWithValue}) => {
-//     dispatch(appActions.setAppStatusAC({status: 'loading'}));
-//     try {
-//         const res = await authAPI.authMe();
-//         if (res) {
-//             dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
-//         }
-//         return
-//     } catch (err) {
-//         dispatch(appActions.setAppErrorAC(err.message));
-//         dispatch(appActions.setAppStatusAC({status: 'failed'}));
-//         return rejectWithValue(err.message)
-//     }
-// });
-
-
 const setCurrentStepWithCurrentUrl = (currentUrl: string, steps: StepType[]): number => {
     const index = steps.findIndex(el => el.url === currentUrl)
     let currentStep;
@@ -92,11 +75,6 @@ const slice = createSlice({
             state.currentPageUrl = action.payload.page;
             state.currentStep = setCurrentStepWithCurrentUrl(action.payload.page, state.steps)
         },
-        // setCurrentStep(state, action: PayloadAction<{ page: number }>) {
-        //     debugger
-        //     state.currentStep = action.payload.page;
-        // },
-
     },
     extraReducers: builder => {
         builder
@@ -109,7 +87,7 @@ const slice = createSlice({
             });
     }
 });
-export const {setCurrentPageUrl, /*setCurrentStep*/} = slice.actions;
+export const {setCurrentPageUrl} = slice.actions;
 export const appReducer = slice.reducer;
 
 

@@ -7,19 +7,16 @@ import {PackagingItemType} from '../../../../common/types';
 import {v1} from 'uuid';
 import {FormValueType, PackagingForm} from './pageTwoForm';
 import {PackagingSelect} from './PackagingSelect';
-import {Spin} from 'antd';
 import {AppRootStateType} from '../../../../root/r2-bll/store';
 import {packagingBags} from '../../../../common/staticData';
 import {setPackagingCargo} from '../../p10-calc-bll/payment-reducer';
 import {setPackagingCargoTC} from '../../p10-calc-bll/payment-thunk';
 import st from './pageTwo.module.scss';
 import WithAuthRedirect from '../../../../common/helpers/hook_HOC/withAuthRedirect';
-import {getAppStatus} from '../../../../root/r2-bll/app-selector';
+
 
 const PageTwo: React.FC = () => {
     const dispatch = useDispatch()
-    //для лоадера
-    const status = useSelector(getAppStatus);
     // если в стейте есть инфор. берем для рендера данные из стейта( избежать потери при обновлении) иначе дефолт
     const packagingCargo = useSelector<AppRootStateType, PackagingItemType[]>(state => state.payments.packagingCargo)
     const [localBagType, setLocalBagType] = useState<string>(packagingCargo[0] ? packagingCargo[0].bagType : 'КОРОБКИ')
@@ -43,32 +40,30 @@ const PageTwo: React.FC = () => {
     }, [localBagType, dispatch]);
 
     const setRootClick = () => {
-      return dispatch(setPackagingCargoTC())
+        return dispatch(setPackagingCargoTC())
     }
 
 
-    return <Spin spinning={status === 'loading'} delay={0}>
-        <div>
-            <div className={st.p2_wrapper}>
-                <p>Укажите тип упаковки груза</p>
-                {currentBagType.map(el => {
-                        return <div key={el.id} className={st.p2_inner}>
-                            <PackagingForm onClickHandlerForm={onClickHandlerForm} localBagType={localBagType}/>
-                            <PackagingSelect bagType={el.bagType}
-                                             img={el.img}
-                                             onHandleChange={onHandleChange}/>
-                        </div>
-                    }
-                )}
-            </div>
-
-            <CargoTable/>
-            <ButtonBlock type={'default'} prevPageLink={PAGE_ONE}
-                         nextPageLink={PAGE_THREE}
-                         disabled={packagingCargo.length === 0}
-                         parentClickHandler={setRootClick}/>
+    return <div>
+        <div className={st.p2_wrapper}>
+            <p>Укажите тип упаковки груза</p>
+            {currentBagType.map(el => {
+                    return <div key={el.id} className={st.p2_inner}>
+                        <PackagingForm onClickHandlerForm={onClickHandlerForm} localBagType={localBagType}/>
+                        <PackagingSelect bagType={el.bagType}
+                                         img={el.img}
+                                         onHandleChange={onHandleChange}/>
+                    </div>
+                }
+            )}
         </div>
-    </Spin>
+
+        <CargoTable/>
+        <ButtonBlock type={'default'} prevPageLink={PAGE_ONE}
+                     nextPageLink={PAGE_THREE}
+                     disabled={packagingCargo.length === 0}
+                     parentClickHandler={setRootClick}/>
+    </div>
 };
 
 export default WithAuthRedirect(PageTwo)

@@ -20,6 +20,13 @@
     z-index: 100;
 }
 
+.loginForm h2 {
+    font-size: 24px;
+    font-style: italic;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
 .loginFormForgot {
     float: right;
 }
@@ -30,4 +37,5 @@
 
 .loginFormButton {
     width: 100%;
+    margin-bottom: 15px;
 }

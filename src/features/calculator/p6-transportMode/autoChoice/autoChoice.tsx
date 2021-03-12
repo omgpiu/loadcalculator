@@ -21,7 +21,7 @@ export const AutoChoice: React.FC = () => {
         setError(false)
     }
     const onHandleClick = () => {
-        dispatch(setSelectedTransportTC())
+        dispatch(setSelectedTransportTC({path:'autoChoiceFiltered'}))
     }
 
     return (

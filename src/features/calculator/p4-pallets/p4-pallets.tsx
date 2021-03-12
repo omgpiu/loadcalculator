@@ -2,7 +2,6 @@ import React, {useCallback, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../root/r2-bll/store';
 import st from './p4.module.scss';
-import './p4_antd.css';
 import {PalletForm} from './palletForm/palletForm';
 import {PalletSelected} from './palletSelected/p4-selected';
 import {palletsData} from '../../../common/staticData';
