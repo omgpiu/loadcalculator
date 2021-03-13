@@ -20,7 +20,7 @@ const PageThree: React.FC = () => {
 //сетаю флаг в сторе
     const onClickHandler = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const value = e.currentTarget.dataset.name as PayloadTypeForLoading
-        dispatch(setPayloadType({payloadTypeLoad: value}));
+        dispatch(setPayloadType({withPallet: value}));
         unDisBtn(false)
     };
 //отправляем санку с паллетами или без  и груз на рассчет

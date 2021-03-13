@@ -64,8 +64,8 @@ const slice = createSlice({
         },
 
         //p3
-        setPayloadType(state, action: PayloadAction<{ payloadTypeLoad: PayloadTypeForLoading }>) {
-            state.withPallet = action.payload.payloadTypeLoad;
+        setPayloadType(state, action: PayloadAction<{ withPallet: PayloadTypeForLoading }>) {
+            state.withPallet = action.payload.withPallet;
         },
         //p4
         setPalletParamFromBack(state, action: PayloadAction<{ palletParam: PalletType }>) {
@@ -129,7 +129,7 @@ const slice = createSlice({
 })
 
 
-export type paymentStateType = typeof initialState
+export type PaymentStateType = typeof initialState
 export const {
     setLoadPlace, setPackagingCargo, removePackagingCargo,
     deletePackagingCargo, setPayloadType,

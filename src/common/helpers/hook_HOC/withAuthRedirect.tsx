@@ -12,7 +12,6 @@ function WithAuthRedirect<WCP>(Component: React.ComponentType<WCP>) {
         const isAuth = useSelector(getIsAuth);
         const status = useSelector(getAppStatus);
         const currentPaymentId = sessionStorage.getItem('currentPaymentId')
-        // if (!isAuth && status === 'succeeded') {
         if (!isAuth && status !== 'loading') {
             return <Redirect to={LOGIN}/>
             // проверка на наличие id текущего расчета в SS для того,
