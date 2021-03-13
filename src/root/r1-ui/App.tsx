@@ -21,34 +21,34 @@ const App = () => {
     const dispatch = useDispatch();
 
     const status = useSelector(getAppStatus);
-    const isAuth = useSelector(getIsAuth)
+    const isAuth = useSelector(getIsAuth);
     useEffect(() => {
-        dispatch(authMe())
+        dispatch(authMe());
         //чтобы засетать актуальный обьект расчета в стейт, если уже начать расчет( в случае перезагрузки приложения,
         // во время ввода данных стр 2-6)
-        const currentPaymentId= getCurrentPaymentId()
-        if(currentPaymentId)dispatch(getResultPaymentTC())
-    }, [dispatch])
+        const currentPaymentId = getCurrentPaymentId();
+        if (currentPaymentId) dispatch(getResultPaymentTC());
+    }, [dispatch]);
 
 
-    if (status === 'loading') return <Spinner/>
+    if (status === 'loading') return <Spinner/>;
     return (
         <>
             <Layout style={{minHeight: '100vh', backgroundColor: 'white'}}>
                 {isAuth && <LeftSideBar/>}
                 <Layout>
                     {isAuth && <CalcHeaderSteps/>}
-                    <Content >
+                    <Content>
                         <div>
                             <RoutesCalc/>
                         </div>
                     </Content>
-                    {isAuth && <Footer style={{textAlign: 'center'}}>Created by It-Incubator alumni.</Footer>}
+                    {isAuth && <Footer style={{textAlign: 'center'}}>Created by @omgpiu && @Kirill_SPb</Footer>}
                 </Layout>
             </Layout>
         </>
-    )
-}
+    );
+};
 export default App;
 
 

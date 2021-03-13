@@ -35,7 +35,6 @@ export const RoutesCalc = () => {
             <Route exact path={LOGIN} render={() => <Login/>}/>
             <Route path={FORGOT} render={() => <Forgot/>}/>
             <Route path={REGISTER} render={() => <Register/>}/>
-
             <Route path={PAGE_ONE} render={() => <PageOne/>}/>
             <Route path={PAGE_TWO} render={() => <PageTwo/>}/>
             <Route path={PAGE_THREE} render={() => <PageThree/>}/>
