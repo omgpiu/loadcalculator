@@ -11,7 +11,7 @@ import {setSelectedTransportTC} from '../../p10-calc-bll/payment-thunk';
 export const AutoChoice: React.FC = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState<boolean>(true);
-    const [radioValue, setMode] = React.useState(null);
+    const [radioValue, setMode] = React.useState('');
     const autoChoiceFiltered = useSelector(getAutoChoiceFiltered)
     const status = useSelector(getStatus)
 
@@ -21,7 +21,7 @@ export const AutoChoice: React.FC = () => {
         setError(false)
     }
     const onHandleClick = () => {
-        dispatch(setSelectedTransportTC({path:'autoChoiceFiltered'}))
+        dispatch(setSelectedTransportTC({path: 'autoChoiceFiltered', idAutoChoice: radioValue}))
     }
 
     return (

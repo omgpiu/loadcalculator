@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppRootStateType} from '../../../root/r2-bll/store';
 import {appActions} from '../../../root/r2-bll/appReducer';
-import {paymentStateType, removePackagingCargo, setPalletParamFromBack} from './payment-reducer';
+import {PaymentStateType, removePackagingCargo, setPalletParamFromBack} from './payment-reducer';
 import {PackagingItemType, PalletType, PayloadTypeForLoading} from '../../../common/types';
 import {paymentAPI} from '../p11-calc-dal/paymentAPI';
 import {handleAsyncServerNetworkError} from '../../../common/utils/error-utils';
@@ -18,7 +18,7 @@ export const determineLoadPlace = createAsyncThunk('pageOne/loadPlace',
         const cargoLoadPlace = state.payments.loadPlace;
         try {
             dispatch(appActions.setAppStatusAC({status: 'loading'}));
-            const res = await paymentAPI.loadPlace(cargoLoadPlace) as paymentStateType;
+            const res = await paymentAPI.loadPlace(cargoLoadPlace) as PaymentStateType;
             sessionStorage.setItem('currentPaymentId', res._id)
             dispatch(appActions.setAppStatusAC({status: 'succeeded'}));
             return res;
@@ -100,9 +100,14 @@ export const setPlacementCargo_totalValueTC = createAsyncThunk('pageFive/placeme
 //p6
 // отправляем на сервер массив с выбранным транспортом, вмещающим весь груз
 export const setSelectedTransportTC = createAsyncThunk('pageSix/setSelectedTransport',
-    async (param: { path: 'selectChoice' | 'autoChoiceFiltered' }, {dispatch, rejectWithValue, getState}) => {
+    async (param: { path: 'selectChoice' | 'autoChoiceFiltered', idAutoChoice?: string }, {
+        dispatch,
+        rejectWithValue,
+        getState
+    }) => {
         const state = getState() as AppRootStateType
-        const transports = param.path === 'selectChoice' ? state.pageSix.selectChoice : state.pageSix.autoChoiceFiltered
+        const transports = param.path === 'selectChoice' ? state.pageSix.selectChoice
+            : state.pageSix.autoChoiceFiltered.filter(el => el.id === param.idAutoChoice)
         try {
             dispatch(appActions.setAppStatusAC({status: 'loading'}))
             const res = await paymentAPI.selectedTransports(transports)
